@@ -15,7 +15,7 @@ from fastapi import HTTPException
 from pydantic import BaseModel, Field
 
 from agents.router import app as router_graph
-from infrastructure.container import get_chat_history
+from infrastructure.container import get_chat_history, get_chat_options
 from memory.hindsight import get_hindsight_memory, resolve_memory_thread_id
 
 from schemas.protocols import TaskIntent
@@ -25,6 +25,8 @@ WorkflowMode = Literal["default", "dev_pipeline"]
 
 
 class TurnRequest(BaseModel):
+    model: str | None = None
+    reasoning_effort: Literal["off", "low", "high", "max"] | None = None
     text: str = Field(..., min_length=1, max_length=12000)
     workflow_mode: WorkflowMode = "default"
     forced_persona: Optional[str] = None
@@ -54,6 +56,12 @@ class TurnService:
         if payload.workflow_mode == "dev_pipeline":
             raise HTTPException(status_code=410, detail="开发流水线已归档，当前仅运行 Bina 虚拟具身实验。")
 
+        options = get_chat_options()
+        if payload.model is not None and payload.model not in options["models"]:
+            raise HTTPException(status_code=422, detail="当前模型服务不支持所选模型。")
+        if payload.reasoning_effort is not None and payload.reasoning_effort not in options["reasoning_levels"]:
+            raise HTTPException(status_code=422, detail="当前模型服务不支持所选思考档位。")
+
         recent_history = get_chat_history().format_for_prompt(conversation_id, limit=5)
         try:
             long_term_context = get_hindsight_memory().recall(memory_thread_id, payload.text)
@@ -61,6 +69,8 @@ class TurnService:
             raise HTTPException(status_code=503, detail="Hindsight 记忆召回失败，请检查本机记忆服务。") from exc
         graph_state: dict[str, Any] = {
             "current_input": payload.text,
+            "model": payload.model,
+            "reasoning_effort": payload.reasoning_effort,
             # 状态和长期记忆使用稳定用户身份。
             "thread_id": memory_thread_id,
             "conversation_id": conversation_id,

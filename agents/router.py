@@ -7,8 +7,9 @@ from typing import NotRequired, TypedDict
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.graph import END, StateGraph
 
-from infrastructure.container import get_llm, get_mood_engine
+from infrastructure.container import get_turn_llm, get_mood_engine
 from memory.context_inject import compose_user_message
+from modules.web_search.service import reply_with_search, search_enabled
 from prompts import system_prompts
 from prompts.bina_context import build_bina_mode_context
 from prompts.system_prompts import BINA_MEDICAL_REDLINE_BLOCK, BINA_PROMPT_TEMPLATE
@@ -19,6 +20,8 @@ MAIN_THREAD_ID = "bina-local-user"
 
 
 class GraphState(TypedDict):
+    model: NotRequired[str | None]
+    reasoning_effort: NotRequired[str | None]
     current_input: str
     thread_id: str
     recent_history: list[str]
@@ -83,8 +86,11 @@ def node_bina(state: GraphState):
 
     try:
         messages = [SystemMessage(content=bina_prompt), HumanMessage(content=user_status)]
-        response = get_llm().invoke(messages)
-        final_text = response.content
+        llm = get_turn_llm(state.get("model"), state.get("reasoning_effort"))
+        if search_enabled():
+            final_text = reply_with_search(llm, messages)
+        else:
+            final_text = llm.invoke(messages).content
     except Exception as e:
         final_text = f"呜呜，陛下的情绪电波太强，Bina 的线路稍微短路了一下... (Error: {e})"
 

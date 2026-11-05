@@ -80,6 +80,8 @@ def _to_turn_request(
         strip_persona_prefix=payload.strip_persona_prefix,
         group_mode=payload.group_mode,
         memory_thread_id=memory_thread_id,
+        model=payload.model,
+        reasoning_effort=payload.reasoning_effort,
     )
 
 
@@ -284,6 +286,8 @@ WorkflowMode = Literal["default", "dev_pipeline"]
 
 
 class ChatRequest(BaseModel):
+    model: str | None = None
+    reasoning_effort: Literal["off", "low", "high", "max"] | None = None
     text: str = Field(..., min_length=1, max_length=12000, description="用户原始输入")
     workflow_mode: WorkflowMode = Field(
         default="default",
@@ -327,6 +331,13 @@ class ChatExportResponse(BaseModel):
 class ChatHistoryResponse(BaseModel):
     session_id: str
     turns: List[ChatExportItem]
+
+
+@app.get("/api/v1/chat/options")
+def chat_options():
+    from infrastructure.container import get_chat_options
+
+    return get_chat_options()
 
 
 @app.post("/api/v1/chat", response_model=ChatResponse)

@@ -458,3 +458,87 @@ body {
     transform: scale(1.06);
   }
 }
+
+/* Bina's room */
+:root { --ax-bg0: #1c1b1a; --ax-bg1: #252320; --ax-panel: #2b2926; --ax-fg: #f1eae0; --ax-muted: #aca59b; --ax-line: #ffffff16; --ax-accent: #ddbb91; --ax-accent-2: #d7c9b5; --ax-accent-fg: #29231d; }
+body { background: #1c1b1a; animation: none; }
+button, select, input[type="checkbox"], input[type="range"] { cursor: pointer; }
+button:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible { outline: 2px solid var(--ax-accent); outline-offset: 4px; }
+.ax-header { background: #1c1b1af2; }
+.ax-brand-mark { background: none; color: var(--ax-fg); }
+.ax-brand-sub { color: var(--ax-accent); }
+.ax-btn-primary { background: var(--ax-accent); }
+.ax-btn-ghost { border-radius: 9px; }
+.ax-convo-panel { background: #2b2926; }
+.ax-input { background: #ffffff04; border-radius: 12px; }
+.ax-input:focus { border-color: #ddbb9166; background: #ffffff06; box-shadow: 0 0 0 3px #ddbb9109; }
+.bina-workspace { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 20px; flex: 1; align-items: start; }
+.bina-workspace--wide { grid-template-columns: minmax(0, 1fr); }
+.bina-room { min-width: 0; overflow: hidden; border: 1px solid var(--ax-line); border-radius: 20px; background: #24221f; }
+.bina-scene { position: relative; height: clamp(380px, 56vh, 760px); overflow: hidden; isolation: isolate; background: radial-gradient(ellipse at 42% 40%, #f6dfcc, #e4c8b0); color: #584b40; }
+.bina-scene--night { background: radial-gradient(ellipse at 45% 50%, #655c68, #34313e); color: #ece1db; }
+.bina-scene::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 72%, #fff2 72.3%, transparent 72.6%, transparent 88%, #fff2 88.3%, transparent 88.6%); pointer-events: none; }
+.bina-room-heading { position: absolute; inset: 25px 28px auto; z-index: 2; display: flex; align-items: start; justify-content: space-between; gap: 12px; }
+.bina-eyebrow { display: block; font-size: 10px; letter-spacing: .18em; opacity: .65; }
+.bina-room-heading h1 { margin-top: 7px; font-size: 20px; font-weight: 500; letter-spacing: .08em; }
+.bina-status { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; padding: 7px 11px; border: 1px solid #ffffff45; background: #ffffff25; border-radius: 999px; white-space: nowrap; }
+.bina-status i { width: 6px; height: 6px; background: #a58569; border-radius: 50%; }
+.bina-status .is-connected { background: #6f8867; }
+.bina-room-caption { position: absolute; left: 7%; top: 44%; }
+.bina-room-caption span { font-family: var(--font-display); font-size: clamp(24px, 3vw, 44px); font-style: italic; }
+.bina-room-caption p { margin-top: 8px; font-size: 11px; letter-spacing: .18em; opacity: .7; }
+.bina-portrait { position: absolute; left: 58%; top: 6%; height: 96%; aspect-ratio: .4; transform-origin: 50% 85%; transition: transform .25s ease; mask-image: linear-gradient(0deg, transparent, black 8%, black 95%, transparent), linear-gradient(90deg, transparent, black 12%, black 90%, transparent); mask-composite: intersect; }
+.bina-portrait img { object-fit: cover; object-position: left center; }
+.bina-scene--night .bina-portrait { filter: brightness(.8) saturate(.7); }
+.bina-scene-footer { position: absolute; inset: auto 28px 18px; display: flex; justify-content: space-between; font-size: 9px; letter-spacing: .16em; opacity: .6; }
+.bina-dialogue-area { padding: 20px 26px; }
+.bina-dialogue-heading { display: flex; align-items: center; justify-content: space-between; }
+.bina-dialogue-heading > span { font-family: var(--font-display); font-size: 26px; color: var(--ax-accent); }
+.bina-dialogue-heading small { margin-left: 10px; font-family: var(--font-body); font-size: 11px; color: var(--ax-muted); }
+.bina-dialogue-heading button { font-size: 11px; color: var(--ax-muted); }
+.bina-subtitle { min-height: 62px; max-height: 180px; overflow-y: auto; padding: 12px 0 18px; font-size: 14px; line-height: 1.85; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bina-composer { margin-top: 12px; }
+.bina-composer textarea { font-size: 13px; }
+.bina-error { color: #efb1a6; font-size: 12px; margin: 8px 0; overflow-wrap: anywhere; }
+.bina-controls { border: 1px solid var(--ax-line); border-radius: 20px; background: #252320; min-width: 0; overflow: hidden; }
+.bina-controls-heading { padding: 28px 24px 22px; }
+.bina-controls-heading h2 { font-size: 20px; margin: 8px 0; font-weight: 500; }
+.bina-controls-heading p { color: var(--ax-muted); font-size: 11px; }
+.bina-tabs { display: flex; margin: 0 24px; border-bottom: 1px solid var(--ax-line); }
+.bina-tabs button { flex: 1; padding: 12px 0; font-size: 12px; color: var(--ax-muted); border-bottom: 2px solid transparent; }
+.bina-tabs button[aria-selected="true"] { color: var(--ax-accent); border-color: var(--ax-accent); }
+.bina-tab-content { padding: 24px; min-height: 380px; }
+.bina-info-card { border: 1px solid #ddbb911c; border-radius: 12px; padding: 18px; background: linear-gradient(135deg, #ddbb910e, transparent); }
+.bina-info-card h3 { font-size: 18px; margin: 12px 0 8px; }
+.bina-info-card p, .bina-note p { color: var(--ax-muted); font-size: 12px; line-height: 1.8; }
+.bina-facts { margin: 18px 0 24px; }
+.bina-facts > div { display: flex; justify-content: space-between; gap: 18px; border-bottom: 1px solid var(--ax-line); padding: 13px 0; font-size: 12px; }
+.bina-facts dt { color: var(--ax-muted); flex-shrink: 0; }
+.bina-facts dd { overflow-wrap: anywhere; text-align: right; }
+.bina-note { padding: 16px 0; }
+.bina-note h3 { font-size: 12px; margin-bottom: 8px; }
+.bina-controls-footer { display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--ax-line); padding: 20px 24px; color: var(--ax-muted); font-size: 9px; letter-spacing: .12em; }
+.bina-setting { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; font-size: 12px; margin: 24px 0; }
+.bina-setting input { width: 100%; accent-color: var(--ax-accent); }
+.bina-setting select { width: 100%; background: #302d29; border: 1px solid var(--ax-line); border-radius: 8px; padding: 10px; }
+.bina-toggle { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--ax-line); font-size: 13px; }
+.bina-toggle small { display: block; font-size: 11px; color: var(--ax-muted); margin-top: 8px; }
+.bina-toggle input { accent-color: var(--ax-accent); width: 16px; height: 16px; }
+.bina-history-layer { position: fixed; inset: 0; z-index: 40; }
+.bina-history-backdrop { position: absolute; inset: 0; background: #0008; backdrop-filter: blur(4px); }
+.bina-history { position: absolute; inset: 0 0 0 auto; width: min(560px, 100%); display: flex; flex-direction: column; background: #252320; padding: 24px; }
+.bina-history > header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--ax-line); padding-bottom: 20px; margin-bottom: 16px; }
+.bina-history h2 { margin-top: 8px; font-size: 20px; }
+.ax-bubble-assistant { background: #302d29; }
+.ax-bubble-user { background: #535e50; }
+@media (min-width: 1500px) { .bina-workspace { grid-template-columns: minmax(0, 1fr) 340px; } .bina-workspace--wide { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 900px) { .bina-workspace { grid-template-columns: minmax(0, 1fr) 260px; gap: 12px; } .bina-room-caption { left: 6%; top: 34%; } .bina-room-caption span { font-size: 24px; } .bina-room-heading { inset: 20px 20px auto; } }
+@media (max-width: 700px) { .bina-workspace { grid-template-columns: minmax(0, 1fr); } .bina-scene { height: 440px; } .bina-portrait { left: 63%; height: 88%; top: 14%; } .bina-room-caption { top: 38%; } .bina-room-caption span { font-size: 22px; } .bina-room-caption p { max-width: 80px; line-height: 2; } .bina-room-heading { inset: 20px 16px auto; } .bina-room-heading h1 { font-size: 18px; } .bina-eyebrow { font-size: 8px; } .bina-dialogue-area { padding: 16px; } .bina-tab-content { min-height: 0; } .ax-brand-sub { display: none; } .ax-shell > main { padding: 12px; } }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; } }
+.bina-portrait img { clip-path: polygon(0 0, 100% 0, 100% 53%, 82% 56%, 76% 75%, 75% 88%, 77% 100%, 0 100%); }
+.bina-workspace--wide { grid-template-columns: minmax(0, 1fr); }
+
+.bina-model-settings { border-bottom: 1px solid var(--ax-line); padding-bottom: 20px; }
+.bina-model-settings .bina-setting { gap: 10px; margin: 18px 0; }
+.bina-model-hint { color: var(--ax-muted); font-size: 11px; line-height: 1.8; }
+.bina-setting select:disabled { cursor: not-allowed; opacity: .5; }

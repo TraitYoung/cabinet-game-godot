@@ -7,8 +7,22 @@ import { PersonaAvatar } from "@/modules/persona-cards/PersonaAvatar";
 
 const MD_IMAGE_RE = /!\[([^\]]*)]\(([^)\s]+)\)/g;
 
+function renderTextWithLinks(text: string): ReactNode {
+  const nodes: ReactNode[] = [];
+  const links = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g;
+  let last = 0;
+  for (const match of text.matchAll(links)) {
+    const index = match.index!;
+    nodes.push(text.slice(last, index));
+    nodes.push(<a key={index} href={match[2]} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 text-[var(--ax-accent)]">{match[1]}</a>);
+    last = index + match[0].length;
+  }
+  nodes.push(text.slice(last));
+  return nodes;
+}
+
 /** 把 markdown 图片拆成文本 + <img>（用于 Bina 自拍等） */
-function renderContentWithImages(raw: string): ReactNode {
+export function renderContentWithImages(raw: string): ReactNode {
   const text = stripPersonaPrefix(raw || "");
   const nodes: ReactNode[] = [];
   let last = 0;
@@ -18,7 +32,7 @@ function renderContentWithImages(raw: string): ReactNode {
     if (m.index > last) {
       nodes.push(
         <span key={`t-${last}`} className="whitespace-pre-wrap">
-          {text.slice(last, m.index)}
+          {renderTextWithLinks(text.slice(last, m.index))}
         </span>,
       );
     }
@@ -38,7 +52,7 @@ function renderContentWithImages(raw: string): ReactNode {
   if (last < text.length) {
     nodes.push(
       <span key={`t-${last}`} className="whitespace-pre-wrap">
-        {text.slice(last)}
+        {renderTextWithLinks(text.slice(last))}
       </span>,
     );
   }

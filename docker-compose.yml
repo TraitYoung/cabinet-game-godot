@@ -1,3 +1,5 @@
+name: axiodrasil
+
 services:
   hindsight:
     image: ghcr.io/vectorize-io/hindsight:1.2.0

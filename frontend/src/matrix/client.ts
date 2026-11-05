@@ -5,6 +5,7 @@
 import type {
   AttachmentIngestResult,
   ChatStreamMeta,
+  ChatOptions,
   ChatTurn,
   HealthStatus,
   PersonaCard,
@@ -27,6 +28,12 @@ async function readApiError(res: Response, fallback: string): Promise<string> {
     // plain text
   }
   return text;
+}
+
+export async function fetchChatOptions(): Promise<ChatOptions> {
+  const res = await fetch("/api/v1/chat/options", { cache: "no-store" });
+  if (!res.ok) throw new Error(await readApiError(res, "无法加载模型设置"));
+  return (await res.json()) as ChatOptions;
 }
 
 export async function healthCheck(): Promise<HealthStatus> {
@@ -99,6 +106,8 @@ export async function sendChat(input: StreamChatInput): Promise<{
     text: input.text,
     strip_persona_prefix: Boolean(input.stripPersonaPrefix),
   };
+  if (input.model) body.model = input.model;
+  if (input.reasoningEffort) body.reasoning_effort = input.reasoningEffort;
   if (input.forcedPersona) body.forced_persona = input.forcedPersona;
 
   const signal =

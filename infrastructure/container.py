@@ -23,7 +23,7 @@ _LLM_PROVIDER = (os.getenv("AX_LLM_PROVIDER") or "deepseek").strip().lower()
 _CHAT_MODEL = (
     os.getenv("AX_CHAT_MODEL")
     or os.getenv("LLM_MODEL")
-    or ("deepseek-v4-flash" if _LLM_PROVIDER == "deepseek" else "qwen-plus")
+    or ("deepseek-flash" if _LLM_PROVIDER == "deepseek" else "qwen-plus")
 )
 
 _DEEPSEEK_API_KEY = (
@@ -76,6 +76,10 @@ def _chat_credentials() -> tuple[str, str]:
     return _DEEPSEEK_API_KEY, _DEEPSEEK_BASE_URL
 
 
+def get_deepseek_search_credentials() -> tuple[str, str]:
+    return _DEEPSEEK_API_KEY, _DEEPSEEK_BASE_URL
+
+
 def _chat_openai_kwargs(model: str) -> dict[str, Any]:
     api_key, base_url = _chat_credentials()
     if not api_key:
@@ -92,8 +96,34 @@ def _chat_openai_kwargs(model: str) -> dict[str, Any]:
     return kwargs
 
 
+def get_chat_options() -> dict[str, Any]:
+    models = [_CHAT_MODEL]
+    if _LLM_PROVIDER == "deepseek":
+        models += ["deepseek-flash", "deepseek-v4-pro"]
+    return {
+        "provider": _LLM_PROVIDER,
+        "default_model": _CHAT_MODEL,
+        "models": list(dict.fromkeys(models)),
+        "reasoning_levels": ["off", "low", "high", "max"] if _LLM_PROVIDER == "deepseek" else [],
+    }
+
+
+def get_turn_llm(model: str | None = None, reasoning_effort: str | None = None):
+    """本轮独立配置，不修改共享模型。"""
+    if model is None and reasoning_effort is None:
+        return get_llm()
+    from langchain_openai import ChatOpenAI
+
+    kwargs = _chat_openai_kwargs(model or _CHAT_MODEL)
+    if _LLM_PROVIDER == "deepseek" and reasoning_effort is not None:
+        kwargs["extra_body"] = {"thinking": {"type": "disabled" if reasoning_effort == "off" else "enabled"}}
+        if reasoning_effort != "off":
+            kwargs["extra_body"]["reasoning_effort"] = reasoning_effort
+    return ChatOpenAI(**kwargs)
+
+
 def get_llm():
-    """主聊天 LLM（默认 deepseek-v4-flash）"""
+    """主聊天 LLM（默认 deepseek-flash）"""
     global _llm
     if _llm is not None:
         return _llm

@@ -42,6 +42,14 @@ Axiodrasil 是一个虚拟具身实验项目。当前唯一运行人物是 Bina�
 
 旧群聊、演示台和内阁记忆实现已删除。OpenAI 兼容模型目录仅发布 `axiodrasil-bina`。旧角色参数统一收敛为 Bina，开发流水线返回已归档状态。
 
+## 联网搜索
+
+`.env` 中设置 `AX_SEARCH_ENABLED=1`，Bina 会在用户要求搜索、核实或需要实时信息时调用 DeepSeek 官方 Search API，普通闲聊可直接回复。复用 `DEEPSEEK_API_KEY` 和 `DEEPSEEK_BASE_URL`，无须新密钥；设置 `AX_SEARCH_ENABLED=0` 关闭。修改配置后重启后端。
+
+搜索使用 `POST /v1/tools/search`，每次取 5 条结果及摘要，每轮最多 3 次搜索。资料作为工具结果参与当前回复，思考模式保留 `reasoning_content`；回答中的来源链接可在对白和历史记录中打开。搜索失败会明确反馈给模型，不能作为成功检索处理。此功能不更改 Hindsight 配置。
+
+接口参数与按成功请求计费规则见 [DeepSeek Search & Fetch 官方文档](https://api-docs.deepseek.com/guides/search/)。离线验证：`python -m unittest test_suite.test_web_search -v`。
+
 ## Hindsight 本机部署
 
 复制 `.env.example` 为 `.env`，填写 `DEEPSEEK_API_KEY`。本机 Compose 使用 Hindsight 1.2.0，复用该密钥，向量与重排使用本地多语言模型。
@@ -100,7 +108,9 @@ npm ci
 npm run dev
 ```
 
-打开 `http://127.0.0.1:3000/solo`。Linux/WSL 也可在启动 Hindsight 后使用 `bash start.sh` 与 `bash stop.sh` 启停前后端。出图配置见 `docs/Bina_Image_Gen.md`。
+打开 `http://127.0.0.1:3000/solo`。主界面以 Bina 静态立绘为中心，下方提供最近对白、文字、附件和语音输入；聊天记录通过抽屉查看。右侧可收起的侧栏提供交互状态、人物缩放、暖光/夜色背景、字幕与 Enter 发送设置。当前形象使用 `frontend/public/bina/casual.jpeg`，尚未接入动作驱动。侧栏「设置」可选择回复模型与思考档位（默认、关闭、低、高、最高），浏览器会保存选择，并从下一轮聊天生效。可用模型由 `/api/v1/chat/options` 返回；当前 DeepSeek 支持 Flash、Pro 和环境变量配置的默认模型，其他服务沿用配置模型。选择仅影响 Bina 的回复，不更改 Hindsight 记忆模型。
+
+Linux/WSL 也可在启动 Hindsight 后使用 `bash start.sh` 与 `bash stop.sh` 启停前后端。出图配置见 `docs/Bina_Image_Gen.md`。
 
 ## 检查
 

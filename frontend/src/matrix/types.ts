@@ -38,6 +38,8 @@ export type ChatStreamMeta = {
 };
 
 export type StreamChatInput = {
+  model?: string;
+  reasoningEffort?: ReasoningEffort;
   text: string;
   sessionId: string;
   /** 共享记忆池；Solo 多谈话时固定，与 sessionId（气泡）分离 */
@@ -65,3 +67,11 @@ export function soloSessionId(personaId: string, userLocalId: string): string {
   const uid = (userLocalId || "local").replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 32) || "local";
   return `ax-solo-${pid}-${uid}`;
 }
+
+export type ReasoningEffort = "off" | "low" | "high" | "max";
+export type ChatOptions = {
+  provider: string;
+  default_model: string;
+  models: string[];
+  reasoning_levels: ReasoningEffort[];
+};

@@ -5,16 +5,17 @@ import { AppShell } from "@/host/AppShell";
 import { useUserLocalId } from "@/infra/session";
 import {
   fetchHistory,
+  fetchChatOptions,
   getPersona,
   ingestAttachment,
   parsePersonaFromReply,
   reportPresence,
   sendChat,
 } from "@/matrix/client";
-import type { ChatTurn, PersonaCard } from "@/matrix/types";
-import { PersonaAvatar } from "@/modules/persona-cards/PersonaAvatar";
-import { MessageList, type BubbleMessage } from "@/modules/solo-chat/MessageList";
-import { CuteWait, THINK_LINES, useRotatingLine } from "@/modules/solo-chat/CuteWait";
+import type { ChatTurn, PersonaCard, ChatOptions, ReasoningEffort } from "@/matrix/types";
+import Image from "next/image";
+import { MessageList, renderContentWithImages, type BubbleMessage } from "@/modules/solo-chat/MessageList";
+import { THINK_LINES, useRotatingLine } from "@/modules/solo-chat/CuteWait";
 import { ConversationMenu } from "@/modules/solo-chat/ConversationMenu";
 import {
   canSendChat,
@@ -87,10 +88,41 @@ export function SoloChatView() {
   const [attachments, setAttachments] = useState<PendingAttachment[]>([]);
   const [uploading, setUploading] = useState(false);
   const [interimSpeech, setInterimSpeech] = useState("");
-  const bottomRef = useRef<HTMLDivElement>(null);
+  const [chatOptions, setChatOptions] = useState<ChatOptions | null>(null);
+  const [optionsError, setOptionsError] = useState<string | null>(null);
+  const [model, setModel] = useState("");
+  const [reasoningEffort, setReasoningEffort] = useState<ReasoningEffort | "">("");
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [historyOpen, setHistoryOpen] = useState(false);
+  const [tab, setTab] = useState("状态");
+  const [scale, setScale] = useState(100);
+  const [background, setBackground] = useState("暖光");
+  const [showSubtitle, setShowSubtitle] = useState(true);
+  const [enterToSend, setEnterToSend] = useState(true);
   const abortRef = useRef<AbortController | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pendingLabel = useRotatingLine(THINK_LINES, 2400);
+
+  const loadChatOptions = useCallback(async () => {
+    try {
+      const options = await fetchChatOptions();
+      setChatOptions(options);
+      setOptionsError(null);
+      const saved = JSON.parse(localStorage.getItem("bina-chat-preferences") || "{}");
+      setModel(options.models.includes(saved.model) ? saved.model : "");
+      setReasoningEffort(options.reasoning_levels.includes(saved.reasoningEffort) ? saved.reasoningEffort : "");
+    } catch (exception) {
+      setOptionsError(exception instanceof Error ? exception.message : "无法加载模型设置");
+    }
+  }, []);
+
+  useEffect(() => { void loadChatOptions(); }, [loadChatOptions]);
+
+  const changeChatPreferences = (nextModel: string, nextEffort: ReasoningEffort | "") => {
+    setModel(nextModel);
+    setReasoningEffort(nextEffort);
+    localStorage.setItem("bina-chat-preferences", JSON.stringify({ model: nextModel, reasoningEffort: nextEffort }));
+  };
 
   const speech = useSpeechInput({
     sessionId: activeConvoId || undefined,
@@ -213,8 +245,13 @@ export function SoloChatView() {
   }, [sessionId, card, syncPresence, reloadHistory]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+    if (!historyOpen) return;
+    const close = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setHistoryOpen(false);
+    };
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
+  }, [historyOpen]);
 
   useEffect(() => {
     return () => {
@@ -368,6 +405,8 @@ export function SoloChatView() {
     try {
       const { reply, meta } = await sendChat({
         text: payload,
+        model: model || undefined,
+        reasoningEffort: reasoningEffort || undefined,
         sessionId,
         memoryThreadId,
         forcedPersona: BINA_ID,
@@ -415,9 +454,12 @@ export function SoloChatView() {
       ? "翻找往来记录…"
       : null;
 
+  const latestReply = [...messages].reverse().find((message) => message.role === "assistant");
+  const interaction = reconnecting || historyLoading ? "连接中" : busy ? "思考中" : speech.active ? "正在聆听" : card ? "等待交谈" : error ? "连接未就绪" : "连接中";
+
   return (
     <AppShell
-      subtitle={card ? `与 ${card.name} 密谈` : "Bina 单人谈话"}
+      subtitle="虚拟具身 · 互动与记忆"
       actions={
         <>
           {userLocalId ? (
@@ -431,68 +473,32 @@ export function SoloChatView() {
               onRemove={onRemoveConvo}
             />
           ) : null}
-          <button
-            type="button"
-            className="ax-btn-ghost"
-            disabled={reconnecting || busy}
-            title="重新拉取角色与消息，校准内线"
-            onClick={() => void reconnect()}
-          >
-            {reconnecting ? "接通中…" : "重新接通"}
+          <button type="button" className="ax-btn-ghost" aria-expanded={sidebarOpen} aria-controls="bina-controls" onClick={() => setSidebarOpen((value) => !value)}>
+            {sidebarOpen ? "收起侧栏" : "展开侧栏"}
           </button>
         </>
       }
     >
-      <div className="ax-stage flex min-h-0 flex-1 flex-col gap-4 md:flex-row">
-        <aside className="ax-roster flex w-full flex-col gap-3 md:w-64 lg:w-72">
-          <h2 className="px-1 text-xs font-medium uppercase tracking-wider text-[var(--ax-muted)]">
-            谈话对象
-          </h2>
-          {card ? (
-            <div className="ax-card-tile space-y-3 p-3">
-              <div className="flex items-start gap-3">
-                <PersonaAvatar persona={card} size={48} />
-                <div className="min-w-0">
-                  <p className="font-medium text-[var(--ax-fg)]">{card.name}</p>
-                  <p className="text-xs text-[var(--ax-muted)]">{card.title}</p>
-                </div>
-              </div>
-              {card.personality ? (
-                <p className="text-xs leading-relaxed text-[var(--ax-muted)]">{card.personality}</p>
-              ) : null}
-              <p className="text-xs leading-relaxed text-[var(--ax-muted)]">
-                顶栏「谈话」可新建/切换气泡；各谈话记忆互通。托盘常驻时她也可能先开口。
-              </p>
+      <div className={`bina-workspace ${sidebarOpen ? "" : "bina-workspace--wide"}`}>
+        <section className="bina-room" aria-label="Bina 的房间">
+          <div className={`bina-scene bina-scene--${background === "暖光" ? "warm" : "night"}`}>
+            <div className="bina-room-heading">
+              <div><span className="bina-eyebrow">AXIODRASIL / PERSONAL SPACE</span><h1>Bina 的房间</h1></div>
+              <span className="bina-status"><i className={card && !error ? "is-connected" : ""} />{interaction}</span>
             </div>
-          ) : (
-            <div className="px-1 py-4">
-              <CuteWait mode="load" error={error} onRetry={() => void reconnect()} />
+            <div className="bina-room-caption" aria-hidden="true"><span>Stay a little.</span><p>片刻相伴，慢慢说。</p></div>
+            <div className="bina-portrait" style={{ transform: `translateX(-50%) scale(${scale / 100})` }}>
+              <Image src="/bina/casual.jpeg" alt="Bina，浅灰紫短发、琥珀色眼睛，穿着灰色针织外套向你挥手" fill sizes="(max-width: 700px) 70vw, 35vw" priority />
             </div>
-          )}
-        </aside>
-
-        <section className="ax-chat-panel flex min-h-[70vh] flex-1 flex-col overflow-hidden">
-          {!card ? (
-            <div className="ax-empty flex flex-1 flex-col items-center justify-center px-4">
-              <CuteWait mode="load" error={error} onRetry={() => void reconnect()} />
-            </div>
-          ) : (
-            <>
-              <MessageList
-                messages={messages}
-                personaMap={personaMap}
-                emptyTitle={card.name}
-                emptyHint={
-                  historyLoading
-                    ? "正在翻找往来记录…"
-                    : "新的谈话从空白开始；共享私忆还在。直接说就好。"
-                }
-                pendingLabel={busy ? pendingLabel : "悄悄想一下…"}
-                statusHint={statusHint}
-              />
-              <div ref={bottomRef} />
-              {error ? <p className="px-2 text-sm text-red-600">{error}</p> : null}
-              <div className="border-t border-[var(--ax-line)] p-3">
+            <div className="bina-scene-footer"><span>BINA · 日常形象</span><span>静态立绘</span></div>
+          </div>
+          <div className="bina-dialogue-area">
+            <div className="bina-dialogue-heading"><span>Bina <small>比娜</small></span><button type="button" className="ax-btn-ghost" aria-expanded={historyOpen} aria-controls="bina-history" onClick={() => setHistoryOpen(true)}>聊天记录 ↗</button></div>
+            {showSubtitle ? <div className="bina-subtitle" aria-live="polite" aria-busy={busy}>
+              {latestReply?.pending ? pendingLabel : latestReply?.content ? renderContentWithImages(latestReply.content) : historyLoading ? "正在读取我们的聊天记录…" : card ? "想说什么，直接告诉我。" : error ? "连接未就绪，可在设置中重新连接。" : "正在连接 Bina…"}
+            </div> : null}
+            {error ? <p className="bina-error" role="alert">{error}</p> : null}
+            <div className="bina-composer">
                 <div className="flex flex-col gap-2">
                   {attachments.length ? (
                     <ul className="flex flex-wrap gap-2">
@@ -526,16 +532,17 @@ export function SoloChatView() {
                     </ul>
                   ) : null}
                   <textarea
-                    className="ax-input min-h-[72px] w-full resize-y"
+                    className="ax-input min-h-[64px] w-full resize-y"
+                    aria-label="对 Bina 说"
                     placeholder="对 Bina 说… 也可上传文件/图片，或点麦克风说话"
                     value={interimSpeech ? `${text}${text && !/\s$/.test(text) ? " " : ""}${interimSpeech}` : text}
-                    disabled={busy || !sessionId || speech.busy}
+                    disabled={busy || !card || !sessionId || speech.busy}
                     onChange={(e) => {
                       setInterimSpeech("");
                       setText(e.target.value);
                     }}
                     onKeyDown={(e) => {
-                      if (e.key === "Enter" && !e.shiftKey) {
+                      if (enterToSend && e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
                         e.preventDefault();
                         void onSend();
                       }
@@ -596,7 +603,8 @@ export function SoloChatView() {
                         busy ||
                         uploading ||
                         !sessionId ||
-                        !canSendChat(text, attachments)
+                        !card ||
+                        !canSendChat([text, interimSpeech].filter(Boolean).join(" "), attachments)
                       }
                       onClick={() => void onSend()}
                     >
@@ -610,10 +618,55 @@ export function SoloChatView() {
                   </div>
                 </div>
               </div>
-            </>
-          )}
+          </div>
         </section>
+        {sidebarOpen ? <aside className="bina-controls" id="bina-controls" aria-label="Bina 状态与设置">
+          <div className="bina-controls-heading"><span className="bina-eyebrow">陪伴空间</span><h2>此刻的 Bina</h2><p>形象、互动，以及我们的日常。</p></div>
+          <div className="bina-tabs" role="tablist" aria-label="侧栏分类">{["状态", "形象", "设置"].map((name) => <button key={name} id={`tab-${name}`} type="button" role="tab" aria-selected={tab === name} aria-controls="bina-tab-panel" tabIndex={tab === name ? 0 : -1} onKeyDown={(event) => {
+            const names = ["状态", "形象", "设置"];
+            const direction = event.key === "ArrowRight" ? 1 : event.key === "ArrowLeft" ? -1 : 0;
+            if (direction) { const next = names[(names.indexOf(tab) + direction + 3) % 3]; setTab(next); document.getElementById(`tab-${next}`)?.focus(); }
+          }} onClick={() => setTab(name)}>{name}</button>)}</div>
+          <div className="bina-tab-content" role="tabpanel" id="bina-tab-panel" aria-labelledby={`tab-${tab}`}>
+            {tab === "状态" ? <>
+              <div className="bina-info-card"><span className="bina-eyebrow">INTERACTION</span><h3>{interaction}</h3><p>{busy ? "Bina 正在准备回复，稍等片刻。" : "可以打字，也可以用麦克风说话。"}</p></div>
+              <dl className="bina-facts"><div><dt>人物连接</dt><dd>{card ? "已加载" : "未连接"}</dd></div><div><dt>当前谈话</dt><dd>{convos.find((convo) => convo.id === activeConvoId)?.title || "准备中"}</dd></div><div><dt>往来消息</dt><dd>{messages.filter((message) => !message.pending).length} 条</dd></div><div><dt>语音输入</dt><dd>{speech.active ? "进行中" : "未开启"}</dd></div></dl>
+              <div className="bina-note"><h3>记忆会随交谈延续</h3><p>新建谈话后，仍沿用同一份长期记忆。</p></div>
+            </> : tab === "形象" ? <>
+              <div className="bina-info-card"><span className="bina-eyebrow">APPEARANCE</span><h3>日常 · 针织外套</h3><p>当前使用 Bina 定妆图，动作驱动尚未接入。</p></div>
+              <label className="bina-setting">人物缩放 <output>{scale}%</output><input type="range" min="80" max="130" value={scale} onChange={(event) => setScale(Number(event.target.value))} /></label>
+              <label className="bina-setting">房间氛围<select value={background} onChange={(event) => setBackground(event.target.value)}><option>暖光</option><option>夜色</option></select></label>
+              <button type="button" className="ax-btn-ghost" onClick={() => { setScale(100); setBackground("暖光"); }}>恢复默认形象</button>
+            </> : <>
+              <div className="bina-model-settings">
+                <span className="bina-eyebrow">回复模型</span>
+                <label className="bina-setting">模型<select aria-label="模型" value={model} disabled={busy || !chatOptions} onChange={(event) => changeChatPreferences(event.target.value, reasoningEffort)}>
+                  <option value="">跟随默认{chatOptions ? ` · ${chatOptions.default_model}` : ""}</option>
+                  {chatOptions?.models.map((name) => <option key={name} value={name}>{name}</option>)}
+                </select></label>
+                <label className="bina-setting">思考档位<select aria-label="思考档位" value={reasoningEffort} disabled={busy || !chatOptions?.reasoning_levels.length} onChange={(event) => changeChatPreferences(model, event.target.value as ReasoningEffort | "")}>
+                  <option value="">跟随默认</option>
+                  {chatOptions?.reasoning_levels.map((level) => <option key={level} value={level}>{{ off: "关闭思考 · 快速回复", low: "低 · 轻量思考", high: "高 · 深入思考", max: "最高 · 充分推理" }[level]}</option>)}
+                </select></label>
+                <p className="bina-model-hint">{busy ? "回复结束后可切换，下次发送生效。" : chatOptions && !chatOptions.reasoning_levels.length ? "当前模型服务未提供思考档位。" : "下次发送生效，较高档位可能需要更久。"}</p>
+                {optionsError ? <div className="bina-error" role="alert">{optionsError}<button type="button" className="ax-btn-ghost" onClick={() => void loadChatOptions()}>重新加载模型</button></div> : null}
+              </div>
+              <label className="bina-toggle"><span>显示对白字幕<small>在人物画面下方显示最近的回复</small></span><input type="checkbox" checked={showSubtitle} onChange={(event) => setShowSubtitle(event.target.checked)} /></label>
+              <label className="bina-toggle"><span>Enter 发送<small>{enterToSend ? "Shift + Enter 换行" : "Enter 换行，点击按钮发送"}</small></span><input type="checkbox" checked={enterToSend} onChange={(event) => setEnterToSend(event.target.checked)} /></label>
+              <div className="bina-note"><h3>摄像头 · 尚未接入</h3><p>当前仅支持文字、附件和语音输入。</p></div>
+              <button type="button" className="ax-btn-ghost" disabled={reconnecting || busy} onClick={() => void reconnect()}>{reconnecting ? "连接中…" : "重新连接 Bina"}</button>
+            </>}
+          </div>
+          <div className="bina-controls-footer">AXIODRASIL <span>与你在这里</span></div>
+        </aside> : null}
       </div>
+      {historyOpen ? <div className="bina-history-layer">
+        <button type="button" className="bina-history-backdrop" aria-label="关闭聊天记录" onClick={() => setHistoryOpen(false)} />
+        <section className="bina-history ax-drawer" id="bina-history" aria-label="聊天记录">
+          <header><div><span className="bina-eyebrow">CONVERSATION</span><h2>我们的谈话</h2></div><button autoFocus type="button" className="ax-btn-ghost" onClick={() => setHistoryOpen(false)}>关闭 ×</button></header>
+          <MessageList messages={messages} personaMap={personaMap} emptyTitle="还没有聊天记录" emptyHint="从一句问候开始。" pendingLabel={pendingLabel} statusHint={statusHint} />
+        </section>
+      </div> : null}
     </AppShell>
   );
 }
