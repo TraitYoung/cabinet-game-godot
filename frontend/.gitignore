@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local Live2D runtime and licensed model assets
+/public/live2d/*
+!/public/live2d/README.md

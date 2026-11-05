@@ -542,3 +542,16 @@ button:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible
 .bina-model-settings .bina-setting { gap: 10px; margin: 18px 0; }
 .bina-model-hint { color: var(--ax-muted); font-size: 11px; line-height: 1.8; }
 .bina-setting select:disabled { cursor: not-allowed; opacity: .5; }
+
+.bina-portrait--hidden { visibility: hidden; }
+.bina-avatar-stage { position: absolute; inset: 12% 5% 5% 25%; transform-origin: 50% 90%; }
+.bina-live2d { width: 100%; height: 100%; }
+.bina-live2d canvas { display: block; }
+.bina-scene--night .bina-avatar-stage { filter: brightness(.8) saturate(.7); }
+.bina-room-heading, .bina-scene-footer { z-index: 1; pointer-events: none; }
+.bina-avatar-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.bina-avatar-settings input { min-width: 0; font-size: 12px; }
+.bina-avatar-previews { margin-top: 20px; }
+.bina-avatar-previews fieldset { margin-top: 16px; }
+.bina-avatar-previews legend { margin-bottom: 8px; font-size: 12px; color: var(--ax-muted); }
+@media (max-width: 700px) { .bina-avatar-stage { inset: 18% 0 5% 17%; } }

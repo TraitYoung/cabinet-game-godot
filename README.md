@@ -21,7 +21,7 @@ Axiodrasil 是一个虚拟具身实验项目。当前唯一运行人物是 Bina�
 | 互动状态 | 情绪状态、用户在场状态、主动消息机制 |
 | 记忆 | SQLite 原始聊天记录；Hindsight 长期事实、偏好、更正与共同经历 |
 
-摄像头实时采集、视觉理解和虚拟形象动作驱动尚未实现。已有模块的实际运行需要对应模型服务和本地配置。
+摄像头实时采集、视觉理解尚未实现。前端已接入 Live2D 模型加载与动作、表情预览；需要另行准备 Cubism Core 与绑定模型，对话自动驱动和语音口型尚未接入。已有模块的实际运行需要对应模型服务和本地配置。
 
 ## 技术与目录
 
@@ -32,6 +32,7 @@ Axiodrasil 是一个虚拟具身实验项目。当前唯一运行人物是 Bina�
 | `main.py` | HTTP、流式聊天、附件和语音等接口 |
 | `agents/` | Bina 对话图、快速路径和主动互动 |
 | `frontend/src/modules/solo-chat/` | Bina 交互界面 |
+| `frontend/src/modules/embodiment/` | Live2D 画布、模型加载与资源释放 |
 | `modules/` | 聊天服务、角色目录、附件、语音与出图 |
 | `memory/` | Hindsight 长期记忆适配和上下文拼装 |
 | `storage/` | 本地原始聊天记录 |
@@ -108,9 +109,9 @@ npm ci
 npm run dev
 ```
 
-打开 `http://127.0.0.1:3000/solo`。主界面以 Bina 静态立绘为中心，下方提供最近对白、文字、附件和语音输入；聊天记录通过抽屉查看。右侧可收起的侧栏提供交互状态、人物缩放、暖光/夜色背景、字幕与 Enter 发送设置。当前形象使用 `frontend/public/bina/casual.jpeg`，尚未接入动作驱动。侧栏「设置」可选择回复模型与思考档位（默认、关闭、低、高、最高），浏览器会保存选择，并从下一轮聊天生效。可用模型由 `/api/v1/chat/options` 返回；当前 DeepSeek 支持 Flash、Pro 和环境变量配置的默认模型，其他服务沿用配置模型。选择仅影响 Bina 的回复，不更改 Hindsight 记忆模型。
+打开 `http://127.0.0.1:3000/solo`。主界面以 Bina 形象为中心，下方提供最近对白、文字、附件和语音输入；聊天记录通过抽屉查看。右侧可收起的侧栏提供交互状态、人物缩放、暖光/夜色背景、字幕与 Enter 发送设置。未加载模型时使用 `frontend/public/bina/casual.jpeg`；「形象」页签支持加载 Live2D 模型，并预览模型提供的动作与表情。渲染使用 PixiJS 8 和 `untitled-pixi-live2d-engine`，仅在浏览器端按需加载，模型路径保存在当前浏览器。Core 与模型安装步骤见 [Live2D 资源说明](frontend/public/live2d/README.md)。侧栏「设置」可选择回复模型与思考档位（默认、关闭、低、高、最高），浏览器会保存选择，并从下一轮聊天生效。可用模型由 `/api/v1/chat/options` 返回；当前 DeepSeek 支持 Flash、Pro 和环境变量配置的默认模型，其他服务沿用配置模型。选择仅影响 Bina 的回复，不更改 Hindsight 记忆模型。
 
-Linux/WSL 也可在启动 Hindsight 后使用 `bash start.sh` 与 `bash stop.sh` 启停前后端。出图配置见 `docs/Bina_Image_Gen.md`。
+Linux/WSL 也可在启动 Hindsight 后使用 `bash start.sh` 与 `bash stop.sh` 启停前后端。出图配置见 `docs/Bina_Image_Gen.md`；Live2D 架构、资源安装与验收步骤见 [Bina Live2D 接入](docs/Bina_Live2D.md)。
 
 ## 检查
 

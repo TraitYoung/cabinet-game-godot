@@ -14,6 +14,7 @@ import {
 } from "@/matrix/client";
 import type { ChatTurn, PersonaCard, ChatOptions, ReasoningEffort } from "@/matrix/types";
 import Image from "next/image";
+import { Live2DAvatar, type AvatarControls, type AvatarStatus } from "@/modules/embodiment/Live2DAvatar";
 import { MessageList, renderContentWithImages, type BubbleMessage } from "@/modules/solo-chat/MessageList";
 import { THINK_LINES, useRotatingLine } from "@/modules/solo-chat/CuteWait";
 import { ConversationMenu } from "@/modules/solo-chat/ConversationMenu";
@@ -99,9 +100,42 @@ export function SoloChatView() {
   const [background, setBackground] = useState("暖光");
   const [showSubtitle, setShowSubtitle] = useState(true);
   const [enterToSend, setEnterToSend] = useState(true);
+  const [avatarModelUrl, setAvatarModelUrl] = useState("");
+  const [avatarModelDraft, setAvatarModelDraft] = useState("");
+  const [avatarStatus, setAvatarStatus] = useState<AvatarStatus | null>(null);
+  const [avatarReload, setAvatarReload] = useState(0);
+  const [avatarActionError, setAvatarActionError] = useState<string | null>(null);
+  const avatarRef = useRef<AvatarControls>(null);
   const abortRef = useRef<AbortController | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pendingLabel = useRotatingLine(THINK_LINES, 2400);
+
+  useEffect(() => {
+    void Promise.resolve().then(() => {
+      const saved = localStorage.getItem("bina-live2d-model") || "";
+      setAvatarModelUrl(saved);
+      setAvatarModelDraft(saved);
+    });
+  }, []);
+
+  const applyAvatarModel = (url: string) => {
+    const next = url.trim();
+    localStorage.setItem("bina-live2d-model", next);
+    setAvatarModelUrl(next);
+    setAvatarModelDraft(next);
+    setAvatarStatus(null);
+    setAvatarActionError(null);
+    setAvatarReload((value) => value + 1);
+  };
+
+  const previewAvatar = async (kind: "motion" | "expression", name: string) => {
+    setAvatarActionError(null);
+    try {
+      await avatarRef.current?.[kind](name);
+    } catch (exception) {
+      setAvatarActionError(exception instanceof Error ? exception.message : String(exception));
+    }
+  };
 
   const loadChatOptions = useCallback(async () => {
     try {
@@ -487,10 +521,13 @@ export function SoloChatView() {
               <span className="bina-status"><i className={card && !error ? "is-connected" : ""} />{interaction}</span>
             </div>
             <div className="bina-room-caption" aria-hidden="true"><span>Stay a little.</span><p>片刻相伴，慢慢说。</p></div>
-            <div className="bina-portrait" style={{ transform: `translateX(-50%) scale(${scale / 100})` }}>
+            <div className={`bina-portrait ${avatarModelUrl && avatarStatus?.phase === "ready" ? "bina-portrait--hidden" : ""}`} style={{ transform: `translateX(-50%) scale(${scale / 100})` }}>
               <Image src="/bina/casual.jpeg" alt="Bina，浅灰紫短发、琥珀色眼睛，穿着灰色针织外套向你挥手" fill sizes="(max-width: 700px) 70vw, 35vw" priority />
             </div>
-            <div className="bina-scene-footer"><span>BINA · 日常形象</span><span>静态立绘</span></div>
+            {avatarModelUrl ? <div className="bina-avatar-stage" style={{ transform: `scale(${scale / 100})`, visibility: avatarStatus?.phase === "ready" ? "visible" : "hidden" }}>
+              <Live2DAvatar key={`${avatarModelUrl}-${avatarReload}`} modelUrl={avatarModelUrl} controlsRef={avatarRef} onStatus={setAvatarStatus} />
+            </div> : null}
+            <div className="bina-scene-footer"><span>BINA · 日常形象</span><span>{avatarModelUrl ? avatarStatus?.phase === "ready" ? "Live2D" : avatarStatus?.phase === "error" ? "模型未就绪 · 显示立绘" : "Live2D 加载中…" : "静态立绘"}</span></div>
           </div>
           <div className="bina-dialogue-area">
             <div className="bina-dialogue-heading"><span>Bina <small>比娜</small></span><button type="button" className="ax-btn-ghost" aria-expanded={historyOpen} aria-controls="bina-history" onClick={() => setHistoryOpen(true)}>聊天记录 ↗</button></div>
@@ -633,7 +670,18 @@ export function SoloChatView() {
               <dl className="bina-facts"><div><dt>人物连接</dt><dd>{card ? "已加载" : "未连接"}</dd></div><div><dt>当前谈话</dt><dd>{convos.find((convo) => convo.id === activeConvoId)?.title || "准备中"}</dd></div><div><dt>往来消息</dt><dd>{messages.filter((message) => !message.pending).length} 条</dd></div><div><dt>语音输入</dt><dd>{speech.active ? "进行中" : "未开启"}</dd></div></dl>
               <div className="bina-note"><h3>记忆会随交谈延续</h3><p>新建谈话后，仍沿用同一份长期记忆。</p></div>
             </> : tab === "形象" ? <>
-              <div className="bina-info-card"><span className="bina-eyebrow">APPEARANCE</span><h3>日常 · 针织外套</h3><p>当前使用 Bina 定妆图，动作驱动尚未接入。</p></div>
+              <div className="bina-info-card"><span className="bina-eyebrow">APPEARANCE</span><h3>{avatarModelUrl && avatarStatus?.phase === "ready" ? "Live2D 形象" : "日常 · 针织外套"}</h3><p>{avatarModelUrl ? avatarStatus?.message || "正在准备 Live2D…" : "当前显示定妆图，可加载已绑定的 Live2D 模型。"}</p></div>
+              <form className="bina-avatar-settings" onSubmit={(event) => { event.preventDefault(); applyAvatarModel(avatarModelDraft); }}>
+                <label className="bina-setting">Live2D 模型路径<input className="ax-input" aria-label="Live2D 模型路径" placeholder="/live2d/bina/bina.model3.json" value={avatarModelDraft} onChange={(event) => setAvatarModelDraft(event.target.value)} /></label>
+                <div className="bina-avatar-buttons"><button type="submit" className="ax-btn-ghost" disabled={!avatarModelDraft.trim()}>加载模型</button><button type="button" className="ax-btn-ghost" onClick={() => applyAvatarModel("")}>使用立绘</button></div>
+              </form>
+              {avatarStatus?.phase === "error" && avatarModelUrl ? <p className="bina-error" role="alert">{avatarStatus.message}</p> : null}
+              {avatarStatus?.phase === "ready" && avatarModelUrl ? <div className="bina-avatar-previews">
+                <p className="bina-model-hint">移动鼠标可引导视线，以下动作与表情由模型提供。</p>
+                {avatarStatus.motions.length > 0 ? <fieldset><legend>动作预览</legend><div className="bina-avatar-buttons">{avatarStatus.motions.map((name) => <button type="button" className="ax-btn-ghost" key={name} onClick={() => void previewAvatar("motion", name)}>{name || "默认"}</button>)}</div></fieldset> : null}
+                {avatarStatus.expressions.length > 0 ? <fieldset><legend>表情预览</legend><div className="bina-avatar-buttons">{avatarStatus.expressions.map((name) => <button type="button" className="ax-btn-ghost" key={name} onClick={() => void previewAvatar("expression", name)}>{name}</button>)}</div></fieldset> : null}
+                {avatarActionError ? <p className="bina-error" role="alert">{avatarActionError}</p> : null}
+              </div> : null}
               <label className="bina-setting">人物缩放 <output>{scale}%</output><input type="range" min="80" max="130" value={scale} onChange={(event) => setScale(Number(event.target.value))} /></label>
               <label className="bina-setting">房间氛围<select value={background} onChange={(event) => setBackground(event.target.value)}><option>暖光</option><option>夜色</option></select></label>
               <button type="button" className="ax-btn-ghost" onClick={() => { setScale(100); setBackground("暖光"); }}>恢复默认形象</button>
