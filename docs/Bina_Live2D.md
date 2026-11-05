@@ -13,11 +13,16 @@ Bina 的网页形象使用 PixiJS 8.22.0 与 `untitled-pixi-live2d-engine` 1.4.0
 | 文件 | 职责 |
 | --- | --- |
 | [Live2DAvatar.tsx](../frontend/src/modules/embodiment/Live2DAvatar.tsx) | 加载 Core，按需导入引擎，创建 WebGL 画布，绑定 ticker，适配尺寸并在卸载时销毁模型和应用 |
+| [binaRig.ts](../frontend/src/modules/embodiment/binaRig.ts) | 内置 Bina 模型的转头、身体、视线、呼吸与头发幅度校正，保留嘴型轮廓 |
 | [SoloChatView.tsx](../frontend/src/modules/solo-chat/SoloChatView.tsx) | 形象区域、模型路径设置、加载状态、动作与表情预览 |
 | [globals.css](../frontend/app/globals.css) | Live2D 画布布局、形象缩放和夜色样式 |
 | [资源说明](../frontend/public/live2d/README.md) | Core 和模型的安装目录 |
 
 Core 先通过浏览器脚本加载，随后组件动态导入 PixiJS 和引擎，避免服务端执行依赖浏览器的运行时。模型使用当前应用的 ticker 更新；动作和表情列表直接读取模型定义，不预设额外的动作名称。
+
+内置模型在 `beforeModelUpdate` 中校正参数：转头 X/Y 缩放至 0.18，Z 至 0.2，身体至 0.2，呼吸与视线至 0.35，前发至 0.18、后发至 0.25，眼球弹性归零；嘴巴开合保留至少 0.12，避免初版网格把唇线一并压没。校正发生在注视、表情与物理更新之后，仅匹配 `/live2d/bina/bina.model3.json`，不修改保存的动作值。
+
+当前已调整部件布局并重新导出工程与网页模型。完整三视图测量见 [T 姿参考说明](../assets/bina-tpose/README.md)，其数据用于后续按原图比例重建，不能把当前半身模型视为已完成全身比例验收。
 
 ## 安装与运行
 
@@ -61,7 +66,7 @@ npx tsc --noEmit
 npm run build
 ```
 
-本机 Next.js 16.2.1 的 Turbopack 构建遇到已有 Google Fonts 的查询解析错误，改用官方 Webpack 模式构建通过：
+2026-11-05 本次提交前，以上 Lint、TypeScript 与默认 Turbopack 构建检查均通过。此前环境曾遇到 Google Fonts 查询解析错误，当时使用以下 Webpack 模式构建通过：
 
 ```bash
 npx next build --webpack
@@ -69,6 +74,8 @@ npm run start
 ```
 
 2026-11-05 已使用 Chromium 与软件 WebGL 对 Bina 初版进行真实页面验收：默认加载、待机画面变化、Blink/Nod/Shake 动作、四种表情、立绘与 Live2D 选择持久化、恢复默认模型及手机尺寸适配均通过，无页面异常。结果见 [验收记录](../assets/bina-live2d/browser-verification.json)，画面见 [桌面截图](../assets/bina-live2d/browser-desktop.png) 与 [手机截图](../assets/bina-live2d/browser-mobile.png)。
+
+上述页面交互记录为已有验收材料，本次提交前未重新执行浏览器交互验收；本次另行核对了六张 T 姿原图的哈希与尺寸，以及 12 个模型资源引用。
 
 WebGL 为 Live2D 必需能力，组件限制使用 WebGL 并允许软件渲染，避免 PixiJS 回退到不支持的 Canvas 渲染器。模型按可见绘制范围设置锚点，适配画布时保留动作余量。销毁时先释放模型及其 ticker 监听，再销毁应用，避免切换立绘时访问已销毁的 ticker。
 

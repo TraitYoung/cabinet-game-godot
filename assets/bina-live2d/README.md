@@ -18,6 +18,8 @@
 
 ## 重新打包素材
 
+当前分件布局已缩小头发、脸部与眼部等区域并重新导出模型。这是初版局部调整；完整三视图原图与人工比例测量见 [T 姿参考说明](../bina-tpose/README.md)，后续全身重建以该处数据为准。`reference/` 中的裁切图、旧截图及比例记录仅保留早期调整依据，不代表当前比例验收结果。
+
 在仓库根目录执行，使用 Python 3.13：
 
 ```bash
@@ -60,10 +62,12 @@ export NO_PROXY=127.0.0.1,localhost
 
 当前包含 20 个参数，4 组动作（Idle、Blink、Nod、Shake），4 种表情（Smile、Sad、Angry、Surprised）及头发物理。TTS 口型与聊天自动驱动尚未接入。
 
+网页对内置模型应用 `frontend/src/modules/embodiment/binaRig.ts` 中的幅度校正：在动作、鼠标跟随和物理叠加后收小转头、身体、视线及头发运动，关闭眼球弹性，并保留默认嘴型轮廓。校正仅作用于内置模型路径，不改变其他导入模型或原始 Cubism 工程。当前属于运行时修正；大角度转头仍需要在源工程中精修网格和遮挡。
+
 ## 已完成的验收
 
 2026-11-05，Chromium + 软件 WebGL：默认模型加载、待机画面变化、三组手动动作、四种表情、切换立绘后刷新、恢复默认模型、Live2D 选择刷新恢复、手机尺寸画布适配均通过，无页面异常。全部 12 个模型关联资源存在。
 
-前端 Lint、TypeScript 检查与 `npx next build --webpack` 通过。默认 Turbopack 构建在当前环境遇到 Google Fonts 查询解析错误，具体运行方式见 [接入说明](../../docs/Bina_Live2D.md)。
+2026-11-05 本次提交前复核：前端 `npm run lint`、`npx tsc --noEmit` 与默认 `npm run build`（Turbopack）通过；六张原始 T 姿图的哈希、尺寸及 12 个模型资源引用检查通过。页面截图与交互记录沿用已有验收材料，本次未重新执行浏览器交互验收。历史环境的 Webpack 构建方式见 [接入说明](../../docs/Bina_Live2D.md)。
 
 ![桌面实测](browser-desktop.png)

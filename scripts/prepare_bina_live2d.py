@@ -10,21 +10,21 @@ SOURCE = ROOT / "assets/bina-live2d/source"
 
 # Atlas cell, model rectangle, semantic tags; layers run from back to front.
 PARTS = [
-    ("back_hair", 0, (275, 85, 450, 475), ["hair", "back"]),
+    ("back_hair", 0, (300, 110, 400, 415), ["hair", "back"]),
     ("body", 3, (180, 475, 640, 820), ["top"]),
-    ("face", 1, (340, 150, 320, 370), ["face"]),
-    ("eyewhite_right", 4, (376, 308, 100, 44), ["eye", "white", "right"]),
-    ("eyewhite_left", 5, (524, 308, 100, 44), ["eye", "white", "left"]),
-    ("iris_right", 6, (405, 303, 47, 55), ["eye", "iris", "right"]),
-    ("iris_left", 7, (548, 303, 47, 55), ["eye", "iris", "left"]),
-    ("eyelash_right", 8, (370, 300, 110, 52), ["eye", "lash", "right"]),
-    ("eyelash_left", 9, (520, 300, 110, 52), ["eye", "lash", "left"]),
-    ("brow_right", 10, (378, 275, 95, 16), ["brow", "right"]),
-    ("brow_left", 11, (527, 275, 95, 16), ["brow", "left"]),
-    ("nose", 13, (489, 377, 22, 30), ["nose"]),
-    ("mouth", 12, (466, 427, 68, 46), ["mouth", "open"]),
-    ("front_hair", 2, (275, 85, 450, 475), ["hair", "front"]),
-    ("glasses", 14, (357, 102, 286, 110), ["headwear"]),
+    ("face", 1, (360, 185, 280, 295), ["face"]),
+    ("eyewhite_right", 4, (389, 338, 86, 32), ["eye", "white", "right"]),
+    ("eyewhite_left", 5, (525, 338, 86, 32), ["eye", "white", "left"]),
+    ("iris_right", 6, (414, 335, 36, 40), ["eye", "iris", "right"]),
+    ("iris_left", 7, (550, 335, 36, 40), ["eye", "iris", "left"]),
+    ("eyelash_right", 8, (384, 332, 96, 39), ["eye", "lash", "right"]),
+    ("eyelash_left", 9, (520, 332, 96, 39), ["eye", "lash", "left"]),
+    ("brow_right", 10, (391, 308, 82, 13), ["brow", "right"]),
+    ("brow_left", 11, (527, 308, 82, 13), ["brow", "left"]),
+    ("nose", 13, (493, 391, 14, 19), ["nose"]),
+    ("mouth", 12, (468, 425, 64, 30), ["mouth", "open"]),
+    ("front_hair", 2, (300, 110, 400, 415), ["hair", "front"]),
+    ("glasses", 14, (373, 125, 254, 96), ["headwear"]),
 ]
 
 

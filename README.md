@@ -38,6 +38,8 @@ Axiodrasil 是一个虚拟具身实验项目。当前唯一运行人物是 Bina�
 | `storage/` | 本地原始聊天记录 |
 | `state/` | 情绪状态 |
 | `config/persona_visual/bina.json` | Bina 外貌配置真相源 |
+| `assets/bina-tpose/` | Bina 日常装、工作装三视图原图与人工标点测量 |
+| `assets/bina-live2d/` | Live2D 分件、可编辑工程、导出记录与页面截图 |
 | `test_suite/` | 脚本化回归检查，部分历史测试属于旧内阁阶段 |
 | `docs/characters/` | 已退役人物的文档设定 |
 
@@ -134,5 +136,7 @@ npm run build
 Python 依赖见 `requirements.txt`，前端依赖与锁文件位于 `frontend/`。前端已配置 ESLint，后端尚未统一配置格式化和 lint。
 
 ## 文档约定
+
+Live2D 的内置模型已调整五官与部件布局，并增加运行时动作幅度校正。六张原始 T 姿图的比例测量与复现命令见 [T 姿参考说明](assets/bina-tpose/README.md)；测量结果尚未用于按全身比例重建模型，正式模型验收仍待完成。
 
 当前开发计划见 `TODO.md`。历史多 Agent 介绍见 `docs/历史项目说明.md`，旧内阁、软件工程流水线和角色扩展文档用于追溯。新功能与设计以 Bina 的虚拟具身、互动和记忆目标为准。

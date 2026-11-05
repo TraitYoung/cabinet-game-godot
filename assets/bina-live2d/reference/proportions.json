@@ -1,0 +1,367 @@
+{
+  "source": "t-pose.png",
+  "image_size": [
+    436,
+    786
+  ],
+  "method": "Manual landmarks; ratios calculated from pixel coordinates, not biometric detection",
+  "uncertainty_px": {
+    "facial_landmarks": 3,
+    "hair_and_clothing": 5,
+    "shoulders": 8
+  },
+  "definitions": {
+    "head_height": "crown to chin, excluding ahoge and glasses",
+    "face_height": "central hairline to chin",
+    "body_anchor_span": "shoulder baseline to skirt hem; not full body height",
+    "shoulder_width": "estimated anatomical shoulder points; T-pose arms excluded"
+  },
+  "landmarks_px": {
+    "crown": [
+      220,
+      28
+    ],
+    "hairline": [
+      220,
+      87
+    ],
+    "chin": [
+      221,
+      230
+    ],
+    "cheek_left": [
+      154,
+      165
+    ],
+    "cheek_right": [
+      282,
+      165
+    ],
+    "pupil_left": [
+      186,
+      154
+    ],
+    "pupil_right": [
+      256,
+      154
+    ],
+    "eye_outer_left": [
+      164,
+      150
+    ],
+    "eye_inner_left": [
+      205,
+      153
+    ],
+    "eye_inner_right": [
+      236,
+      153
+    ],
+    "eye_outer_right": [
+      278,
+      150
+    ],
+    "brow_left": [
+      185,
+      131
+    ],
+    "brow_right": [
+      257,
+      131
+    ],
+    "nose_tip": [
+      220,
+      181
+    ],
+    "mouth_left": [
+      207,
+      199
+    ],
+    "mouth_right": [
+      236,
+      199
+    ],
+    "mouth_center": [
+      221,
+      200
+    ],
+    "hair_left": [
+      94,
+      164
+    ],
+    "hair_right": [
+      340,
+      164
+    ],
+    "shoulder_left": [
+      112,
+      262
+    ],
+    "shoulder_right": [
+      328,
+      262
+    ],
+    "shoulder_mid": [
+      220,
+      260
+    ],
+    "skirt_hem": [
+      220,
+      744
+    ],
+    "neck_left": [
+      193,
+      241
+    ],
+    "neck_right": [
+      247,
+      241
+    ]
+  },
+  "face_normalized_landmarks": {
+    "crown": {
+      "x": 0.0156,
+      "y": -0.4126
+    },
+    "hairline": {
+      "x": 0.0156,
+      "y": 0.0
+    },
+    "chin": {
+      "x": 0.0234,
+      "y": 1.0
+    },
+    "cheek_left": {
+      "x": -0.5,
+      "y": 0.5455
+    },
+    "cheek_right": {
+      "x": 0.5,
+      "y": 0.5455
+    },
+    "pupil_left": {
+      "x": -0.25,
+      "y": 0.4685
+    },
+    "pupil_right": {
+      "x": 0.2969,
+      "y": 0.4685
+    },
+    "eye_outer_left": {
+      "x": -0.4219,
+      "y": 0.4406
+    },
+    "eye_inner_left": {
+      "x": -0.1016,
+      "y": 0.4615
+    },
+    "eye_inner_right": {
+      "x": 0.1406,
+      "y": 0.4615
+    },
+    "eye_outer_right": {
+      "x": 0.4688,
+      "y": 0.4406
+    },
+    "brow_left": {
+      "x": -0.2578,
+      "y": 0.3077
+    },
+    "brow_right": {
+      "x": 0.3047,
+      "y": 0.3077
+    },
+    "nose_tip": {
+      "x": 0.0156,
+      "y": 0.6573
+    },
+    "mouth_left": {
+      "x": -0.0859,
+      "y": 0.7832
+    },
+    "mouth_right": {
+      "x": 0.1406,
+      "y": 0.7832
+    },
+    "mouth_center": {
+      "x": 0.0234,
+      "y": 0.7902
+    },
+    "hair_left": {
+      "x": -0.9688,
+      "y": 0.5385
+    },
+    "hair_right": {
+      "x": 0.9531,
+      "y": 0.5385
+    },
+    "shoulder_left": {
+      "x": -0.8281,
+      "y": 1.2238
+    },
+    "shoulder_right": {
+      "x": 0.8594,
+      "y": 1.2238
+    },
+    "shoulder_mid": {
+      "x": 0.0156,
+      "y": 1.2098
+    },
+    "skirt_hem": {
+      "x": 0.0156,
+      "y": 4.5944
+    },
+    "neck_left": {
+      "x": -0.1953,
+      "y": 1.0769
+    },
+    "neck_right": {
+      "x": 0.2266,
+      "y": 1.0769
+    }
+  },
+  "measurements_px": {
+    "head_height": 202,
+    "hair_width": 246,
+    "face_width_at_cheeks": 128,
+    "face_height": 143,
+    "pupil_distance": 70,
+    "eye_width_left": 41,
+    "eye_width_right": 42,
+    "mouth_width": 29,
+    "neck_width": 54,
+    "shoulder_width_estimate": 216,
+    "shoulder_to_skirt_hem": 484,
+    "eye_to_nose": 27,
+    "nose_to_mouth": 19,
+    "mouth_to_chin": 30
+  },
+  "ratios": {
+    "face_height_over_width": 1.1172,
+    "pupil_distance_over_face_width": 0.5469,
+    "eye_width_over_face_width": 0.3242,
+    "mouth_width_over_face_width": 0.2266,
+    "eye_line_from_hairline_over_face_height": 0.4685,
+    "nose_line_from_hairline_over_face_height": 0.6573,
+    "mouth_line_from_hairline_over_face_height": 0.7902,
+    "head_height_over_body_anchor_span": 0.4174
+  },
+  "rejected_screenshot": {
+    "head_height_px": 264,
+    "shoulder_to_skirt_hem_px": 402,
+    "head_over_body_anchor_span": 0.6567,
+    "relative_head_oversize_percent": 57.4,
+    "head_scale_at_fixed_body": 0.6355
+  },
+  "model_target": {
+    "canvas": [
+      1000,
+      1400
+    ],
+    "body_scale": 1.4566115702479339,
+    "mapping": "x=500+(reference_x-220)*scale; y=550+(reference_y-260)*scale",
+    "landmarks": {
+      "crown": [
+        500.0,
+        212.07
+      ],
+      "hairline": [
+        500.0,
+        298.01
+      ],
+      "chin": [
+        501.46,
+        506.3
+      ],
+      "cheek_left": [
+        403.86,
+        411.62
+      ],
+      "cheek_right": [
+        590.31,
+        411.62
+      ],
+      "pupil_left": [
+        450.48,
+        395.6
+      ],
+      "pupil_right": [
+        552.44,
+        395.6
+      ],
+      "eye_outer_left": [
+        418.43,
+        389.77
+      ],
+      "eye_inner_left": [
+        478.15,
+        394.14
+      ],
+      "eye_inner_right": [
+        523.31,
+        394.14
+      ],
+      "eye_outer_right": [
+        584.48,
+        389.77
+      ],
+      "brow_left": [
+        449.02,
+        362.1
+      ],
+      "brow_right": [
+        553.89,
+        362.1
+      ],
+      "nose_tip": [
+        500.0,
+        434.93
+      ],
+      "mouth_left": [
+        481.06,
+        461.15
+      ],
+      "mouth_right": [
+        523.31,
+        461.15
+      ],
+      "mouth_center": [
+        501.46,
+        462.6
+      ],
+      "hair_left": [
+        316.47,
+        410.17
+      ],
+      "hair_right": [
+        674.79,
+        410.17
+      ],
+      "shoulder_left": [
+        342.69,
+        552.91
+      ],
+      "shoulder_right": [
+        657.31,
+        552.91
+      ],
+      "shoulder_mid": [
+        500.0,
+        550.0
+      ],
+      "skirt_hem": [
+        500.0,
+        1255.0
+      ],
+      "neck_left": [
+        460.67,
+        522.32
+      ],
+      "neck_right": [
+        539.33,
+        522.32
+      ]
+    }
+  },
+  "limitation": "Reference ends at thighs: full stature and conventional total head count cannot be measured."
+}

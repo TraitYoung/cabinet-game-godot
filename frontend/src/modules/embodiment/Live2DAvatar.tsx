@@ -4,6 +4,7 @@ import Script from "next/script";
 import { useEffect, useImperativeHandle, useRef, useState, type Ref } from "react";
 import type { Application } from "pixi.js";
 import type { Live2DModel, CubismInternalModel } from "untitled-pixi-live2d-engine/cubism";
+import { stabilizeBinaRig } from "./binaRig";
 
 export type AvatarStatus = {
   phase: "loading" | "ready" | "error";
@@ -70,6 +71,9 @@ export function Live2DAvatar({ modelUrl, controlsRef, onStatus }: {
         host.appendChild(app.canvas);
         model = await engine.Live2DModel.from(modelUrl, { autoFocus: true, autoHitTest: true, ticker: app.ticker, anchorMode: "drawable" });
         if (cancelled) { release(); return; }
+        if (new URL(modelUrl, window.location.href).pathname === "/live2d/bina/bina.model3.json") {
+          stabilizeBinaRig(model.internalModel as CubismInternalModel);
+        }
         app.stage.addChild(model);
         modelRef.current = model;
         const modelWidth = model.width;

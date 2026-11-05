@@ -7,10 +7,10 @@
   "cmo3TargetVersionNo": 5000000,
   "cmo3FileFormatVersion": "500000005",
   "canvas": {"width":1000,"height":1400},
-  "config": {"atlasSize":4096,"meshSpacing":40,"headTurnStrength":1.0,"bodyStrength":1.0,"meshOnly":false,"generateDeformers":true,"exportMotions":true},
-  "faceRig": {"algorithm":"perspective-parallelogram-nine-pose-v2","angleX":[-45,0,45],"angleY":[-30,0,30],"initialAngleZ":0.0,"centerX":500.58456,"centerY":367.66644,"radiusX":177.64868,"radiusY":237.43774},
+  "config": {"atlasSize":4096,"meshSpacing":40,"headTurnStrength":0.35,"bodyStrength":0.35,"meshOnly":false,"generateDeformers":true,"exportMotions":true},
+  "faceRig": {"algorithm":"perspective-parallelogram-nine-pose-v2","angleX":[-45,0,45],"angleY":[-30,0,30],"initialAngleZ":0.0,"centerX":500.09042,"centerY":358.78818,"radiusX":155.76547,"radiusY":190.68037},
   "deformerHierarchy": {"head":"DeformHeadContainer","face":"DeformFaceNinePose","frontHair":["DeformHairFrontFollow","DeformHairFrontPhysics"],"backHair":["DeformHairBackFollow","DeformHairBackPhysics"]},
-  "physics": {"enabled":true,"frontHair":true,"backHair":true,"eyeJelly":true,"groups":["PhysicsHairBack","PhysicsHairFront","PhysicsEyeJelly"]},
+  "physics": {"enabled":true,"frontHair":true,"backHair":true,"eyeJelly":false,"groups":["PhysicsHairBack","PhysicsHairFront"]},
   "summary": {"layers":17,"drawables":18,"deformers":23,"parameters":20,"atlasPages":1},
   "layers": [
     {"source":"back_hair","type":"preset","tag":"back hair","side":"NONE","parameter":"","switchId":0,"drawable":"ArtMeshBackHair"},
@@ -25,11 +25,11 @@
   {"source":"brow_right","type":"preset","tag":"eyebrow","side":"RIGHT","parameter":"","switchId":0,"drawable":"ArtMeshEyebrowR"},
   {"source":"brow_left","type":"preset","tag":"eyebrow","side":"LEFT","parameter":"","switchId":0,"drawable":"ArtMeshEyebrowL"},
   {"source":"nose","type":"preset","tag":"nose","side":"NONE","parameter":"","switchId":0,"drawable":"ArtMeshNose"},
-  {"source":"mouth / Upper lip outline","type":"preset","tag":"mouth_open","side":"NONE","parameter":"","switchId":0,"drawable":""},
-  {"source":"mouth / Lower lip outline","type":"preset","tag":"mouth_open","side":"NONE","parameter":"","switchId":0,"drawable":""},
+  {"source":"mouth / 上唇描边","type":"preset","tag":"mouth_open","side":"NONE","parameter":"","switchId":0,"drawable":""},
+  {"source":"mouth / 下唇描边","type":"preset","tag":"mouth_open","side":"NONE","parameter":"","switchId":0,"drawable":""},
   {"source":"mouth","type":"preset","tag":"mouth_open","side":"NONE","parameter":"","switchId":0,"drawable":"ArtMeshMouthOpen"},
   {"source":"front_hair","type":"preset","tag":"front hair","side":"NONE","parameter":"","switchId":0,"drawable":"ArtMeshFrontHair"},
   {"source":"glasses","type":"preset","tag":"headwear","side":"NONE","parameter":"","switchId":0,"drawable":"ArtMeshHeadwear"}
   ],
-  "warnings": ["Duplicate layer names detected: eyewhite, iris, eyelash, brow; stable layer IDs were used to distinguish them.","CMO3: DrawOrdersRenumbered(subjects=[front_hair (through bangs)])","CMO3: Atlas holds up to 3.15x the canvas resolution of 11 layers (iris_right, iris_left, glasses, eyelash_right, eyelash_left and 6 more); Cubism Editor rebuilds the atlas from canvas-resolution layers"]
+  "warnings": ["检测到同名图层：eyewhite, iris, eyelash, brow；已通过稳定图层 ID 区分。","CMO3：DrawOrdersRenumbered(subjects=[front_hair（透过刘海）])","CMO3: Atlas holds up to 4.11x the canvas resolution of 11 layers (iris_right, iris_left, glasses, eyelash_right, eyelash_left and 6 more); Cubism Editor rebuilds the atlas from canvas-resolution layers"]
 }

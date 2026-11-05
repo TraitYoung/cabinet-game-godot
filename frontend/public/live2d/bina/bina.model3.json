@@ -9,19 +9,19 @@
 		"DisplayInfo": "bina.cdi3.json",
 		"Expressions": [
 			{
-				"Name": "Smile",
+				"Name": "微笑",
 				"File": "bina.smile.exp3.json"
 			},
 			{
-				"Name": "Sad",
+				"Name": "悲伤",
 				"File": "bina.sad.exp3.json"
 			},
 			{
-				"Name": "Angry",
+				"Name": "生气",
 				"File": "bina.angry.exp3.json"
 			},
 			{
-				"Name": "Surprised",
+				"Name": "惊讶",
 				"File": "bina.surprised.exp3.json"
 			}
 		],

@@ -1,7 +1,7 @@
 {
-  "project_id": "1bbece8f-976e-45e2-839e-be644e0bca8d",
-  "state": "0c5937e5-10ec-4e01-b805-4ccac04170d4:1:1",
-  "history_node_id": "history-d442687c-08a9-47ba-a96a-c7f08023c0c5",
+  "project_id": "e3690be0-c7a0-4897-b3b5-d0b3f42dfa36",
+  "state": "372c2a13-f925-4b38-8aea-b84557079c9f:1:2",
+  "history_node_id": "history-81392d4a-5877-41d4-8099-c98c9a7b61db",
   "loaded": true,
   "canvas": [
     1000,
@@ -12,7 +12,7 @@
     "items": [
       {
         "id": "ParamAngleX",
-        "name": "Angle X",
+        "name": "角度 X",
         "min": -45.0,
         "max": 45.0,
         "default": 0.0,
@@ -21,7 +21,7 @@
       },
       {
         "id": "ParamAngleY",
-        "name": "Angle Y",
+        "name": "角度 Y",
         "min": -30.0,
         "max": 30.0,
         "default": 0.0,
@@ -30,7 +30,7 @@
       },
       {
         "id": "ParamAngleZ",
-        "name": "Angle Z",
+        "name": "角度 Z",
         "min": -30.0,
         "max": 30.0,
         "default": 0.0,
@@ -39,7 +39,7 @@
       },
       {
         "id": "ParamEyeLOpen",
-        "name": "Left Eye Open",
+        "name": "左眼开合",
         "min": 0.0,
         "max": 1.0,
         "default": 1.0,
@@ -48,7 +48,7 @@
       },
       {
         "id": "ParamEyeROpen",
-        "name": "Right Eye Open",
+        "name": "右眼开合",
         "min": 0.0,
         "max": 1.0,
         "default": 1.0,
@@ -57,7 +57,7 @@
       },
       {
         "id": "ParamEyeBallX",
-        "name": "EyeBall X",
+        "name": "眼球 X",
         "min": -1.0,
         "max": 1.0,
         "default": 0.0,
@@ -66,7 +66,7 @@
       },
       {
         "id": "ParamEyeBallY",
-        "name": "EyeBall Y",
+        "name": "眼球 Y",
         "min": -1.0,
         "max": 1.0,
         "default": 0.0,
@@ -75,7 +75,7 @@
       },
       {
         "id": "ParamEyeBallForm",
-        "name": "Eye Jelly",
+        "name": "果冻眼",
         "min": -1.0,
         "max": 1.0,
         "default": 0.0,
@@ -84,7 +84,7 @@
       },
       {
         "id": "ParamBrowLY",
-        "name": "Left Brow Y",
+        "name": "左眉 Y",
         "min": -1.0,
         "max": 1.0,
         "default": 0.0,
@@ -93,7 +93,7 @@
       },
       {
         "id": "ParamBrowRY",
-        "name": "Right Brow Y",
+        "name": "右眉 Y",
         "min": -1.0,
         "max": 1.0,
         "default": 0.0,
@@ -102,7 +102,7 @@
       },
       {
         "id": "ParamMouthForm",
-        "name": "Mouth Form",
+        "name": "嘴型",
         "min": -1.0,
         "max": 1.0,
         "default": 0.0,
@@ -111,7 +111,7 @@
       },
       {
         "id": "ParamMouthOpenY",
-        "name": "Mouth Open",
+        "name": "嘴巴开合",
         "min": 0.0,
         "max": 1.0,
         "default": 0.0,
@@ -120,7 +120,7 @@
       },
       {
         "id": "ParamBodyAngleX",
-        "name": "Body Angle X",
+        "name": "身体角度 X",
         "min": -10.0,
         "max": 10.0,
         "default": 0.0,
@@ -129,7 +129,7 @@
       },
       {
         "id": "ParamBodyAngleY",
-        "name": "Body Angle Y",
+        "name": "身体角度 Y",
         "min": -10.0,
         "max": 10.0,
         "default": 0.0,
@@ -138,7 +138,7 @@
       },
       {
         "id": "ParamBodyAngleZ",
-        "name": "Body Angle Z",
+        "name": "身体角度 Z",
         "min": -10.0,
         "max": 10.0,
         "default": 0.0,
@@ -147,7 +147,7 @@
       },
       {
         "id": "ParamBodyLean",
-        "name": "Body Lean",
+        "name": "身体前后倾",
         "min": -10.0,
         "max": 10.0,
         "default": 0.0,
@@ -156,7 +156,7 @@
       },
       {
         "id": "ParamProportion",
-        "name": "Proportion (Chibi)",
+        "name": "大小变（头身比）",
         "min": -10.0,
         "max": 10.0,
         "default": 0.0,
@@ -165,7 +165,7 @@
       },
       {
         "id": "ParamBreath",
-        "name": "Breath",
+        "name": "呼吸",
         "min": 0.0,
         "max": 1.0,
         "default": 0.0,
@@ -174,7 +174,7 @@
       },
       {
         "id": "ParamHairFront",
-        "name": "Front Hair Sway",
+        "name": "前发摆动",
         "min": -1.0,
         "max": 1.0,
         "default": 0.0,
@@ -183,7 +183,7 @@
       },
       {
         "id": "ParamHairBack",
-        "name": "Back Hair Sway",
+        "name": "后发摆动",
         "min": -1.0,
         "max": 1.0,
         "default": 0.0,
@@ -281,14 +281,14 @@
       },
       {
         "id": "mouth::mouth-lip-0",
-        "name": "mouth / Upper lip outline",
+        "name": "mouth / 上唇描边",
         "role": "mouth_open",
         "side": "none",
         "visible": true
       },
       {
         "id": "mouth::mouth-lip-1",
-        "name": "mouth / Lower lip outline",
+        "name": "mouth / 下唇描边",
         "role": "mouth_open",
         "side": "none",
         "visible": true
@@ -322,139 +322,139 @@
     "items": [
       {
         "target": "warp:DeformBodyXY",
-        "name": "Body XY",
+        "name": "身体 XY",
         "parent": null,
         "children": 1
       },
       {
         "target": "warp:DeformBodyLean",
-        "name": "Body Lean / Proportion",
+        "name": "身体前后倾与大小变",
         "parent": "warp:DeformBodyXY",
         "children": 1
       },
       {
         "target": "warp:DeformBodyZBreath",
-        "name": "Body Z / Breath",
+        "name": "身体 Z / 呼吸",
         "parent": "warp:DeformBodyLean",
         "children": 2
       },
       {
         "target": "rotation:DeformHeadRotation",
-        "name": "Head Z Rotation",
+        "name": "头部 Z 旋转",
         "parent": "warp:DeformBodyZBreath",
         "children": 1
       },
       {
         "target": "warp:DeformHeadContainer",
-        "name": "Head Container",
+        "name": "头部容器",
         "parent": "rotation:DeformHeadRotation",
         "children": 4
       },
       {
         "target": "warp:DeformFaceNinePose",
-        "name": "Face Warp Deformer",
+        "name": "面部弯曲变形器",
         "parent": "warp:DeformHeadContainer",
         "children": 5
       },
       {
         "target": "warp:DeformFaceContour",
-        "name": "Face Deformer",
+        "name": "脸变形器",
         "parent": "warp:DeformFaceNinePose",
         "children": 1
       },
       {
         "target": "warp:DeformEyes",
-        "name": "Eyes",
+        "name": "双眼",
         "parent": "warp:DeformFaceNinePose",
         "children": 2
       },
       {
         "target": "warp:DeformBrows",
-        "name": "Eyebrows",
+        "name": "双眉",
         "parent": "warp:DeformFaceNinePose",
         "children": 2
       },
       {
         "target": "warp:DeformEyeShapeR",
-        "name": "Right Eye Deformer",
+        "name": "右眼变形器",
         "parent": "warp:DeformEyes",
         "children": 3
       },
       {
         "target": "warp:DeformEyeShapeL",
-        "name": "Left Eye Deformer",
+        "name": "左眼变形器",
         "parent": "warp:DeformEyes",
         "children": 3
       },
       {
         "target": "warp:DeformBrowShapeR",
-        "name": "Right Brow Deformer",
+        "name": "右眉变形器",
         "parent": "warp:DeformBrows",
         "children": 2
       },
       {
         "target": "warp:DeformBrowShapeL",
-        "name": "Left Brow Deformer",
+        "name": "左眉变形器",
         "parent": "warp:DeformBrows",
         "children": 2
       },
       {
         "target": "warp:DeformNoseShapeBoth",
-        "name": "Nose Bridge / Tip Depth",
+        "name": "鼻梁 / 鼻尖深度",
         "parent": "warp:DeformFaceNinePose",
         "children": 1
       },
       {
         "target": "warp:DeformMouthShapeBoth",
-        "name": "Mouth Deformer",
+        "name": "嘴部变形器",
         "parent": "warp:DeformFaceNinePose",
         "children": 1
       },
       {
         "target": "warp:DeformIrisPreserveR",
-        "name": "Right Iris 2D Retention",
+        "name": "右瞳孔二维保持",
         "parent": "warp:DeformEyeShapeR",
         "children": 1
       },
       {
         "target": "warp:DeformEyeGazeR",
-        "name": "Right Gaze",
+        "name": "右视线",
         "parent": "warp:DeformIrisPreserveR",
         "children": 1
       },
       {
         "target": "warp:DeformIrisPreserveL",
-        "name": "Left Iris 2D Retention",
+        "name": "左瞳孔二维保持",
         "parent": "warp:DeformEyeShapeL",
         "children": 1
       },
       {
         "target": "warp:DeformEyeGazeL",
-        "name": "Left Gaze",
+        "name": "左视线",
         "parent": "warp:DeformIrisPreserveL",
         "children": 1
       },
       {
         "target": "warp:DeformHairFrontFollow",
-        "name": "Front Hair Follow",
+        "name": "前发头部跟随",
         "parent": "warp:DeformHeadContainer",
         "children": 1
       },
       {
         "target": "warp:DeformHairFrontPhysics",
-        "name": "Front Hair Physics",
+        "name": "前发物理摆动",
         "parent": "warp:DeformHairFrontFollow",
         "children": 2
       },
       {
         "target": "warp:DeformHairBackFollow",
-        "name": "Back Hair Follow",
+        "name": "后发头部跟随",
         "parent": "warp:DeformHeadContainer",
         "children": 1
       },
       {
         "target": "warp:DeformHairBackPhysics",
-        "name": "Back Hair Physics",
+        "name": "后发物理摆动",
         "parent": "warp:DeformHairBackFollow",
         "children": 1
       }
@@ -465,7 +465,7 @@
     "items": [
       {
         "id": "PhysicsHairBack",
-        "name": "Back Hair Sway",
+        "name": "后发摆动",
         "origin": "preset",
         "enabled": true,
         "inputs": [
@@ -480,7 +480,7 @@
       },
       {
         "id": "PhysicsHairFront",
-        "name": "Front Hair Sway",
+        "name": "前发摆动",
         "origin": "preset",
         "enabled": true,
         "inputs": [
@@ -495,9 +495,9 @@
       },
       {
         "id": "PhysicsEyeJelly",
-        "name": "Eye Jelly",
+        "name": "果冻眼",
         "origin": "preset",
-        "enabled": true,
+        "enabled": false,
         "inputs": [
           "ParamEyeLOpen",
           "ParamEyeROpen"
