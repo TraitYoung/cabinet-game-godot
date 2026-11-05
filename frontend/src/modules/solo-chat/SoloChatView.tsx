@@ -41,6 +41,7 @@ const FILE_ACCEPT =
   ".txt,.md,.markdown,.json,.csv,.log,image/png,image/jpeg,image/webp,image/gif";
 
 const BINA_ID = "bina";
+const BINA_MODEL_URL = "/live2d/bina/bina.model3.json";
 const PROACTIVE_MARKER = "[proactive]";
 
 function uid() {
@@ -100,8 +101,8 @@ export function SoloChatView() {
   const [background, setBackground] = useState("暖光");
   const [showSubtitle, setShowSubtitle] = useState(true);
   const [enterToSend, setEnterToSend] = useState(true);
-  const [avatarModelUrl, setAvatarModelUrl] = useState("");
-  const [avatarModelDraft, setAvatarModelDraft] = useState("");
+  const [avatarModelUrl, setAvatarModelUrl] = useState(BINA_MODEL_URL);
+  const [avatarModelDraft, setAvatarModelDraft] = useState(BINA_MODEL_URL);
   const [avatarStatus, setAvatarStatus] = useState<AvatarStatus | null>(null);
   const [avatarReload, setAvatarReload] = useState(0);
   const [avatarActionError, setAvatarActionError] = useState<string | null>(null);
@@ -112,7 +113,7 @@ export function SoloChatView() {
 
   useEffect(() => {
     void Promise.resolve().then(() => {
-      const saved = localStorage.getItem("bina-live2d-model") || "";
+      const saved = localStorage.getItem("bina-live2d-model") ?? BINA_MODEL_URL;
       setAvatarModelUrl(saved);
       setAvatarModelDraft(saved);
     });
@@ -684,7 +685,7 @@ export function SoloChatView() {
               </div> : null}
               <label className="bina-setting">人物缩放 <output>{scale}%</output><input type="range" min="80" max="130" value={scale} onChange={(event) => setScale(Number(event.target.value))} /></label>
               <label className="bina-setting">房间氛围<select value={background} onChange={(event) => setBackground(event.target.value)}><option>暖光</option><option>夜色</option></select></label>
-              <button type="button" className="ax-btn-ghost" onClick={() => { setScale(100); setBackground("暖光"); }}>恢复默认形象</button>
+              <button type="button" className="ax-btn-ghost" onClick={() => { setScale(100); setBackground("暖光"); applyAvatarModel(BINA_MODEL_URL); }}>恢复默认形象</button>
             </> : <>
               <div className="bina-model-settings">
                 <span className="bina-eyebrow">回复模型</span>

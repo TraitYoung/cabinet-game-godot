@@ -43,3 +43,4 @@ next-env.d.ts
 # Local Live2D runtime and licensed model assets
 /public/live2d/*
 !/public/live2d/README.md
+!/public/live2d/bina/

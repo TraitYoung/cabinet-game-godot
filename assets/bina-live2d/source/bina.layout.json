@@ -1,0 +1,298 @@
+{
+  "format": "psd2live-layout",
+  "version": 1,
+  "name": "bina",
+  "canvas": {
+    "width": 1000,
+    "height": 1400
+  },
+  "layers": [
+    {
+      "id": "back_hair",
+      "name": "back_hair",
+      "tags": [
+        "hair",
+        "back"
+      ],
+      "image": {
+        "path": "parts/back_hair.png",
+        "width": 304,
+        "height": 305
+      },
+      "rect": {
+        "left": 275,
+        "top": 85,
+        "width": 450,
+        "height": 475
+      }
+    },
+    {
+      "id": "body",
+      "name": "body",
+      "tags": [
+        "top"
+      ],
+      "image": {
+        "path": "parts/body.png",
+        "width": 261,
+        "height": 321
+      },
+      "rect": {
+        "left": 180,
+        "top": 475,
+        "width": 640,
+        "height": 820
+      }
+    },
+    {
+      "id": "face",
+      "name": "face",
+      "tags": [
+        "face"
+      ],
+      "image": {
+        "path": "parts/face.png",
+        "width": 247,
+        "height": 276
+      },
+      "rect": {
+        "left": 340,
+        "top": 150,
+        "width": 320,
+        "height": 370
+      }
+    },
+    {
+      "id": "eyewhite_right",
+      "name": "eyewhite_right",
+      "tags": [
+        "eye",
+        "white",
+        "right"
+      ],
+      "image": {
+        "path": "parts/eyewhite_right.png",
+        "width": 201,
+        "height": 79
+      },
+      "rect": {
+        "left": 376,
+        "top": 308,
+        "width": 100,
+        "height": 44
+      }
+    },
+    {
+      "id": "eyewhite_left",
+      "name": "eyewhite_left",
+      "tags": [
+        "eye",
+        "white",
+        "left"
+      ],
+      "image": {
+        "path": "parts/eyewhite_left.png",
+        "width": 201,
+        "height": 80
+      },
+      "rect": {
+        "left": 524,
+        "top": 308,
+        "width": 100,
+        "height": 44
+      }
+    },
+    {
+      "id": "iris_right",
+      "name": "iris_right",
+      "tags": [
+        "eye",
+        "iris",
+        "right"
+      ],
+      "image": {
+        "path": "parts/iris_right.png",
+        "width": 148,
+        "height": 149
+      },
+      "rect": {
+        "left": 405,
+        "top": 303,
+        "width": 47,
+        "height": 55
+      }
+    },
+    {
+      "id": "iris_left",
+      "name": "iris_left",
+      "tags": [
+        "eye",
+        "iris",
+        "left"
+      ],
+      "image": {
+        "path": "parts/iris_left.png",
+        "width": 147,
+        "height": 148
+      },
+      "rect": {
+        "left": 548,
+        "top": 303,
+        "width": 47,
+        "height": 55
+      }
+    },
+    {
+      "id": "eyelash_right",
+      "name": "eyelash_right",
+      "tags": [
+        "eye",
+        "lash",
+        "right"
+      ],
+      "image": {
+        "path": "parts/eyelash_right.png",
+        "width": 230,
+        "height": 96
+      },
+      "rect": {
+        "left": 370,
+        "top": 300,
+        "width": 110,
+        "height": 52
+      }
+    },
+    {
+      "id": "eyelash_left",
+      "name": "eyelash_left",
+      "tags": [
+        "eye",
+        "lash",
+        "left"
+      ],
+      "image": {
+        "path": "parts/eyelash_left.png",
+        "width": 225,
+        "height": 95
+      },
+      "rect": {
+        "left": 520,
+        "top": 300,
+        "width": 110,
+        "height": 52
+      }
+    },
+    {
+      "id": "brow_right",
+      "name": "brow_right",
+      "tags": [
+        "brow",
+        "right"
+      ],
+      "image": {
+        "path": "parts/brow_right.png",
+        "width": 227,
+        "height": 43
+      },
+      "rect": {
+        "left": 378,
+        "top": 275,
+        "width": 95,
+        "height": 16
+      }
+    },
+    {
+      "id": "brow_left",
+      "name": "brow_left",
+      "tags": [
+        "brow",
+        "left"
+      ],
+      "image": {
+        "path": "parts/brow_left.png",
+        "width": 225,
+        "height": 42
+      },
+      "rect": {
+        "left": 527,
+        "top": 275,
+        "width": 95,
+        "height": 16
+      }
+    },
+    {
+      "id": "nose",
+      "name": "nose",
+      "tags": [
+        "nose"
+      ],
+      "image": {
+        "path": "parts/nose.png",
+        "width": 38,
+        "height": 46
+      },
+      "rect": {
+        "left": 489,
+        "top": 377,
+        "width": 22,
+        "height": 30
+      }
+    },
+    {
+      "id": "mouth",
+      "name": "mouth",
+      "tags": [
+        "mouth",
+        "open"
+      ],
+      "image": {
+        "path": "parts/mouth.png",
+        "width": 160,
+        "height": 91
+      },
+      "rect": {
+        "left": 466,
+        "top": 427,
+        "width": 68,
+        "height": 46
+      }
+    },
+    {
+      "id": "front_hair",
+      "name": "front_hair",
+      "tags": [
+        "hair",
+        "front"
+      ],
+      "image": {
+        "path": "parts/front_hair.png",
+        "width": 311,
+        "height": 311
+      },
+      "rect": {
+        "left": 275,
+        "top": 85,
+        "width": 450,
+        "height": 475
+      }
+    },
+    {
+      "id": "glasses",
+      "name": "glasses",
+      "tags": [
+        "headwear"
+      ],
+      "image": {
+        "path": "parts/glasses.png",
+        "width": 287,
+        "height": 115
+      },
+      "rect": {
+        "left": 357,
+        "top": 102,
+        "width": 286,
+        "height": 110
+      }
+    }
+  ]
+}

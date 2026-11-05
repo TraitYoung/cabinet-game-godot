@@ -53,16 +53,23 @@ export function Live2DAvatar({ modelUrl, controlsRef, onStatus }: {
         await app.init({
           width: host.clientWidth,
           height: host.clientHeight,
-          preference: "webgl",
+          preference: ["webgl"],
+          failIfMajorPerformanceCaveat: false,
           backgroundAlpha: 0,
           autoDensity: true,
           resolution: Math.min(window.devicePixelRatio || 1, 2),
         });
-        release = () => app?.destroy(true, { children: true });
+        release = () => {
+          // Detach the model from its ticker before Application destroys it.
+          model?.destroy();
+          model = undefined;
+          app?.destroy(true, { children: true });
+          app = undefined;
+        };
         if (cancelled) { release(); return; }
         host.appendChild(app.canvas);
-        model = await engine.Live2DModel.from(modelUrl, { autoFocus: true, autoHitTest: true, ticker: app.ticker });
-        if (cancelled) { model.destroy(); release(); return; }
+        model = await engine.Live2DModel.from(modelUrl, { autoFocus: true, autoHitTest: true, ticker: app.ticker, anchorMode: "drawable" });
+        if (cancelled) { release(); return; }
         app.stage.addChild(model);
         modelRef.current = model;
         const modelWidth = model.width;
@@ -74,7 +81,7 @@ export function Live2DAvatar({ modelUrl, controlsRef, onStatus }: {
           const height = host.clientHeight;
           if (!width || !height) return;
           app.renderer.resize(width, height);
-          model.scale.set(Math.min(width * 0.95 / modelWidth, height * 0.95 / modelHeight));
+          model.scale.set(Math.min(width * 0.9 / modelWidth, height * 0.9 / modelHeight));
           model.position.set(width / 2, height * 0.98);
         };
         observer = new ResizeObserver(fit);

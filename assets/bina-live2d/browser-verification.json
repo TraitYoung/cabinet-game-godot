@@ -1,0 +1,116 @@
+{
+  "passed": true,
+  "checks": [
+    "default model loads",
+    "canvas changes during idle",
+    "Blink/Nod/Shake motions",
+    "Smile/Sad/Angry/Surprised expressions",
+    "static preference survives reload",
+    "restore default model",
+    "Live2D preference survives reload",
+    "mobile canvas resize"
+  ],
+  "page_errors": [],
+  "asset_requests": [
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/core/live2dcubismcore.min.js"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.model3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.moc3"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.idle.motion3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.4096/texture_00.png"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.physics3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.blink.motion3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.nod.motion3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.shake.motion3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.smile.exp3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.sad.exp3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.angry.exp3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.surprised.exp3.json"
+    },
+    {
+      "status": 304,
+      "url": "http://127.0.0.1:3000/live2d/core/live2dcubismcore.min.js"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.model3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.moc3"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.idle.motion3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.4096/texture_00.png"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.physics3.json"
+    },
+    {
+      "status": 304,
+      "url": "http://127.0.0.1:3000/live2d/core/live2dcubismcore.min.js"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.model3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.moc3"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.idle.motion3.json"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.4096/texture_00.png"
+    },
+    {
+      "status": 200,
+      "url": "http://127.0.0.1:3000/live2d/bina/bina.physics3.json"
+    }
+  ]
+}
