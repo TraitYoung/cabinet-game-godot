@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { transcribeAudio } from "@/matrix/client";
 
 type SpeechRecognitionLike = {
@@ -36,6 +36,10 @@ function getSpeechRecognitionCtor():
 
 export type SpeechMode = "idle" | "listening" | "recording" | "transcribing";
 
+const subscribeToSpeechSupport = () => () => {};
+const getSpeechSupport = () => Boolean(getSpeechRecognitionCtor());
+const getServerSpeechSupport = () => false;
+
 /**
  * 语音输入：优先 Web Speech；不支持或失败时 MediaRecorder → /api/v1/stt。
  */
@@ -46,7 +50,9 @@ export function useSpeechInput(opts: {
 }) {
   const { sessionId, onTranscript, onError } = opts;
   const [mode, setMode] = useState<SpeechMode>("idle");
-  const [webSpeechSupported, setWebSpeechSupported] = useState(false);
+  const webSpeechSupported = useSyncExternalStore(
+    subscribeToSpeechSupport, getSpeechSupport, getServerSpeechSupport,
+  );
   const recogRef = useRef<SpeechRecognitionLike | null>(null);
   const mediaRef = useRef<MediaRecorder | null>(null);
   const chunksRef = useRef<Blob[]>([]);
@@ -54,12 +60,10 @@ export function useSpeechInput(opts: {
   const preferServerRef = useRef(false);
   const onTranscriptRef = useRef(onTranscript);
   const onErrorRef = useRef(onError);
-  onTranscriptRef.current = onTranscript;
-  onErrorRef.current = onError;
-
   useEffect(() => {
-    setWebSpeechSupported(Boolean(getSpeechRecognitionCtor()));
-  }, []);
+    onTranscriptRef.current = onTranscript;
+    onErrorRef.current = onError;
+  }, [onTranscript, onError]);
 
   const stopMediaTracks = () => {
     streamRef.current?.getTracks().forEach((t) => t.stop());

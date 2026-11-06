@@ -26,6 +26,9 @@ else
 fi
 
 export AX_PROJECT_ROOT="$ROOT"
+if [ -z "${AX_DB_PATH:-}" ]; then
+  AX_DB_PATH="$("$PYTHON" -c 'from dotenv import dotenv_values; import sys; print(dotenv_values(sys.argv[1]).get("AX_DB_PATH") or "")' "$ROOT/.env")"
+fi
 export AX_DB_PATH="${AX_DB_PATH:-$HOME/.axiodrasil/axiodrasil_core.db}"
 export PYTHONIOENCODING=utf-8
 mkdir -p "$(dirname "$AX_DB_PATH")"
@@ -80,12 +83,21 @@ stop_pid() {
   fi
 }
 
+docker_compose() {
+  if docker info >/dev/null 2>&1; then
+    docker compose -f "$ROOT/docker-compose.yml" "$@"
+  else
+    echo "[docker] requesting sudo to access the Docker engine"
+    sudo docker compose -f "$ROOT/docker-compose.yml" "$@"
+  fi
+}
+
 start_hindsight() {
   if port_listen 8888; then
     echo "[hindsight] already listening on 8888"
     return 0
   fi
-  docker compose -f "$ROOT/docker-compose.yml" up -d hindsight
+  docker_compose up -d hindsight
   wait_port 8888 180
 }
 
@@ -162,7 +174,7 @@ cmd_stop() {
   load_pids
   stop_pid frontend "${FRONTEND_PID:-}"
   stop_pid backend "${BACKEND_PID:-}"
-  docker compose -f "$ROOT/docker-compose.yml" stop hindsight
+  docker_compose stop hindsight
   # 清理 next / uvicorn 残留
   pkill -f "next dev" 2>/dev/null || true
   pkill -f "next-server" 2>/dev/null || true

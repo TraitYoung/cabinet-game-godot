@@ -88,7 +88,25 @@ docker compose exec api python scripts/check_hindsight_memory.py
 
 ## 本地开发
 
-需要 Python 3.13、Node.js。先填写 `.env` 并启动记忆服务。
+需要 Python 3.13、Node.js 20.9 以上版本和可用的 Docker Compose。WSL 内使用 Linux 版 Python、Node.js 和 npm。
+
+Debian 13 可先安装系统依赖，再运行环境初始化脚本。脚本创建 `.venv`、安装 Python 依赖、按锁文件安装前端依赖，并在配置不存在时创建 `.env` 和 `frontend/.env.local`，不会覆盖已有配置。
+
+```bash
+sudo apt-get update
+sudo apt-get install -y python3 python3-venv python3-pip python3-dev build-essential nodejs npm curl ca-certificates
+bash scripts/setup_linux_env.sh
+```
+
+Hindsight 需要运行中的 Docker 引擎。使用 Docker Desktop 时启动它并启用当前 WSL 发行版的集成；也可在 Debian 内安装原生 Docker：
+
+```bash
+sudo apt-get install -y docker.io docker-compose
+sudo systemctl enable --now docker
+sudo docker compose up -d hindsight
+```
+
+普通用户没有 Docker socket 权限时，Docker 命令加 `sudo`。使用本机后端时，`.env` 设置 `AX_HINDSIGHT_URL=http://127.0.0.1:8888`。真实密钥只写入 `.env`。先填写配置并启动记忆服务。
 
 ```bash
 docker compose up -d hindsight
@@ -99,7 +117,7 @@ docker compose up -d hindsight
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.lock.txt
 python -m uvicorn main:app --host 127.0.0.1 --port 8000 --reload
 ```
 
@@ -114,6 +132,8 @@ npm run dev
 打开 `http://127.0.0.1:3000/solo`。主界面以 Bina 形象为中心，下方提供最近对白、文字、附件和语音输入；聊天记录通过抽屉查看。右侧可收起的侧栏提供交互状态、人物缩放、暖光/夜色背景、字幕与 Enter 发送设置。默认加载 `frontend/public/live2d/bina/bina.model3.json`，包含待机、眨眼、点头、摇头和表情预览；可编辑工程与制作流程见 [Bina 模型资源](assets/bina-live2d/README.md)。模型加载失败或手动切回立绘时使用 `frontend/public/bina/casual.jpeg`；「形象」页签支持加载 Live2D 模型，并预览模型提供的动作与表情。渲染使用 PixiJS 8 和 `untitled-pixi-live2d-engine`，仅在浏览器端按需加载，模型路径保存在当前浏览器。Core 与模型安装步骤见 [Live2D 资源说明](frontend/public/live2d/README.md)。侧栏「设置」可选择回复模型与思考档位（默认、关闭、低、高、最高），浏览器会保存选择，并从下一轮聊天生效。可用模型由 `/api/v1/chat/options` 返回；当前 DeepSeek 支持 Flash、Pro 和环境变量配置的默认模型，其他服务沿用配置模型。选择仅影响 Bina 的回复，不更改 Hindsight 记忆模型。
 
 Linux/WSL 也可在启动 Hindsight 后使用 `bash start.sh` 与 `bash stop.sh` 启停前后端。出图配置见 `docs/Bina_Image_Gen.md`；Live2D 架构、资源安装与验收步骤见 [Bina Live2D 接入](docs/Bina_Live2D.md)。
+
+Linux 启动脚本优先使用终端中的 `AX_DB_PATH`，其次读取 `.env` 中的路径，均未设置时使用 `~/.axiodrasil/axiodrasil_core.db`。原生 Docker 的 socket 权限不足时，脚本会通过 `sudo` 执行 Compose，可能提示输入本机密码。
 
 ## 检查
 
@@ -133,7 +153,20 @@ npm run lint
 npm run build
 ```
 
-Python 依赖见 `requirements.txt`，前端依赖与锁文件位于 `frontend/`。前端已配置 ESLint，后端尚未统一配置格式化和 lint。
+Python 直接依赖见 `requirements.txt`，已验证的 Python 3.13 完整版本锁定在 `requirements.lock.txt`（含 Live2D 素材工具的 Pillow）。更新依赖后运行检查，再用 `python -m pip freeze > requirements.lock.txt` 更新锁文件。前端依赖与锁文件位于 `frontend/`。前端已配置 ESLint，后端尚未统一配置格式化和 lint。
+
+浏览器验证和 PDF 工具还需要 Playwright Chromium。Linux 首次安装时补齐系统库：
+
+```bash
+source .venv/bin/activate
+sudo .venv/bin/python -m playwright install-deps chromium
+export PLAYWRIGHT_BROWSERS_PATH="$PWD/.devstack/playwright"
+python -m playwright install chromium
+```
+
+后续运行 Playwright 工具时沿用该 `PLAYWRIGHT_BROWSERS_PATH`。Bina Live2D 还需要本地 Cubism Core；安装位置与授权说明见 `frontend/public/live2d/README.md`。
+
+前端将 TypeScript ESLint 的间接依赖 `minimatch` 固定为 `11.0.5`，修复 [GHSA-g3hv-75wg-m249](https://github.com/advisories/GHSA-g3hv-75wg-m249)。更新 TypeScript ESLint 后，可在确认其自带安全版本时移除 `package.json` 中的定向 override；不要通过降级 Next.js 处理审计提示。
 
 ## 文档约定
 

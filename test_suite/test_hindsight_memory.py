@@ -58,7 +58,9 @@ class HindsightAdapterTests(unittest.TestCase):
         llm.invoke.return_value.content = "星河杯"
         state = {"thread_id": "user", "intent": synthesize_solo_bina_intent("还记得杯子吗"),
                  "recent_history": [], "long_term_context": "共同经历：我们给蓝色马克杯起名星河杯"}
-        with patch.object(router, "get_llm", return_value=llm), patch.object(router, "get_mood_engine"):
+        with patch.object(router, "get_turn_llm", return_value=llm), \
+                patch.object(router, "get_mood_engine"), \
+                patch.object(router, "search_enabled", return_value=False):
             result = router.node_bina(state)
         self.assertIn("共同经历", llm.invoke.call_args.args[0][-1].content)
         self.assertEqual(result["active_persona"], "bina")

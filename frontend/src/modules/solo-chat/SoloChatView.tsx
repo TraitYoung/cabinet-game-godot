@@ -151,7 +151,13 @@ export function SoloChatView() {
     }
   }, []);
 
-  useEffect(() => { void loadChatOptions(); }, [loadChatOptions]);
+  useEffect(() => {
+    let cancelled = false;
+    void Promise.resolve().then(() => {
+      if (!cancelled) void loadChatOptions();
+    });
+    return () => { cancelled = true; };
+  }, [loadChatOptions]);
 
   const changeChatPreferences = (nextModel: string, nextEffort: ReasoningEffort | "") => {
     setModel(nextModel);
@@ -199,7 +205,11 @@ export function SoloChatView() {
 
   useEffect(() => {
     if (!userLocalId) return;
-    refreshCatalog();
+    let cancelled = false;
+    void Promise.resolve().then(() => {
+      if (!cancelled) refreshCatalog();
+    });
+    return () => { cancelled = true; };
   }, [userLocalId, refreshCatalog]);
 
   const syncPresence = useCallback(
@@ -243,13 +253,14 @@ export function SoloChatView() {
   }, []);
 
   useEffect(() => {
-    if (!sessionId || !card) {
-      setMessages([]);
-      setHistoryLoading(false);
-      return;
-    }
     let cancelled = false;
-    (async () => {
+    void Promise.resolve().then(async () => {
+      if (cancelled) return;
+      if (!sessionId || !card) {
+        setMessages([]);
+        setHistoryLoading(false);
+        return;
+      }
       setHistoryLoading(true);
       try {
         await syncPresence(sessionId);
@@ -261,7 +272,7 @@ export function SoloChatView() {
       } finally {
         if (!cancelled) setHistoryLoading(false);
       }
-    })();
+    });
     return () => {
       cancelled = true;
     };

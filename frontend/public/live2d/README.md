@@ -8,6 +8,16 @@
 2. 仓库已包含 `bina/` 初版模型，包含入口、MOC3、纹理、物理、动作和表情。可编辑工程与素材见 [Bina 模型资源](../../../assets/bina-live2d/README.md)。替换模型时保留内部引用的相对路径。
 3. 打开 `/solo`，默认自动加载 Bina Live2D。侧栏「形象」可切换模型、预览动作与表情，或点击「恢复默认形象」恢复内置模型。
 
+本地开发也可下载官方下载页列出的 Cubism 5.2 Core（当前引擎已验证版本，固定到 `05` 路径，避免 `Latest` 自动升级）：
+
+```bash
+mkdir -p frontend/public/live2d/core
+curl -fL https://cubism.live2d.com/sdk-web/core/05/live2dcubismcore.min.js \
+  -o frontend/public/live2d/core/live2dcubismcore.min.js
+```
+
+此命令在仓库根目录执行；Core 文件已由 Git 忽略，授权条款见文件头和官方下载页。
+
 目录示例：
 
 ```text
