@@ -55,7 +55,7 @@ export function useSpeechInput(opts: {
   );
   const recogRef = useRef<SpeechRecognitionLike | null>(null);
   const mediaRef = useRef<MediaRecorder | null>(null);
-  const chunksRef = useRef<Blob[]>([]);
+  const operationRef = useRef<AbortController | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const preferServerRef = useRef(false);
   const onTranscriptRef = useRef(onTranscript);
@@ -71,6 +71,13 @@ export function useSpeechInput(opts: {
   };
 
   const stopAll = useCallback(() => {
+    operationRef.current?.abort();
+    operationRef.current = null;
+    if (recogRef.current) {
+      recogRef.current.onresult = null;
+      recogRef.current.onerror = null;
+      recogRef.current.onend = null;
+    }
     try {
       recogRef.current?.abort();
     } catch {
@@ -78,6 +85,10 @@ export function useSpeechInput(opts: {
     }
     recogRef.current = null;
     const rec = mediaRef.current;
+    if (rec) {
+      rec.onstop = null;
+      rec.ondataavailable = null;
+    }
     if (rec && rec.state !== "inactive") {
       try {
         rec.stop();
@@ -90,17 +101,24 @@ export function useSpeechInput(opts: {
     setMode("idle");
   }, []);
 
-  useEffect(() => () => stopAll(), [stopAll]);
+  useEffect(() => () => stopAll(), [stopAll, sessionId]);
 
   const startServerRecording = useCallback(async () => {
+    if (operationRef.current) return;
     if (!navigator.mediaDevices?.getUserMedia) {
       onErrorRef.current?.("当前环境无法访问麦克风。");
       return;
     }
+    const controller = new AbortController();
+    operationRef.current = controller;
     try {
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      if (controller.signal.aborted) {
+        stream.getTracks().forEach((track) => track.stop());
+        return;
+      }
       streamRef.current = stream;
-      chunksRef.current = [];
+      const chunks: Blob[] = [];
       const mime = MediaRecorder.isTypeSupported("audio/webm;codecs=opus")
         ? "audio/webm;codecs=opus"
         : MediaRecorder.isTypeSupported("audio/webm")
@@ -111,37 +129,45 @@ export function useSpeechInput(opts: {
         : new MediaRecorder(stream);
       mediaRef.current = recorder;
       recorder.ondataavailable = (ev) => {
-        if (ev.data.size > 0) chunksRef.current.push(ev.data);
+        if (!controller.signal.aborted && ev.data.size > 0) chunks.push(ev.data);
       };
       recorder.onstop = async () => {
+        if (controller.signal.aborted) return;
         stopMediaTracks();
-        const blob = new Blob(chunksRef.current, {
+        const blob = new Blob(chunks, {
           type: recorder.mimeType || "audio/webm",
         });
-        chunksRef.current = [];
         mediaRef.current = null;
         if (blob.size < 200) {
+          operationRef.current = null;
           setMode("idle");
           onErrorRef.current?.("录音太短，请再说长一点。");
           return;
         }
         setMode("transcribing");
         try {
-          const { text } = await transcribeAudio(blob, sessionId);
+          const { text } = await transcribeAudio(blob, sessionId, "audio.webm", controller.signal);
+          if (controller.signal.aborted) return;
           if (text.trim()) {
             onTranscriptRef.current(text.trim());
           } else {
             onErrorRef.current?.("没有听清内容。");
           }
         } catch (e) {
-          onErrorRef.current?.(e instanceof Error ? e.message : String(e));
+          if (!controller.signal.aborted) onErrorRef.current?.(e instanceof Error ? e.message : String(e));
         } finally {
-          setMode("idle");
+          if (operationRef.current === controller) {
+            operationRef.current = null;
+            setMode("idle");
+          }
         }
       };
       recorder.start();
       setMode("recording");
     } catch (e) {
+      if (controller.signal.aborted) return;
+      operationRef.current = null;
+      stopMediaTracks();
       setMode("idle");
       onErrorRef.current?.(
         e instanceof Error ? e.message : "无法打开麦克风，请检查权限。",

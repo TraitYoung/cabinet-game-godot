@@ -80,11 +80,11 @@ export async function reportPresence(
   }
 }
 
-export async function fetchHistory(sessionId: string, limit = 50): Promise<ChatTurn[]> {
+export async function fetchHistory(sessionId: string, limit = 50, signal?: AbortSignal): Promise<ChatTurn[]> {
   const res = await fetch(`/api/chat/history?limit=${limit}`, {
     headers: { "x-session-id": sessionId },
     cache: "no-store",
-    signal: AbortSignal.timeout(12_000),
+    signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(12_000)]) : AbortSignal.timeout(12_000),
   });
   if (!res.ok) {
     const text = await res.text().catch(() => "");
@@ -185,6 +185,7 @@ export async function transcribeAudio(
   blob: Blob,
   sessionId?: string,
   filename = "audio.webm",
+  signal?: AbortSignal,
 ): Promise<SttResult> {
   const body = new FormData();
   body.append("audio", blob, filename);
@@ -194,7 +195,7 @@ export async function transcribeAudio(
     method: "POST",
     headers,
     body,
-    signal: AbortSignal.timeout(120_000),
+    signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(120_000)]) : AbortSignal.timeout(120_000),
   });
   if (!res.ok) {
     throw new Error(await readApiError(res, `语音识别失败: ${res.status}`));

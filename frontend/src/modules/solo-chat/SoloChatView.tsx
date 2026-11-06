@@ -108,6 +108,8 @@ export function SoloChatView() {
   const [avatarActionError, setAvatarActionError] = useState<string | null>(null);
   const avatarRef = useRef<AvatarControls>(null);
   const abortRef = useRef<AbortController | null>(null);
+  const historyAbortRef = useRef<AbortController | null>(null);
+  const chatInFlightRef = useRef(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const pendingLabel = useRotatingLine(THINK_LINES, 2400);
 
@@ -225,12 +227,20 @@ export function SoloChatView() {
   );
 
   const reloadHistory = useCallback(async (sid: string, greeting?: string) => {
+    if (chatInFlightRef.current) return;
+    historyAbortRef.current?.abort();
+    const controller = new AbortController();
+    historyAbortRef.current = controller;
     try {
-      const turns = await fetchHistory(sid);
+      const turns = await fetchHistory(sid, 50, controller.signal);
+      if (controller.signal.aborted || chatInFlightRef.current) return;
       setMessages(turnsToBubbles(turns, greeting));
     } catch {
+      if (controller.signal.aborted) return;
       setMessages((prev) => (prev.length ? prev : turnsToBubbles([], greeting)));
       throw new Error("历史记录暂时读不到，先聊着；可点「重新接通」再试。");
+    } finally {
+      if (historyAbortRef.current === controller) historyAbortRef.current = null;
     }
   }, []);
 
@@ -275,6 +285,7 @@ export function SoloChatView() {
     });
     return () => {
       cancelled = true;
+      historyAbortRef.current?.abort();
     };
   }, [sessionId, card, syncPresence, reloadHistory]);
 
@@ -302,6 +313,7 @@ export function SoloChatView() {
   useEffect(() => {
     return () => {
       abortRef.current?.abort();
+      historyAbortRef.current?.abort();
     };
   }, []);
 
@@ -327,6 +339,7 @@ export function SoloChatView() {
 
   const onCreateConvo = () => {
     if (!userLocalId || busy) return;
+    historyAbortRef.current?.abort();
     clearAttachments(attachments);
     setAttachments([]);
     createConversation(userLocalId, "新的谈话");
@@ -337,6 +350,7 @@ export function SoloChatView() {
 
   const onSelectConvo = (id: string) => {
     if (!userLocalId || busy || id === activeConvoId) return;
+    historyAbortRef.current?.abort();
     clearAttachments(attachments);
     setAttachments([]);
     selectConversation(userLocalId, id);
@@ -352,6 +366,7 @@ export function SoloChatView() {
 
   const onRemoveConvo = (id: string) => {
     if (!userLocalId || busy) return;
+    historyAbortRef.current?.abort();
     removeConversation(userLocalId, id);
     refreshCatalog();
     setError(null);
@@ -431,6 +446,8 @@ export function SoloChatView() {
     abortRef.current = controller;
     const timeoutId = window.setTimeout(() => controller.abort(), 120_000);
 
+    chatInFlightRef.current = true;
+    historyAbortRef.current?.abort();
     setBusy(true);
     setError(null);
     setText("");
@@ -490,6 +507,7 @@ export function SoloChatView() {
     } finally {
       window.clearTimeout(timeoutId);
       if (abortRef.current === controller) abortRef.current = null;
+      chatInFlightRef.current = false;
       setBusy(false);
     }
   };
@@ -659,7 +677,7 @@ export function SoloChatView() {
                     >
                       发送
                     </button>
-                    {busy || speech.active ? (
+                    {busy || speech.active || speech.busy ? (
                       <button type="button" className="ax-btn-ghost" onClick={onStop}>
                         停止
                       </button>

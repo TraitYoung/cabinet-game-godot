@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import NotRequired, TypedDict
 
+from fastapi import HTTPException
 from langchain_core.messages import HumanMessage, SystemMessage
 from langgraph.graph import END, StateGraph
 
@@ -91,8 +92,11 @@ def node_bina(state: GraphState):
             final_text = reply_with_search(llm, messages)
         else:
             final_text = llm.invoke(messages).content
-    except Exception as e:
-        final_text = f"呜呜，陛下的情绪电波太强，Bina 的线路稍微短路了一下... (Error: {e})"
+    except Exception as exc:
+        raise HTTPException(status_code=502, detail="回复模型调用失败，请稍后重试。") from exc
+
+    if not isinstance(final_text, str) or not final_text.strip():
+        raise HTTPException(status_code=502, detail="回复模型未返回有效文本，请稍后重试。")
 
     # 自拍/发图：ComfyUI + 定妆 LoRA（邻舍路径）；失败不吞文本回复
     try:

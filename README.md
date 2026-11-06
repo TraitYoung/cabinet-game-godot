@@ -153,6 +153,14 @@ npm run lint
 npm run build
 ```
 
+前端交互回归使用 Playwright Chromium 和模拟聊天、历史与麦克风，不调用外部模型。先启动前端，再在项目根目录运行：
+
+```bash
+PLAYWRIGHT_BROWSERS_PATH="$PWD/.devstack/playwright" .venv/bin/python scripts/check_frontend_interactions.py --base-url http://127.0.0.1:3000
+```
+
+检查覆盖切换会话时的过期历史、发送期间的历史刷新、取消录音、正常转写及取消转写后的迟到结果。Chromium 安装步骤见下文。
+
 Python 直接依赖见 `requirements.txt`，已验证的 Python 3.13 完整版本锁定在 `requirements.lock.txt`（含 Live2D 素材工具的 Pillow）。更新依赖后运行检查，再用 `python -m pip freeze > requirements.lock.txt` 更新锁文件。前端依赖与锁文件位于 `frontend/`。前端已配置 ESLint，后端尚未统一配置格式化和 lint。
 
 浏览器验证和 PDF 工具还需要 Playwright Chromium。Linux 首次安装时补齐系统库：

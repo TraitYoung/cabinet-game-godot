@@ -188,7 +188,8 @@ async def attachments_ingest_api(file: UploadFile = File(...)):
 
     data = await file.read()
     try:
-        result = ingest_bytes(
+        result = await asyncio.to_thread(
+            ingest_bytes,
             data,
             filename=file.filename or "upload",
             content_type=file.content_type or "",
@@ -210,7 +211,8 @@ async def stt_api(audio: UploadFile = File(...)):
 
     data = await audio.read()
     try:
-        text = transcribe_audio(
+        text = await asyncio.to_thread(
+            transcribe_audio,
             data,
             filename=audio.filename or "audio.webm",
             content_type=audio.content_type or "",
