@@ -1,0 +1,67 @@
+{
+	"Version": 3,
+	"FileReferences": {
+		"Moc": "bina.moc3",
+		"Textures": [
+			"bina.4096/texture_00.png"
+		],
+		"DisplayInfo": "bina.cdi3.json",
+		"Expressions": [
+			{
+				"Name": "Smile",
+				"File": "bina.smile.exp3.json"
+			},
+			{
+				"Name": "Sad",
+				"File": "bina.sad.exp3.json"
+			},
+			{
+				"Name": "Angry",
+				"File": "bina.angry.exp3.json"
+			},
+			{
+				"Name": "Surprised",
+				"File": "bina.surprised.exp3.json"
+			}
+		],
+		"Motions": {
+			"Idle": [
+				{
+					"File": "bina.idle.motion3.json"
+				}
+			],
+			"Blink": [
+				{
+					"File": "bina.blink.motion3.json"
+				}
+			],
+			"Nod": [
+				{
+					"File": "bina.nod.motion3.json"
+				}
+			],
+			"Shake": [
+				{
+					"File": "bina.shake.motion3.json"
+				}
+			]
+		}
+	},
+	"Groups": [
+		{
+			"Target": "Parameter",
+			"Name": "EyeBlink",
+			"Ids": [
+				"ParamEyeLOpen",
+				"ParamEyeROpen"
+			]
+		},
+		{
+			"Target": "Parameter",
+			"Name": "LipSync",
+			"Ids": [
+				"ParamMouthOpenY"
+			]
+		}
+	]
+}

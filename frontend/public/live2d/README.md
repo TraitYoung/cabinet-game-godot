@@ -1,11 +1,13 @@
 # Live2D 本地资源
 
+网页“形象”页提供“日常装”和“工装”切换。日常装入口为 `/live2d/bina-registered/bina.model3.json`，工装入口为 `/live2d/bina-work/bina.model3.json`；选择会保存在当前浏览器。工装素材与重建步骤见[工装说明](../../../assets/bina-live2d/source-work/README.md)。
+
 网页使用 `pixi.js` 和 `untitled-pixi-live2d-engine/cubism`，支持 Cubism 3/4/5 的 `.model3.json` 模型。
 
 ## 安装资源
 
 1. 从 [Live2D 官方网站](https://www.live2d.com/en/sdk/download/web/)下载 Cubism SDK for Web，将其中的 `live2dcubismcore.min.js` 放到 `core/`。
-2. 仓库已包含 `bina/` 初版模型，包含入口、MOC3、纹理、物理、动作和表情。可编辑工程与素材见 [Bina 模型资源](../../../assets/bina-live2d/README.md)。替换模型时保留内部引用的相对路径。
+2. 仓库默认使用 `bina-registered/` 原图分层新版模型（旧版 `bina/` 留作对照），包含入口、MOC3、纹理、物理、动作和表情。可编辑工程与素材见 [Bina 模型资源](../../../assets/bina-live2d/README.md)。替换模型时保留内部引用的相对路径。
 3. 打开 `/solo`，默认自动加载 Bina Live2D。侧栏「形象」可切换模型、预览动作与表情，或点击「恢复默认形象」恢复内置模型。
 
 本地开发也可下载官方下载页列出的 Cubism 5.2 Core（当前引擎已验证版本，固定到 `05` 路径，避免 `Latest` 自动升级）：

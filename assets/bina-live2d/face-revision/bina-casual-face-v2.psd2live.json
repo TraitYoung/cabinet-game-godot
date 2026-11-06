@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "model": "bina",
+  "generator": "PSD2Live 3.6.7",
+  "runtimeTarget": "Cubism50",
+  "mocVersion": 5,
+  "cmo3TargetVersionNo": 5000000,
+  "cmo3FileFormatVersion": "500000005",
+  "canvas": {"width":1536,"height":1024},
+  "config": {"atlasSize":4096,"meshSpacing":40,"headTurnStrength":1.0,"bodyStrength":1.0,"meshOnly":false,"generateDeformers":true,"exportMotions":true},
+  "faceRig": {"algorithm":"perspective-parallelogram-nine-pose-v2","angleX":[-45,0,45],"angleY":[-30,0,30],"initialAngleZ":0.50462073,"centerX":765.42303,"centerY":116.76092,"radiusX":100.73175,"radiusY":118.08621},
+  "deformerHierarchy": {"head":"DeformHeadContainer","face":"DeformFaceNinePose","frontHair":["DeformHairFrontFollow","DeformHairFrontPhysics"],"backHair":["DeformHairBackFollow","DeformHairBackPhysics"]},
+  "physics": {"enabled":true,"frontHair":false,"backHair":false,"eyeJelly":false,"groups":[]},
+  "summary": {"layers":10,"drawables":10,"deformers":13,"parameters":20,"atlasPages":1},
+  "layers": [
+    {"source":"standing_body","type":"preset","tag":"topwear","side":"NONE","parameter":"","switchId":0,"drawable":"ArtMeshTopwear"},
+  {"source":"neck","type":"preset","tag":"neck","side":"NONE","parameter":"","switchId":0,"drawable":"ArtMeshNeck2"},
+  {"source":"neck-original","type":"preset","tag":"neck","side":"NONE","parameter":"","switchId":0,"drawable":"ArtMeshNeck"},
+  {"source":"head","type":"preset","tag":"face","side":"NONE","parameter":"","switchId":0,"drawable":"ArtMeshFace"},
+  {"source":"eye_left","type":"preset","tag":"eyewhite","side":"RIGHT","parameter":"","switchId":0,"drawable":"ArtMeshIridesR"},
+  {"source":"eye_right","type":"preset","tag":"eyewhite","side":"LEFT","parameter":"","switchId":0,"drawable":"ArtMeshIridesL"},
+  {"source":"closed_left","type":"preset","tag":"eye_close","side":"RIGHT","parameter":"","switchId":0,"drawable":"ArtMeshLayerR"},
+  {"source":"closed_right","type":"preset","tag":"eye_close","side":"LEFT","parameter":"","switchId":0,"drawable":"ArtMeshLayerL"},
+  {"source":"brow_left","type":"preset","tag":"eyebrow","side":"RIGHT","parameter":"","switchId":0,"drawable":"ArtMeshEyebrowR"},
+  {"source":"brow_right","type":"preset","tag":"eyebrow","side":"LEFT","parameter":"","switchId":0,"drawable":"ArtMeshEyebrowL"}
+  ],
+  "warnings": ["mouth/mouth_open/mouth_close is missing; lip-sync parameters will not be bound to any drawable.","Duplicate layer names detected: eye, closed, brow; stable layer IDs were used to distinguish them.","CMO3: Atlas holds up to 2.00x the canvas resolution of 2 layers (closed_left, closed_right); Cubism Editor rebuilds the atlas from canvas-resolution layers"]
+}

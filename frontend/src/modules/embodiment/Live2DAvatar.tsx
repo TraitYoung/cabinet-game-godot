@@ -71,8 +71,9 @@ export function Live2DAvatar({ modelUrl, controlsRef, onStatus }: {
         host.appendChild(app.canvas);
         model = await engine.Live2DModel.from(modelUrl, { autoFocus: true, autoHitTest: true, ticker: app.ticker, anchorMode: "drawable" });
         if (cancelled) { release(); return; }
-        if (new URL(modelUrl, window.location.href).pathname === "/live2d/bina/bina.model3.json") {
-          stabilizeBinaRig(model.internalModel as CubismInternalModel);
+        const modelPath = new URL(modelUrl, window.location.href).pathname;
+        if (["/live2d/bina/bina.model3.json", "/live2d/bina-registered/bina.model3.json", "/live2d/bina-work/bina.model3.json"].includes(modelPath)) {
+          stabilizeBinaRig(model.internalModel as CubismInternalModel, modelPath !== "/live2d/bina/bina.model3.json");
         }
         app.stage.addChild(model);
         modelRef.current = model;

@@ -1,0 +1,331 @@
+{
+  "format": "psd2live-layout",
+  "version": 1,
+  "name": "bina-standing-generated",
+  "canvas": {
+    "height": 1024,
+    "width": 1536
+  },
+  "layers": [
+    {
+      "id": "standing_master",
+      "name": "standing_body",
+      "tags": [
+        "top"
+      ],
+      "image": {
+        "path": "standing-master-v1.png",
+        "width": 1536,
+        "height": 1024
+      },
+      "rect": {
+        "left": 0,
+        "top": 0,
+        "width": 1536,
+        "height": 1024
+      }
+    },
+    {
+      "id": "neck",
+      "name": "neck",
+      "tags": [
+        "neck"
+      ],
+      "image": {
+        "path": "parts/head/neck.png",
+        "width": 44,
+        "height": 20
+      },
+      "rect": {
+        "left": 744,
+        "width": 44,
+        "top": 172,
+        "height": 20
+      }
+    },
+    {
+      "id": "skin_underpaint",
+      "name": "skin_underpaint",
+      "tags": [
+        "face",
+        "base"
+      ],
+      "image": {
+        "path": "parts/head/skin_underpaint.png",
+        "width": 75,
+        "height": 105
+      },
+      "rect": {
+        "left": 724,
+        "width": 75,
+        "top": 66,
+        "height": 105
+      }
+    },
+    {
+      "id": "face",
+      "name": "face",
+      "tags": [
+        "face"
+      ],
+      "image": {
+        "path": "parts/head/face.png",
+        "width": 76,
+        "height": 102
+      },
+      "rect": {
+        "left": 721,
+        "width": 76,
+        "top": 70,
+        "height": 102
+      }
+    },
+    {
+      "id": "back_hair",
+      "name": "back_hair",
+      "tags": [
+        "hair",
+        "back"
+      ],
+      "image": {
+        "path": "parts/head/back_hair.png",
+        "width": 126,
+        "height": 51
+      },
+      "rect": {
+        "left": 699,
+        "width": 126,
+        "top": 141,
+        "height": 51
+      }
+    },
+    {
+      "id": "hair_left",
+      "name": "hair_left",
+      "tags": [
+        "hair",
+        "right"
+      ],
+      "image": {
+        "path": "parts/head/hair_left.png",
+        "width": 68,
+        "height": 127
+      },
+      "rect": {
+        "left": 672,
+        "width": 68,
+        "top": 65,
+        "height": 127
+      }
+    },
+    {
+      "id": "hair_right",
+      "name": "hair_right",
+      "tags": [
+        "hair",
+        "left"
+      ],
+      "image": {
+        "path": "parts/head/hair_right.png",
+        "width": 65,
+        "height": 127
+      },
+      "rect": {
+        "left": 790,
+        "width": 65,
+        "top": 65,
+        "height": 127
+      }
+    },
+    {
+      "id": "hair_front",
+      "name": "hair_front",
+      "tags": [
+        "hair",
+        "front"
+      ],
+      "image": {
+        "path": "parts/head/hair_front.png",
+        "width": 128,
+        "height": 183
+      },
+      "rect": {
+        "left": 700,
+        "width": 128,
+        "top": 6,
+        "height": 183
+      }
+    },
+    {
+      "id": "glasses",
+      "name": "glasses",
+      "tags": [
+        "headwear"
+      ],
+      "image": {
+        "path": "parts/head/glasses.png",
+        "width": 108,
+        "height": 32
+      },
+      "rect": {
+        "left": 710,
+        "width": 108,
+        "top": 32,
+        "height": 32
+      }
+    },
+    {
+      "id": "eye_left",
+      "name": "eye_left",
+      "tags": [
+        "eye",
+        "right"
+      ],
+      "image": {
+        "path": "parts/head/eye_left.png",
+        "width": 34,
+        "height": 20
+      },
+      "rect": {
+        "left": 723,
+        "width": 34,
+        "top": 107,
+        "height": 20
+      }
+    },
+    {
+      "id": "eye_right",
+      "name": "eye_right",
+      "tags": [
+        "eye",
+        "left"
+      ],
+      "image": {
+        "path": "parts/head/eye_right.png",
+        "width": 35,
+        "height": 20
+      },
+      "rect": {
+        "left": 773,
+        "width": 35,
+        "top": 107,
+        "height": 20
+      }
+    },
+    {
+      "id": "iris_left",
+      "name": "iris_left",
+      "tags": [
+        "eye",
+        "iris",
+        "right"
+      ],
+      "image": {
+        "path": "parts/head/iris_left.png",
+        "width": 11,
+        "height": 13
+      },
+      "rect": {
+        "left": 737,
+        "width": 11,
+        "top": 111,
+        "height": 13
+      }
+    },
+    {
+      "id": "iris_right",
+      "name": "iris_right",
+      "tags": [
+        "eye",
+        "iris",
+        "left"
+      ],
+      "image": {
+        "path": "parts/head/iris_right.png",
+        "width": 11,
+        "height": 13
+      },
+      "rect": {
+        "left": 784,
+        "width": 11,
+        "top": 111,
+        "height": 13
+      }
+    },
+    {
+      "id": "brow_left",
+      "name": "brow_left",
+      "tags": [
+        "brow",
+        "right"
+      ],
+      "image": {
+        "path": "parts/head/brow_left.png",
+        "width": 34,
+        "height": 11
+      },
+      "rect": {
+        "left": 724,
+        "width": 34,
+        "top": 95,
+        "height": 11
+      }
+    },
+    {
+      "id": "brow_right",
+      "name": "brow_right",
+      "tags": [
+        "brow",
+        "left"
+      ],
+      "image": {
+        "path": "parts/head/brow_right.png",
+        "width": 34,
+        "height": 11
+      },
+      "rect": {
+        "left": 773,
+        "width": 34,
+        "top": 95,
+        "height": 11
+      }
+    },
+    {
+      "id": "nose",
+      "name": "nose",
+      "tags": [
+        "nose"
+      ],
+      "image": {
+        "path": "parts/head/nose.png",
+        "width": 13,
+        "height": 13
+      },
+      "rect": {
+        "left": 759,
+        "width": 13,
+        "top": 132,
+        "height": 13
+      }
+    },
+    {
+      "id": "mouth",
+      "name": "mouth",
+      "tags": [
+        "face",
+        "detail"
+      ],
+      "image": {
+        "path": "parts/head/mouth.png",
+        "width": 31,
+        "height": 12
+      },
+      "rect": {
+        "left": 750,
+        "width": 31,
+        "top": 146,
+        "height": 12
+      }
+    }
+  ]
+}

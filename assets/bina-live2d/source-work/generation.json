@@ -1,0 +1,40 @@
+{
+  "outfit": "work",
+  "pose": "natural standing",
+  "generator": "built-in imagegen",
+  "references": [
+    {
+      "path": "assets/bina-tpose/work/bina-work-tpose-front.png",
+      "sha256": "00095b600e4883194ee727b7c898ef446e3254504b05780266628483856f62e2",
+      "generation_input": true
+    },
+    {
+      "path": "assets/bina-tpose/work/bina-work-tpose-side.png",
+      "sha256": "0f139c0b35ceff85c9229e471d9a1ec6529fd6d66e9a88ed3787b7e845e8b67f",
+      "generation_input": true
+    },
+    {
+      "path": "assets/bina-tpose/work/bina-work-tpose-back.png",
+      "sha256": "ed236e12e95c93741e8b63eed5eb01b5b75884e0da8ff068afb0299580b0fd58",
+      "generation_input": false
+    }
+  ],
+  "master": "standing-master-v1.png",
+  "master_sha256": "4392418b111dae32770992189088c3498f05c23b12507fc64d24e85c99a16aab",
+  "image_size": [
+    1536,
+    1024
+  ],
+  "mode": "RGBA",
+  "prompt": "prompt.txt",
+  "measurement_source": "reference-measurements.json",
+  "method": "Coherent full-body generation from work T-pose references, followed by registered source-coordinate layer extraction.",
+  "visible_head_source": "Same generated master as the body; no casual glasses.",
+  "hidden_underpainting": "Existing Bina skin base behind visible face layers.",
+  "layers": 14,
+  "limitations": [
+    "Continuous body mesh; no independent arm gestures",
+    "Iris retained inside complete eye texture; no independent iris tracking",
+    "No lip sync"
+  ]
+}

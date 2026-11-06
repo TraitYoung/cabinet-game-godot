@@ -1,0 +1,93 @@
+{
+  "model": "/live2d/bina-work/bina.model3.json",
+  "base_url": "http://127.0.0.1:3000",
+  "outfit": "work",
+  "pose": "standing",
+  "casual_to_work": true,
+  "work_to_casual": true,
+  "refresh_preserved": true,
+  "mobile_rendered": true,
+  "actions": [
+    "Blink",
+    "Nod",
+    "Shake",
+    "Smile",
+    "Sad",
+    "Angry",
+    "Surprised"
+  ],
+  "page_errors": [],
+  "resources": [
+    {
+      "path": "bina-work/bina.model3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.moc3",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.4096/texture_00.png",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.idle.motion3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.blink.motion3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.shake.motion3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.smile.exp3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.sad.exp3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.angry.exp3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.surprised.exp3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.model3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.moc3",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.idle.motion3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.4096/texture_00.png",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.model3.json",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.moc3",
+      "status": 200
+    },
+    {
+      "path": "bina-work/bina.idle.motion3.json",
+      "status": 200
+    }
+  ],
+  "limitations": [
+    "No independent arm gestures or lip sync"
+  ]
+}

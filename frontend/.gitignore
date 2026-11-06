@@ -44,3 +44,5 @@ next-env.d.ts
 /public/live2d/*
 !/public/live2d/README.md
 !/public/live2d/bina/
+!/public/live2d/bina-registered/
+!/public/live2d/bina-work/

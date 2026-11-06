@@ -1,0 +1,346 @@
+{
+  "method": "Arithmetic on supplied reviewed pixel landmarks; no automatic landmark detection.",
+  "coordinate_convention": "Original pixels; x increases right, y increases down. Crown excludes ahoge and glasses. Stature includes shoes.",
+  "views": {
+    "work-front": {
+      "source": "assets/bina-tpose/work/bina-work-tpose-front.png",
+      "sha256": "00095b600e4883194ee727b7c898ef446e3254504b05780266628483856f62e2",
+      "image_size": [
+        1536,
+        1024
+      ],
+      "landmarks_px": {
+        "crown": [
+          763,
+          29
+        ],
+        "chin": [
+          765,
+          173
+        ],
+        "sole": [
+          765,
+          1010
+        ],
+        "hairline": null,
+        "hair_left": [
+          677,
+          116
+        ],
+        "hair_right": [
+          848,
+          116
+        ],
+        "cheek_left": [
+          727,
+          129
+        ],
+        "cheek_right": [
+          805,
+          129
+        ],
+        "pupil_left": [
+          742,
+          118
+        ],
+        "pupil_right": [
+          789,
+          118
+        ],
+        "eye_outer_left": [
+          725,
+          114
+        ],
+        "eye_inner_left": [
+          753,
+          119
+        ],
+        "eye_inner_right": [
+          777,
+          119
+        ],
+        "eye_outer_right": [
+          805,
+          114
+        ],
+        "eye_upper_left": [
+          741,
+          112
+        ],
+        "eye_lower_left": [
+          741,
+          124
+        ],
+        "eye_upper_right": [
+          790,
+          112
+        ],
+        "eye_lower_right": [
+          790,
+          124
+        ],
+        "brow_left": [
+          741,
+          101
+        ],
+        "brow_right": [
+          790,
+          101
+        ],
+        "nose": [
+          765,
+          139
+        ],
+        "mouth_left": [
+          754,
+          151
+        ],
+        "mouth_right": [
+          776,
+          151
+        ],
+        "mouth_center": [
+          765,
+          152
+        ],
+        "neck_left": null,
+        "neck_right": null,
+        "shoulder_left_estimate": [
+          686,
+          219
+        ],
+        "shoulder_right_estimate": [
+          845,
+          219
+        ],
+        "fingertip_left": [
+          305,
+          225
+        ],
+        "fingertip_right": [
+          1225,
+          225
+        ],
+        "wrist_left": [
+          418,
+          229
+        ],
+        "wrist_right": [
+          1111,
+          229
+        ],
+        "belt_center": [
+          765,
+          384
+        ],
+        "belt_left": [
+          695,
+          384
+        ],
+        "belt_right": [
+          837,
+          384
+        ],
+        "crotch_seam": [
+          764,
+          494
+        ],
+        "knees": null
+      },
+      "metrics_px": {
+        "illustrated_shod_height": 981,
+        "head_height": 144,
+        "left_eye_opening_height": 12,
+        "right_eye_opening_height": 12,
+        "eye_to_nose": 21,
+        "nose_to_mouth": 13,
+        "mouth_to_chin": 21,
+        "brow_to_eye": 17,
+        "visible_face_width_at_cheeks": 78,
+        "hair_silhouette_width": 171,
+        "pupil_spacing": 47,
+        "left_eye_width": 28,
+        "right_eye_width": 28,
+        "mouth_width": 22,
+        "shoulder_width_estimate": 159,
+        "arm_span": 920
+      },
+      "ratios": {
+        "head_height_over_stature": 0.146789,
+        "left_eye_opening_height_over_stature": 0.012232,
+        "right_eye_opening_height_over_stature": 0.012232,
+        "eye_to_nose_over_stature": 0.021407,
+        "nose_to_mouth_over_stature": 0.013252,
+        "mouth_to_chin_over_stature": 0.021407,
+        "brow_to_eye_over_stature": 0.017329,
+        "visible_face_width_at_cheeks_over_stature": 0.079511,
+        "hair_silhouette_width_over_stature": 0.174312,
+        "pupil_spacing_over_stature": 0.04791,
+        "left_eye_width_over_stature": 0.028542,
+        "right_eye_width_over_stature": 0.028542,
+        "mouth_width_over_stature": 0.022426,
+        "shoulder_width_estimate_over_stature": 0.16208,
+        "arm_span_over_stature": 0.937819,
+        "head_count": 6.8125,
+        "pupil_spacing_over_face_width": 0.602564,
+        "left_eye_width_over_face_width": 0.358974,
+        "right_eye_width_over_face_width": 0.358974,
+        "mouth_width_over_face_width": 0.282051,
+        "face_width_over_head_height": 0.541667,
+        "eye_opening_height_over_eye_width": 0.428571
+      }
+    },
+    "work-back": {
+      "source": "assets/bina-tpose/work/bina-work-tpose-back.png",
+      "sha256": "ed236e12e95c93741e8b63eed5eb01b5b75884e0da8ff068afb0299580b0fd58",
+      "image_size": [
+        1536,
+        1024
+      ],
+      "landmarks_px": {
+        "crown": [
+          764,
+          29
+        ],
+        "chin": null,
+        "sole": [
+          765,
+          1009
+        ],
+        "hair_left": [
+          686,
+          114
+        ],
+        "hair_right": [
+          848,
+          114
+        ],
+        "hair_bottom": [
+          766,
+          177
+        ],
+        "shoulder_left_estimate": [
+          685,
+          219
+        ],
+        "shoulder_right_estimate": [
+          846,
+          219
+        ],
+        "fingertip_left": [
+          303,
+          225
+        ],
+        "fingertip_right": [
+          1230,
+          225
+        ],
+        "wrist_left": [
+          410,
+          229
+        ],
+        "wrist_right": [
+          1111,
+          229
+        ],
+        "belt_center": [
+          765,
+          386
+        ],
+        "crotch_seam": [
+          765,
+          496
+        ]
+      },
+      "metrics_px": {
+        "illustrated_shod_height": 980,
+        "hair_silhouette_width": 162,
+        "shoulder_width_estimate": 161,
+        "arm_span": 927
+      },
+      "ratios": {
+        "hair_silhouette_width_over_stature": 0.165306,
+        "shoulder_width_estimate_over_stature": 0.164286,
+        "arm_span_over_stature": 0.945918
+      }
+    },
+    "work-side": {
+      "source": "assets/bina-tpose/work/bina-work-tpose-side.png",
+      "sha256": "0f139c0b35ceff85c9229e471d9a1ec6529fd6d66e9a88ed3787b7e845e8b67f",
+      "image_size": [
+        1024,
+        1536
+      ],
+      "landmarks_px": {
+        "crown": [
+          480,
+          34
+        ],
+        "chin": [
+          565,
+          242
+        ],
+        "sole": [
+          516,
+          1503
+        ],
+        "back_skull_hair": [
+          354,
+          159
+        ],
+        "nose": [
+          595,
+          184
+        ],
+        "pupil": [
+          556,
+          162
+        ],
+        "mouth": [
+          578,
+          210
+        ],
+        "ear_center": [
+          483,
+          181
+        ],
+        "shoulder_estimate": [
+          474,
+          323
+        ],
+        "belt_center": [
+          520,
+          571
+        ],
+        "knee_estimate": null,
+        "heel": [
+          418,
+          1484
+        ],
+        "toe": [
+          626,
+          1484
+        ]
+      },
+      "metrics_px": {
+        "illustrated_shod_height": 1469,
+        "head_height": 208,
+        "profile_depth_hair_to_nose": 241,
+        "shoe_length": 208
+      },
+      "ratios": {
+        "head_height_over_stature": 0.141593,
+        "profile_depth_hair_to_nose_over_stature": 0.164057,
+        "shoe_length_over_stature": 0.141593,
+        "head_count": 7.0625
+      }
+    }
+  },
+  "estimated_uncertainty_px": {
+    "front_face": 2,
+    "front_body_visible": 4,
+    "side_visible": 4,
+    "shoulder_joint_estimate": 10
+  },
+  "occlusion": "null means obscured/unobservable. Back-view chin, work-front hairline and clothed anatomical waist/crotch are not inferred."
+}

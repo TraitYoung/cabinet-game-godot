@@ -21,7 +21,7 @@ Axiodrasil 是一个虚拟具身实验项目。当前唯一运行人物是 Bina�
 | 互动状态 | 情绪状态、用户在场状态、主动消息机制 |
 | 记忆 | SQLite 原始聊天记录；Hindsight 长期事实、偏好、更正与共同经历 |
 
-摄像头实时采集、视觉理解尚未实现。前端已接入 Live2D 模型加载与动作、表情预览；已附带 Bina 自动绑定初版模型；Cubism Core 需另行安装，对话自动驱动和语音口型尚未接入。已有模块的实际运行需要对应模型服务和本地配置。
+摄像头实时采集、视觉理解尚未实现。前端已接入 Live2D 模型加载与动作、表情预览；已附带 Bina 自然站姿新版模型（T 姿参考生成身体，保留原图头部分层）；Cubism Core 需另行安装，对话自动驱动和语音口型尚未接入。已有模块的实际运行需要对应模型服务和本地配置。
 
 ## 技术与目录
 
@@ -129,13 +129,17 @@ npm ci
 npm run dev
 ```
 
-打开 `http://127.0.0.1:3000/solo`。主界面以 Bina 形象为中心，下方提供最近对白、文字、附件和语音输入；聊天记录通过抽屉查看。右侧可收起的侧栏提供交互状态、人物缩放、暖光/夜色背景、字幕与 Enter 发送设置。默认加载 `frontend/public/live2d/bina/bina.model3.json`，包含待机、眨眼、点头、摇头和表情预览；可编辑工程与制作流程见 [Bina 模型资源](assets/bina-live2d/README.md)。模型加载失败或手动切回立绘时使用 `frontend/public/bina/casual.jpeg`；「形象」页签支持加载 Live2D 模型，并预览模型提供的动作与表情。渲染使用 PixiJS 8 和 `untitled-pixi-live2d-engine`，仅在浏览器端按需加载，模型路径保存在当前浏览器。Core 与模型安装步骤见 [Live2D 资源说明](frontend/public/live2d/README.md)。侧栏「设置」可选择回复模型与思考档位（默认、关闭、低、高、最高），浏览器会保存选择，并从下一轮聊天生效。可用模型由 `/api/v1/chat/options` 返回；当前 DeepSeek 支持 Flash、Pro 和环境变量配置的默认模型，其他服务沿用配置模型。选择仅影响 Bina 的回复，不更改 Hindsight 记忆模型。
+打开 `http://127.0.0.1:3000/solo`。主界面以 Bina 形象为中心，下方提供最近对白、文字、附件和语音输入；聊天记录通过抽屉查看。右侧可收起的侧栏提供交互状态、人物缩放、暖光/夜色背景、字幕与 Enter 发送设置。默认加载 `frontend/public/live2d/bina-registered/bina.model3.json`，包含待机、眨眼、点头、摇头和表情预览；可编辑工程与制作流程见 [Bina 模型资源](assets/bina-live2d/README.md)。模型加载失败或手动切回立绘时使用 `frontend/public/bina/casual.jpeg`；「形象」页签支持加载 Live2D 模型，并预览模型提供的动作与表情。渲染使用 PixiJS 8 和 `untitled-pixi-live2d-engine`，仅在浏览器端按需加载，模型路径保存在当前浏览器。Core 与模型安装步骤见 [Live2D 资源说明](frontend/public/live2d/README.md)。侧栏「设置」可选择回复模型与思考档位（默认、关闭、低、高、最高），浏览器会保存选择，并从下一轮聊天生效。可用模型由 `/api/v1/chat/options` 返回；当前 DeepSeek 支持 Flash、Pro 和环境变量配置的默认模型，其他服务沿用配置模型。选择仅影响 Bina 的回复，不更改 Hindsight 记忆模型。
 
 Linux/WSL 也可在启动 Hindsight 后使用 `bash start.sh` 与 `bash stop.sh` 启停前后端。出图配置见 `docs/Bina_Image_Gen.md`；Live2D 架构、资源安装与验收步骤见 [Bina Live2D 接入](docs/Bina_Live2D.md)。
 
 Linux 启动脚本优先使用终端中的 `AX_DB_PATH`，其次读取 `.env` 中的路径，均未设置时使用 `~/.axiodrasil/axiodrasil_core.db`。原生 Docker 的 socket 权限不足时，脚本会通过 `sudo` 执行 Compose，可能提示输入本机密码。
 
 ## 检查
+
+两套 Live2D 已完成一轮[脸部接缝返工](assets/bina-live2d/face-revision/README.md)，连续头部底图替代矩形切块，日常装重新绑定眨眼，并补齐颈部遮挡。新版可编辑工程、原图与补画、动作近景和重建脚本均已保存；头发目前共享头部变形，独立发丝物理与虹膜追踪尚未重做。
+
+网页侧栏“形象”中可切换日常装和工装 Live2D，选择在刷新后保留。[工装版说明](assets/bina-live2d/source-work/README.md)包含母图、实际提示词、14 层 Layout、可编辑工程和重建命令。启动前端并安装 Playwright Chromium 后，运行 `PLAYWRIGHT_BROWSERS_PATH="$PWD/.devstack/playwright-current" .venv/bin/python scripts/check_bina_outfits.py` 检查两套服装切换、动作表情与手机显示；浏览器缓存路径按本机安装位置调整。
 
 离线回归使用官方客户端类型及模拟响应，不调用外部模型。真实语义验收使用上面的脚本。
 
@@ -178,7 +182,9 @@ python -m playwright install chromium
 
 ## 文档约定
 
-针对脸部拼接失真，新分层材料及对比图见 [Bina 原图坐标分层](assets/bina-live2d/source-registered/README.md)。Windows 下运行 `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare_bina_registered.ps1` 可复现 24 个 PNG 部件、Layout 和像素校验，依赖系统自带 .NET System.Drawing。此批材料已检查静态还原，尚待绑定及动态验收。
+从 T-pose 绘制、原图比例测量、完整头部候选与原位分层，到参考生成自然站姿身体、Live2D 组装和浏览器验收，见 [Bina 完整制作流程](docs/Bina_Live2D_Workflow.md)。可复用 skill 位于 [skills/reference-to-live2d](skills/reference-to-live2d/SKILL.md)，安装到本机 skills 目录后使用 `$reference-to-live2d` 调用。
+
+针对脸部拼接失真，新分层材料及对比图见 [Bina 原图坐标分层](assets/bina-live2d/source-registered/README.md)。Windows 下运行 `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare_bina_registered.ps1` 可复现 24 个 PNG 部件、Layout 和像素校验，依赖系统自带 .NET System.Drawing。原图头部分层与新生成的自然站姿身体已合并到当前模型，见 [站姿素材与制作记录](assets/bina-live2d/source-standing/README.md)。
 
 本轮完成项、验证范围和后续绑定工作见 [2026-11-06 Live2D 素材返工进度](docs/Bina_Live2D_Progress_2026-11-06.md)。
 

@@ -1,0 +1,91 @@
+{
+  "source_project": "bina-registered.psd2live",
+  "source_revision": "revision-3f02c418d9a9a154cb1258c4d2afa85260563d81e1c46e8ac72adc919ae7d89e",
+  "pose": "standing",
+  "arms": [
+    {
+      "side": "left",
+      "source_layer": "sleeve_left",
+      "split_polygon": [
+        [
+          400,
+          180
+        ],
+        [
+          660,
+          180
+        ],
+        [
+          660,
+          305
+        ],
+        [
+          400,
+          305
+        ]
+      ],
+      "piece_ids": [
+        "arm_sleeve_left",
+        "cardigan_side_left"
+      ],
+      "rotation_degrees": -78,
+      "pivot": [
+        654,
+        192
+      ],
+      "hand_layer": "hand_left"
+    },
+    {
+      "side": "right",
+      "source_layer": "sleeve_right",
+      "split_polygon": [
+        [
+          870,
+          180
+        ],
+        [
+          1130,
+          180
+        ],
+        [
+          1130,
+          305
+        ],
+        [
+          870,
+          305
+        ]
+      ],
+      "piece_ids": [
+        "arm_sleeve_right",
+        "cardigan_side_right"
+      ],
+      "rotation_degrees": 76,
+      "pivot": [
+        877,
+        192
+      ],
+      "hand_layer": "hand_right"
+    }
+  ],
+  "sleeve_draw_order": 15,
+  "torso_draw_order": 20,
+  "unglue_pairs": [
+    [
+      "ArtMeshLayerL",
+      "ArtMeshLayerL2"
+    ],
+    [
+      "ArtMeshLayerR",
+      "ArtMeshLayerR2"
+    ]
+  ],
+  "notes": [
+    "Coordinates are source canvas pixels, x right and y down.",
+    "Rotate each sleeve and its hand together; keep cardigan side pieces fixed.",
+    "Remove all automatic Glue welds between each sleeve and its cardigan side piece.",
+    "Face, torso and leg artwork and proportions are retained."
+  ],
+  "status": "rejected",
+  "reason": "Rotating T-pose sleeves leaves unnatural shoulder lines and folds."
+}

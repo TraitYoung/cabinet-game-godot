@@ -1,0 +1,109 @@
+{
+  "state": "02f0c740-deff-4b3c-8254-99b8ab96d5bc:23:7",
+  "revision": "revision-ea368adb69101073e61d89fa17b44cb0f3d8f2e5ec087b605642e7303ba72e0f",
+  "files": [
+    {
+      "path": "frontend/public/live2d/bina-work/bina.moc3",
+      "bytes": 117568
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.cdi3.json",
+      "bytes": 3516
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.4096/texture_00.png",
+      "bytes": 689937
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.idle.motion3.json",
+      "bytes": 15999
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.blink.motion3.json",
+      "bytes": 1155
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.nod.motion3.json",
+      "bytes": 1751
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.shake.motion3.json",
+      "bytes": 1573
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.smile.exp3.json",
+      "bytes": 668
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.sad.exp3.json",
+      "bytes": 671
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.angry.exp3.json",
+      "bytes": 669
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.surprised.exp3.json",
+      "bytes": 669
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.model3.json",
+      "bytes": 1046
+    },
+    {
+      "path": "assets/bina-live2d/face-revision/bina-work-face-v2.cmo3",
+      "bytes": 1464209
+    },
+    {
+      "path": "assets/bina-live2d/face-revision/bina-work-face-v2.can3",
+      "bytes": 17456
+    },
+    {
+      "path": "assets/bina-live2d/face-revision/bina-work-face-v2.psd2live.json",
+      "bytes": 2655
+    }
+  ],
+  "warnings": [
+    "mouth/mouth_open/mouth_close is missing; lip-sync parameters will not be bound to any drawable.",
+    "Duplicate layer names detected: eye, closed, brow; stable layer IDs were used to distinguish them.",
+    "CMO3: Atlas holds up to 2.00x the canvas resolution of 2 layers (closed_left, closed_right); Cubism Editor rebuilds the atlas from canvas-resolution layers"
+  ],
+  "outfit": "work",
+  "source": "assets/bina-live2d/face-revision/bina-work-face-v2.psd2live",
+  "poses": [
+    {},
+    {
+      "ParamEyeLOpen": 0.5,
+      "ParamEyeROpen": 0.5
+    },
+    {
+      "ParamEyeLOpen": 0,
+      "ParamEyeROpen": 0
+    },
+    {
+      "ParamAngleX": -30
+    },
+    {
+      "ParamAngleX": 30
+    },
+    {
+      "ParamAngleY": 30
+    },
+    {
+      "ParamAngleY": -30
+    },
+    {
+      "ParamAngleX": 20,
+      "ParamAngleY": 15,
+      "ParamEyeLOpen": 0.2,
+      "ParamEyeROpen": 0.2
+    },
+    {
+      "ParamAngleZ": 10
+    }
+  ],
+  "limitations": [
+    "Shared head/hair surface; no separate hair physics or iris tracking",
+    "Closed original mouth; no lip sync"
+  ]
+}

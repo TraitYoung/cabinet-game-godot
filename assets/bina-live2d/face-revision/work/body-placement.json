@@ -1,0 +1,48 @@
+{
+  "project_id": "af2aedc5-089f-4d7c-b2af-5f9a1524d8c2",
+  "state": "02f0c740-deff-4b3c-8254-99b8ab96d5bc:10:0",
+  "revision": "revision-28b8a73a9a74d5daddbf91cf883bbd3c18fb7228a99e178f30d8f6779cc591db",
+  "layer_id": "body",
+  "name": "body",
+  "canvas_rect": {
+    "left": 55.0,
+    "top": 0.0,
+    "width": 1463.0,
+    "height": 1024.0
+  },
+  "bounds": {
+    "left": 55,
+    "top": 0,
+    "width": 1463,
+    "height": 1024
+  },
+  "raster": {
+    "width": 1463,
+    "height": 1024
+  },
+  "native_density": {
+    "x": 1.0,
+    "y": 1.0
+  },
+  "override": {
+    "density": null,
+    "lock": false,
+    "pin": null
+  },
+  "deleted": false,
+  "tile": {
+    "page": 0,
+    "x": 2,
+    "y": 2,
+    "width": 1463,
+    "height": 1024,
+    "scale_x": 1.0,
+    "scale_y": 1.0,
+    "density": 1.0,
+    "locked": false,
+    "pinned": false,
+    "shaped": false,
+    "rotation": 0.0
+  },
+  "atlas_fit": 1.0
+}

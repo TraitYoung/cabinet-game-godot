@@ -1,0 +1,85 @@
+{
+  "pose": "standing",
+  "method": "imagegen_reference_generation",
+  "reference": "../bina-tpose/casual/bina-casual-tpose-front.png",
+  "reference_sha256": "f9ceee7823248887ccb696c9a36f72f3dec42df6a63e969f404dd554803164bd",
+  "master": "source-standing/standing-master-v1.png",
+  "master_sha256": "023fce7b4db5825b9d12dcc841183ecde9ede461dc5af87a68fcd23998b600af",
+  "prompt": "source-standing/prompt.txt",
+  "layout": "source-standing/bina.layout.json",
+  "generated_body_polygon": [
+    [
+      743,
+      174
+    ],
+    [
+      788,
+      174
+    ],
+    [
+      791,
+      191
+    ],
+    [
+      815,
+      197
+    ],
+    [
+      1000,
+      197
+    ],
+    [
+      1100,
+      650
+    ],
+    [
+      1100,
+      1024
+    ],
+    [
+      500,
+      1024
+    ],
+    [
+      500,
+      650
+    ],
+    [
+      500,
+      197
+    ],
+    [
+      716,
+      197
+    ],
+    [
+      739,
+      190
+    ]
+  ],
+  "body_layer": "standing_body",
+  "retained_original_layers": [
+    "neck",
+    "skin_underpaint",
+    "face",
+    "back_hair",
+    "hair_left",
+    "hair_right",
+    "hair_front",
+    "glasses",
+    "eye_left",
+    "eye_right",
+    "iris_left",
+    "iris_right",
+    "brow_left",
+    "brow_right",
+    "nose",
+    "mouth"
+  ],
+  "notes": [
+    "Shoulders, sleeves, folds and relaxed hands were newly generated from the T-pose reference.",
+    "No T-pose sleeve or hand rotation is used.",
+    "Original head and neck layers overlay the generated body; generated head is removed.",
+    "The body is currently one coherent ArtMesh; independent arm gestures are not bound."
+  ]
+}

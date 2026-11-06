@@ -17,7 +17,16 @@ const PARAMETER_SCALE: Record<string, number> = {
   ParamHairBack: 0.25,
 };
 
-export function stabilizeBinaRig(model: CubismInternalModel) {
+// Repaired heads use their authored turns and blinks without legacy face clamps.
+const REPAIRED_BODY_SCALE: Record<string, number> = {
+  ParamBodyAngleX: 0.1,
+  ParamBodyAngleY: 0.1,
+  ParamBodyAngleZ: 0.1,
+  ParamBodyLean: 0.1,
+  ParamBreath: 0.175,
+};
+
+export function stabilizeBinaRig(model: CubismInternalModel, registered = false) {
   const core = model.coreModel;
   const parameters = Array.from({ length: core.getParameterCount() }, (_, index) => ({
     index,
@@ -28,10 +37,10 @@ export function stabilizeBinaRig(model: CubismInternalModel) {
   model.on("beforeModelUpdate", () => {
     for (const { index, id } of parameters) {
       const value = core.getParameterValueByIndex(index);
-      const scale = PARAMETER_SCALE[id];
+      const scale = (registered ? REPAIRED_BODY_SCALE : PARAMETER_SCALE)[id];
       if (scale !== undefined) core.setParameterValueByIndex(index, value * scale);
       // This rig collapses the entire mouth mesh at zero, including the lip outline.
-      if (id === "ParamMouthOpenY") core.setParameterValueByIndex(index, Math.max(0.12, value));
+      if (!registered && id === "ParamMouthOpenY") core.setParameterValueByIndex(index, Math.max(0.12, value));
     }
   });
 }

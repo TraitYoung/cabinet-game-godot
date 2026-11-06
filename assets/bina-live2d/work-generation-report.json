@@ -1,0 +1,77 @@
+{
+  "state": "bd441d1a-d059-424d-9a22-522da6bc7573:5:1",
+  "revision": "revision-28b8a73a9a74d5daddbf91cf883bbd3c18fb7228a99e178f30d8f6779cc591db",
+  "files": [
+    {
+      "path": "frontend/public/live2d/bina-work/bina.moc3",
+      "bytes": 147328
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.cdi3.json",
+      "bytes": 3757
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.4096/texture_00.png",
+      "bytes": 685959
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.physics3.json",
+      "bytes": 6072
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.idle.motion3.json",
+      "bytes": 15999
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.blink.motion3.json",
+      "bytes": 1155
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.nod.motion3.json",
+      "bytes": 1751
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.shake.motion3.json",
+      "bytes": 1573
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.smile.exp3.json",
+      "bytes": 668
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.sad.exp3.json",
+      "bytes": 671
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.angry.exp3.json",
+      "bytes": 669
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.surprised.exp3.json",
+      "bytes": 669
+    },
+    {
+      "path": "frontend/public/live2d/bina-work/bina.model3.json",
+      "bytes": 1088
+    },
+    {
+      "path": "assets/bina-live2d/bina-work.cmo3",
+      "bytes": 1538365
+    },
+    {
+      "path": "assets/bina-live2d/bina-work.can3",
+      "bytes": 17456
+    },
+    {
+      "path": "assets/bina-live2d/bina-work.psd2live.json",
+      "bytes": 3050
+    }
+  ],
+  "warnings": [
+    "mouth/mouth_open/mouth_close is missing; lip-sync parameters will not be bound to any drawable.",
+    "Duplicate layer names detected: hair, eye, brow; stable layer IDs were used to distinguish them."
+  ],
+  "source": "assets/bina-live2d/source-work/bina.layout.json",
+  "pose": "standing",
+  "outfit": "work"
+}

@@ -1,0 +1,12 @@
+{
+  "work": {
+    "referenced_files": 11,
+    "layers": 10,
+    "moc_sha256": "0b1afb9417453a5ee85a4eed7c0456a3d033003441613b264dfedb5c7a3cb4e7"
+  },
+  "casual": {
+    "referenced_files": 11,
+    "layers": 10,
+    "moc_sha256": "7447fb0893cdffacc24f4473b8a77638b020b493f7ebc5e01d856d3e2b628475"
+  }
+}

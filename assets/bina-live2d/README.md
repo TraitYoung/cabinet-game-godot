@@ -1,6 +1,18 @@
-# Bina Live2D 第一版
+# Bina Live2D 模型
 
-2026-11-06 新增[原图坐标分层材料](source-registered/README.md)：针对五官与头发拼接失真，按日常装正面原图原位拆成 24 层，可见颜色来自原图，静态不透明像素复合差异为 0。[对比图](source-registered/face-comparison.png)展示原图、被否定版本与本次结果。该材料尚未重新绑定；下述 `.psd2live`、Cubism 工程及网页模型仍为已有初版。
+当前两套网页模型已换用[头部接缝返工 v2](face-revision/README.md)：连续头部底图、柔边眼眉、重新绑定眨眼与颈部遮挡补画。当前可编辑工程位于 `face-revision/bina-{casual,work}-face-v2.psd2live` 及对应 `.cmo3`；下文早期工程保留作历史对照。新版头发共享头部变形，尚无独立发丝物理、虹膜追踪和口型。
+
+完整制作过程见 [T-pose 到自然站姿 Live2D](../../docs/Bina_Live2D_Workflow.md)，可复用操作见 [reference-to-live2d skill](../../skills/reference-to-live2d/SKILL.md)。
+
+现有日常装和[工装版](source-work/README.md)两套自然站姿模型，可在网页侧栏“形象”中切换。工装使用独立工程 `bina-work.psd2live` 和网页资源 `frontend/public/live2d/bina-work/`，保留完整重建脚本及浏览器验收记录。
+
+当前默认模型为 **原图头部 + 参考 T 姿生成的自然站姿身体**。肩线、袖笼、重力褶皱和放松手部由内置 imagegen 重新绘制；直接旋转 T 姿袖子的方案已被否定，记录保存在 `reference/rejected-standing-rotation.json`。原图脸部、头发与颈部分件逐文件保留，未用生成的脸替换。
+
+生成母图、实际提示词和 Layout 见 [自然站姿素材](source-standing/README.md)。网页默认入口仍为 `frontend/public/live2d/bina-registered/bina.model3.json`，对应可编辑工程为 `bina-registered.psd2live`、`bina-registered.cmo3` 与 `bina-registered.can3`。当前身体为一块连续网格，保留整体呼吸和身体运动，独立手臂动作尚未绑定。
+
+浏览器已检查默认加载、旧路径迁移、刷新保持、Blink/Nod/Shake、四种表情、手机尺寸和立绘选择保持，无页面异常。见 [桌面截图](registered-browser-desktop.png)、[手机截图](registered-browser-mobile.png)、[检查记录](registered-browser-verification.json) 与 [导出记录](registered-generation-report.json)。
+
+下文记录旧版制作流程，旧版 `bina.*` 与 `frontend/public/live2d/bina/` 留作历史对照。
 
 以 `frontend/public/bina/casual.jpeg` 为外貌参考，通过 imagegen 生成透明分件图，再由 PSD2Live 3.6.7 自动绑定、导出。当前为自动制作的初版，分件边缘、转头轮廓与服装细节可继续在工程中精修。
 

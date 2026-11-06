@@ -31,6 +31,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare_bina_registe
 
 ## 当前边界
 
-这是完成静态还原检查的分层材料，尚未重新绑定或替换网页模型。原图头高只有 144 px，本次优先保留原画外貌，不把插值放大称作新增细节。
+这套材料已导入 `../bina-registered.psd2live` 并重新绑定，网页默认模型为 `frontend/public/live2d/bina-registered/bina.model3.json`。原画嘴部在工程中标为脸部细节，保留原轮廓；没有口腔内层，暂不生成口型。身体现已改用 [参考 T 姿生成的自然站姿](../source-standing/README.md)，当前目录继续提供原图头部与颈部分件。原图头高只有 144 px，本次优先保留原画外貌，不把插值放大称作新增细节。
 
 五官层包含少量相邻皮肤，发片切口需随变形测试进一步精修。已提供隐藏脸部底层；袖口、裙下、腿部连接处仍需补画重叠区域。嘴部尚无口腔内层。静态合成一致不代表大角度转头、眨眼、张嘴时已经无缝，不能直接将自动绑定结果当作正式模型。

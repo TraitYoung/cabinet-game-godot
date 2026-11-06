@@ -1,0 +1,89 @@
+{
+  "pose": "standing",
+  "model": "/live2d/bina-registered/bina.model3.json",
+  "old_path_migrated": true,
+  "refresh_preserved": true,
+  "static_choice_preserved": true,
+  "actions": [
+    "Blink",
+    "Nod",
+    "Shake",
+    "Smile",
+    "Sad",
+    "Angry",
+    "Surprised"
+  ],
+  "page_errors": [],
+  "assets": [
+    {
+      "url": "/live2d/bina-registered/bina.model3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.moc3",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.idle.motion3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.4096/texture_00.png",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.physics3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.blink.motion3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.shake.motion3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.smile.exp3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.sad.exp3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.angry.exp3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.surprised.exp3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.model3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.moc3",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.idle.motion3.json",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.4096/texture_00.png",
+      "status": 200
+    },
+    {
+      "url": "/live2d/bina-registered/bina.physics3.json",
+      "status": 200
+    }
+  ],
+  "limitations": [
+    "No lip sync or large-angle acceptance"
+  ],
+  "pose_method": "imagegen_reference_generation",
+  "live_url": "http://127.0.0.1:3000/solo",
+  "original_head_and_neck_pixels_preserved": true
+}

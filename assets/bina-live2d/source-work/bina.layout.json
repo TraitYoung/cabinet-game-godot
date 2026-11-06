@@ -1,0 +1,275 @@
+{
+    "format":  "psd2live-layout",
+    "version":  1,
+    "name":  "bina-work",
+    "canvas":  {
+                   "height":  1024,
+                   "width":  1536
+               },
+    "layers":  [
+                   {
+                       "id":  "skin_underpaint",
+                       "name":  "skin_underpaint",
+                       "tags":  [
+                                    "face",
+                                    "base"
+                                ],
+                       "image":  {
+                                     "path":  "parts/skin_underpaint.png",
+                                     "width":  75,
+                                     "height":  105
+                                 },
+                       "rect":  {
+                                    "left":  724,
+                                    "top":  66,
+                                    "width":  75,
+                                    "height":  105
+                                }
+                   },
+                   {
+                       "id":  "body",
+                       "name":  "body",
+                       "tags":  [
+                                    "top"
+                                ],
+                       "image":  {
+                                     "path":  "parts/body.png",
+                                     "width":  1463,
+                                     "height":  1024
+                                 },
+                       "rect":  {
+                                    "left":  55,
+                                    "top":  0,
+                                    "width":  1463,
+                                    "height":  1024
+                                }
+                   },
+                   {
+                       "id":  "neck",
+                       "name":  "neck",
+                       "tags":  [
+                                    "neck"
+                                ],
+                       "image":  {
+                                     "path":  "parts/neck.png",
+                                     "width":  56,
+                                     "height":  19
+                                 },
+                       "rect":  {
+                                    "left":  738,
+                                    "top":  173,
+                                    "width":  56,
+                                    "height":  19
+                                }
+                   },
+                   {
+                       "id":  "face",
+                       "name":  "face",
+                       "tags":  [
+                                    "face"
+                                ],
+                       "image":  {
+                                     "path":  "parts/face.png",
+                                     "width":  76,
+                                     "height":  101
+                                 },
+                       "rect":  {
+                                    "left":  721,
+                                    "top":  72,
+                                    "width":  76,
+                                    "height":  101
+                                }
+                   },
+                   {
+                       "id":  "back_hair",
+                       "name":  "back_hair",
+                       "tags":  [
+                                    "hair",
+                                    "back"
+                                ],
+                       "image":  {
+                                     "path":  "parts/back_hair.png",
+                                     "width":  170,
+                                     "height":  49
+                                 },
+                       "rect":  {
+                                    "left":  676,
+                                    "top":  143,
+                                    "width":  170,
+                                    "height":  49
+                                }
+                   },
+                   {
+                       "id":  "hair_left",
+                       "name":  "hair_left",
+                       "tags":  [
+                                    "hair",
+                                    "right"
+                                ],
+                       "image":  {
+                                     "path":  "parts/hair_left.png",
+                                     "width":  67,
+                                     "height":  127
+                                 },
+                       "rect":  {
+                                    "left":  673,
+                                    "top":  65,
+                                    "width":  67,
+                                    "height":  127
+                                }
+                   },
+                   {
+                       "id":  "hair_right",
+                       "name":  "hair_right",
+                       "tags":  [
+                                    "hair",
+                                    "left"
+                                ],
+                       "image":  {
+                                     "path":  "parts/hair_right.png",
+                                     "width":  60,
+                                     "height":  127
+                                 },
+                       "rect":  {
+                                    "left":  790,
+                                    "top":  65,
+                                    "width":  60,
+                                    "height":  127
+                                }
+                   },
+                   {
+                       "id":  "hair_front",
+                       "name":  "hair_front",
+                       "tags":  [
+                                    "hair",
+                                    "front"
+                                ],
+                       "image":  {
+                                     "path":  "parts/hair_front.png",
+                                     "width":  153,
+                                     "height":  163
+                                 },
+                       "rect":  {
+                                    "left":  671,
+                                    "top":  0,
+                                    "width":  153,
+                                    "height":  163
+                                }
+                   },
+                   {
+                       "id":  "eye_left",
+                       "name":  "eye_left",
+                       "tags":  [
+                                    "eye",
+                                    "white",
+                                    "right"
+                                ],
+                       "image":  {
+                                     "path":  "parts/eye_left.png",
+                                     "width":  36,
+                                     "height":  22
+                                 },
+                       "rect":  {
+                                    "left":  723,
+                                    "top":  108,
+                                    "width":  36,
+                                    "height":  22
+                                }
+                   },
+                   {
+                       "id":  "eye_right",
+                       "name":  "eye_right",
+                       "tags":  [
+                                    "eye",
+                                    "white",
+                                    "left"
+                                ],
+                       "image":  {
+                                     "path":  "parts/eye_right.png",
+                                     "width":  38,
+                                     "height":  22
+                                 },
+                       "rect":  {
+                                    "left":  772,
+                                    "top":  108,
+                                    "width":  38,
+                                    "height":  22
+                                }
+                   },
+                   {
+                       "id":  "brow_left",
+                       "name":  "brow_left",
+                       "tags":  [
+                                    "brow",
+                                    "right"
+                                ],
+                       "image":  {
+                                     "path":  "parts/brow_left.png",
+                                     "width":  34,
+                                     "height":  11
+                                 },
+                       "rect":  {
+                                    "left":  724,
+                                    "top":  96,
+                                    "width":  34,
+                                    "height":  11
+                                }
+                   },
+                   {
+                       "id":  "brow_right",
+                       "name":  "brow_right",
+                       "tags":  [
+                                    "brow",
+                                    "left"
+                                ],
+                       "image":  {
+                                     "path":  "parts/brow_right.png",
+                                     "width":  34,
+                                     "height":  11
+                                 },
+                       "rect":  {
+                                    "left":  773,
+                                    "top":  96,
+                                    "width":  34,
+                                    "height":  11
+                                }
+                   },
+                   {
+                       "id":  "nose",
+                       "name":  "nose",
+                       "tags":  [
+                                    "nose"
+                                ],
+                       "image":  {
+                                     "path":  "parts/nose.png",
+                                     "width":  13,
+                                     "height":  13
+                                 },
+                       "rect":  {
+                                    "left":  759,
+                                    "top":  133,
+                                    "width":  13,
+                                    "height":  13
+                                }
+                   },
+                   {
+                       "id":  "mouth",
+                       "name":  "mouth",
+                       "tags":  [
+                                    "face",
+                                    "detail"
+                                ],
+                       "image":  {
+                                     "path":  "parts/mouth.png",
+                                     "width":  31,
+                                     "height":  12
+                                 },
+                       "rect":  {
+                                    "left":  750,
+                                    "top":  147,
+                                    "width":  31,
+                                    "height":  12
+                                }
+                   }
+               ]
+}

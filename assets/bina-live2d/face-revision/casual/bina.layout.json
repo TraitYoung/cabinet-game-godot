@@ -1,0 +1,201 @@
+{
+  "format": "psd2live-layout",
+  "version": 1,
+  "name": "bina-casual-face-v2",
+  "canvas": {
+    "width": 1536,
+    "height": 1024
+  },
+  "layers": [
+    {
+      "id": "standing_body",
+      "name": "standing_body",
+      "tags": [
+        "top",
+        "none"
+      ],
+      "image": {
+        "path": "standing_body.png",
+        "width": 1536,
+        "height": 1024
+      },
+      "rect": {
+        "left": 0.0,
+        "top": 0.0,
+        "width": 1536.0,
+        "height": 1024.0
+      }
+    },
+    {
+      "id": "neck",
+      "name": "neck",
+      "tags": [
+        "neck",
+        "none"
+      ],
+      "image": {
+        "path": "neck.png",
+        "width": 46,
+        "height": 36
+      },
+      "rect": {
+        "left": 743,
+        "top": 158,
+        "width": 46,
+        "height": 36
+      }
+    },
+    {
+      "id": "neck-original",
+      "name": "neck-original",
+      "tags": [
+        "neck",
+        "none"
+      ],
+      "image": {
+        "path": "neck-original.png",
+        "width": 44,
+        "height": 20
+      },
+      "rect": {
+        "left": 744,
+        "top": 172,
+        "width": 44,
+        "height": 20
+      }
+    },
+    {
+      "id": "head",
+      "name": "head",
+      "tags": [
+        "face",
+        "none"
+      ],
+      "image": {
+        "path": "head.png",
+        "width": 210,
+        "height": 192
+      },
+      "rect": {
+        "left": 665,
+        "top": 0,
+        "width": 210,
+        "height": 192
+      }
+    },
+    {
+      "id": "eye_left",
+      "name": "eye_left",
+      "tags": [
+        "eyewhite",
+        "right"
+      ],
+      "image": {
+        "path": "eye_left.png",
+        "width": 210,
+        "height": 200
+      },
+      "rect": {
+        "left": 665,
+        "top": 0,
+        "width": 210,
+        "height": 200
+      }
+    },
+    {
+      "id": "eye_right",
+      "name": "eye_right",
+      "tags": [
+        "eyewhite",
+        "left"
+      ],
+      "image": {
+        "path": "eye_right.png",
+        "width": 210,
+        "height": 200
+      },
+      "rect": {
+        "left": 665,
+        "top": 0,
+        "width": 210,
+        "height": 200
+      }
+    },
+    {
+      "id": "closed_left",
+      "name": "closed_left",
+      "tags": [
+        "eye_close",
+        "right"
+      ],
+      "image": {
+        "path": "closed_left.png",
+        "width": 420,
+        "height": 384
+      },
+      "rect": {
+        "left": 665,
+        "top": 0,
+        "width": 210,
+        "height": 192
+      }
+    },
+    {
+      "id": "closed_right",
+      "name": "closed_right",
+      "tags": [
+        "eye_close",
+        "left"
+      ],
+      "image": {
+        "path": "closed_right.png",
+        "width": 420,
+        "height": 384
+      },
+      "rect": {
+        "left": 665,
+        "top": 0,
+        "width": 210,
+        "height": 192
+      }
+    },
+    {
+      "id": "brow_left",
+      "name": "brow_left",
+      "tags": [
+        "brow",
+        "right"
+      ],
+      "image": {
+        "path": "brow_left.png",
+        "width": 210,
+        "height": 200
+      },
+      "rect": {
+        "left": 665,
+        "top": 0,
+        "width": 210,
+        "height": 200
+      }
+    },
+    {
+      "id": "brow_right",
+      "name": "brow_right",
+      "tags": [
+        "brow",
+        "left"
+      ],
+      "image": {
+        "path": "brow_right.png",
+        "width": 210,
+        "height": 200
+      },
+      "rect": {
+        "left": 665,
+        "top": 0,
+        "width": 210,
+        "height": 200
+      }
+    }
+  ]
+}

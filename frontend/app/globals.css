@@ -550,6 +550,8 @@ button:focus-visible, select:focus-visible, input:focus-visible, a:focus-visible
 .bina-scene--night .bina-avatar-stage { filter: brightness(.8) saturate(.7); }
 .bina-room-heading, .bina-scene-footer { z-index: 1; pointer-events: none; }
 .bina-avatar-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
+.bina-avatar-buttons button[aria-pressed="true"] { border-color: var(--ax-accent); color: var(--ax-accent); }
+.bina-portrait--work img { object-position: center; clip-path: none; }
 .bina-avatar-settings input { min-width: 0; font-size: 12px; }
 .bina-avatar-previews { margin-top: 20px; }
 .bina-avatar-previews fieldset { margin-top: 16px; }

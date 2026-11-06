@@ -1,0 +1,86 @@
+{
+  "state": "bd441d1a-d059-424d-9a22-522da6bc7573:3:3",
+  "revision": "revision-af174de37ca313a55f2c728863b6130fb3345621071ce5469cf777b79ea78c11",
+  "files": [
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.moc3",
+      "bytes": 211904
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.cdi3.json",
+      "bytes": 3939
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.4096/texture_00.png",
+      "bytes": 1912498
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.physics3.json",
+      "bytes": 8586
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.idle.motion3.json",
+      "bytes": 15999
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.blink.motion3.json",
+      "bytes": 1155
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.nod.motion3.json",
+      "bytes": 1751
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.shake.motion3.json",
+      "bytes": 1573
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.smile.exp3.json",
+      "bytes": 668
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.sad.exp3.json",
+      "bytes": 671
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.angry.exp3.json",
+      "bytes": 669
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.surprised.exp3.json",
+      "bytes": 669
+    },
+    {
+      "path": "frontend/public/live2d/bina-registered/bina.model3.json",
+      "bytes": 1088
+    },
+    {
+      "path": "assets/bina-live2d/bina-registered.cmo3",
+      "bytes": 3855869
+    },
+    {
+      "path": "assets/bina-live2d/bina-registered.can3",
+      "bytes": 17456
+    },
+    {
+      "path": "assets/bina-live2d/bina-registered.psd2live.json",
+      "bytes": 3605
+    }
+  ],
+  "warnings": [
+    "mouth/mouth_open/mouth_close is missing; lip-sync parameters will not be bound to any drawable.",
+    "Duplicate layer names detected: standing_body, hair, eye, iris, brow; stable layer IDs were used to distinguish them."
+  ],
+  "source": "source-standing/bina.layout.json",
+  "tool": "PSD2Live 3.6.7",
+  "project": "bina-registered.psd2live",
+  "pose": "standing",
+  "pose_method": "imagegen_reference_generation",
+  "pose_recipe": "standing-pose.json",
+  "notes": [
+    "Shoulders, sleeves, folds and relaxed hands were newly generated from the T-pose reference.",
+    "No T-pose sleeve or hand rotation is used.",
+    "Original head and neck layers overlay the generated body; generated head is removed.",
+    "The body is currently one coherent ArtMesh; independent arm gestures are not bound."
+  ]
+}
