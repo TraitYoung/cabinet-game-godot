@@ -1,0 +1,193 @@
+{
+    "reference":  "assets/bina-tpose/casual/bina-casual-tpose-front.png",
+    "reference_sha256":  "f9ceee7823248887ccb696c9a36f72f3dec42df6a63e969f404dd554803164bd",
+    "measurement_file":  "assets/bina-tpose/measurements/proportions.json",
+    "reference_scale":  1,
+    "canvas":  [
+                   1536,
+                   1024
+               ],
+    "target_landmarks":  {
+                             "crown":  [
+                                           764,
+                                           28
+                                       ],
+                             "chin":  [
+                                          765,
+                                          172
+                                      ],
+                             "sole":  [
+                                          765,
+                                          1009
+                                      ],
+                             "hairline":  [
+                                              764,
+                                              70
+                                          ],
+                             "hair_left":  [
+                                               677,
+                                               117
+                                           ],
+                             "hair_right":  [
+                                                850,
+                                                117
+                                            ],
+                             "cheek_left":  [
+                                                726,
+                                                128
+                                            ],
+                             "cheek_right":  [
+                                                 805,
+                                                 128
+                                             ],
+                             "pupil_left":  [
+                                                742,
+                                                117
+                                            ],
+                             "pupil_right":  [
+                                                 789,
+                                                 117
+                                             ],
+                             "eye_outer_left":  [
+                                                    725,
+                                                    113
+                                                ],
+                             "eye_inner_left":  [
+                                                    753,
+                                                    118
+                                                ],
+                             "eye_inner_right":  [
+                                                     777,
+                                                     118
+                                                 ],
+                             "eye_outer_right":  [
+                                                     805,
+                                                     113
+                                                 ],
+                             "eye_upper_left":  [
+                                                    741,
+                                                    111
+                                                ],
+                             "eye_lower_left":  [
+                                                    741,
+                                                    123
+                                                ],
+                             "eye_upper_right":  [
+                                                     790,
+                                                     111
+                                                 ],
+                             "eye_lower_right":  [
+                                                     790,
+                                                     123
+                                                 ],
+                             "brow_left":  [
+                                               741,
+                                               100
+                                           ],
+                             "brow_right":  [
+                                                790,
+                                                100
+                                            ],
+                             "nose":  [
+                                          765,
+                                          138
+                                      ],
+                             "mouth_left":  [
+                                                754,
+                                                150
+                                            ],
+                             "mouth_right":  [
+                                                 776,
+                                                 150
+                                             ],
+                             "mouth_center":  [
+                                                  765,
+                                                  151
+                                              ],
+                             "neck_left":  [
+                                               746,
+                                               181
+                                           ],
+                             "neck_right":  [
+                                                785,
+                                                181
+                                            ],
+                             "shoulder_left_estimate":  [
+                                                            687,
+                                                            219
+                                                        ],
+                             "shoulder_right_estimate":  [
+                                                             845,
+                                                             219
+                                                         ],
+                             "fingertip_left":  [
+                                                    304,
+                                                    225
+                                                ],
+                             "fingertip_right":  [
+                                                     1225,
+                                                     225
+                                                 ],
+                             "wrist_left":  [
+                                                411,
+                                                230
+                                            ],
+                             "wrist_right":  [
+                                                 1119,
+                                                 230
+                                             ],
+                             "sweater_hem":  [
+                                                 765,
+                                                 506
+                                             ],
+                             "skirt_hem":  [
+                                               765,
+                                               538
+                                           ],
+                             "knee_left":  [
+                                               715,
+                                               671
+                                           ],
+                             "knee_right":  [
+                                                807,
+                                                671
+                                            ],
+                             "waist":  null,
+                             "crotch":  null
+                         },
+    "target_metrics":  {
+                           "illustrated_shod_height":  981,
+                           "head_height":  144,
+                           "face_height_hairline_to_chin":  102,
+                           "visible_face_width_at_cheeks":  79,
+                           "hair_silhouette_width":  173,
+                           "pupil_spacing":  47,
+                           "left_eye_width":  28,
+                           "right_eye_width":  28,
+                           "left_eye_opening_height":  12,
+                           "right_eye_opening_height":  12,
+                           "mouth_width":  22,
+                           "neck_width":  39,
+                           "shoulder_width_estimate":  158,
+                           "arm_span":  921,
+                           "eye_to_nose":  21,
+                           "nose_to_mouth":  13,
+                           "mouth_to_chin":  21,
+                           "brow_to_eye":  17
+                       },
+    "layer_count":  18,
+    "validation":  {
+                       "visual_preview":  "rejected: face identity, shading continuity and layer edges do not match the reference",
+                       "layer_images":  "pass",
+                       "uniform_part_aspect":  "pass",
+                       "canvas_bounds":  "pass",
+                       "reference_hash":  "pass"
+                   },
+    "generated_inputs":  {
+                             "master_sha256":  "9a4da658a23e81e281076b24a6ac47c7c954a8c34206a0acd6210a954e4c61be",
+                             "atlas_sha256":  "4c1316d5fd26abc6589280cb3376ac520f9ba2a054da5aee3f42cd3aa2083544"
+                         },
+    "packaging":  "Uniform scale per isolated part; no nonuniform image stretching. Layout is an initial placement, not a measured reconstruction pass.",
+    "status":  "rejected material candidate; do not use for rigging or runtime replacement",
+    "runtime_model_updated":  false
+}

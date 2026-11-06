@@ -1,5 +1,7 @@
 # Bina Live2D 第一版
 
+2026-11-06 新增[原图坐标分层材料](source-registered/README.md)：针对五官与头发拼接失真，按日常装正面原图原位拆成 24 层，可见颜色来自原图，静态不透明像素复合差异为 0。[对比图](source-registered/face-comparison.png)展示原图、被否定版本与本次结果。该材料尚未重新绑定；下述 `.psd2live`、Cubism 工程及网页模型仍为已有初版。
+
 以 `frontend/public/bina/casual.jpeg` 为外貌参考，通过 imagegen 生成透明分件图，再由 PSD2Live 3.6.7 自动绑定、导出。当前为自动制作的初版，分件边缘、转头轮廓与服装细节可继续在工程中精修。
 
 ## 文件

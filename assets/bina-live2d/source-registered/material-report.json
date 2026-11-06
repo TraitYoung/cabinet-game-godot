@@ -1,0 +1,173 @@
+{
+    "reference":  "assets/bina-tpose/casual/bina-casual-tpose-front.png",
+    "reference_sha256":  "f9ceee7823248887ccb696c9a36f72f3dec42df6a63e969f404dd554803164bd",
+    "canvas":  [
+                   1536,
+                   1024
+               ],
+    "scale":  1,
+    "layer_count":  24,
+    "opaque_source_color_mismatches":  0,
+    "opaque_recomposition_mismatches":  0,
+    "alpha_recomposition":  "pass",
+    "coordinates":  "original pixels; integer crop offsets; no independent transforms",
+    "target_landmarks":  {
+                             "crown":  [
+                                           764,
+                                           28
+                                       ],
+                             "chin":  [
+                                          765,
+                                          172
+                                      ],
+                             "sole":  [
+                                          765,
+                                          1009
+                                      ],
+                             "hairline":  [
+                                              764,
+                                              70
+                                          ],
+                             "hair_left":  [
+                                               677,
+                                               117
+                                           ],
+                             "hair_right":  [
+                                                850,
+                                                117
+                                            ],
+                             "cheek_left":  [
+                                                726,
+                                                128
+                                            ],
+                             "cheek_right":  [
+                                                 805,
+                                                 128
+                                             ],
+                             "pupil_left":  [
+                                                742,
+                                                117
+                                            ],
+                             "pupil_right":  [
+                                                 789,
+                                                 117
+                                             ],
+                             "eye_outer_left":  [
+                                                    725,
+                                                    113
+                                                ],
+                             "eye_inner_left":  [
+                                                    753,
+                                                    118
+                                                ],
+                             "eye_inner_right":  [
+                                                     777,
+                                                     118
+                                                 ],
+                             "eye_outer_right":  [
+                                                     805,
+                                                     113
+                                                 ],
+                             "eye_upper_left":  [
+                                                    741,
+                                                    111
+                                                ],
+                             "eye_lower_left":  [
+                                                    741,
+                                                    123
+                                                ],
+                             "eye_upper_right":  [
+                                                     790,
+                                                     111
+                                                 ],
+                             "eye_lower_right":  [
+                                                     790,
+                                                     123
+                                                 ],
+                             "brow_left":  [
+                                               741,
+                                               100
+                                           ],
+                             "brow_right":  [
+                                                790,
+                                                100
+                                            ],
+                             "nose":  [
+                                          765,
+                                          138
+                                      ],
+                             "mouth_left":  [
+                                                754,
+                                                150
+                                            ],
+                             "mouth_right":  [
+                                                 776,
+                                                 150
+                                             ],
+                             "mouth_center":  [
+                                                  765,
+                                                  151
+                                              ],
+                             "neck_left":  [
+                                               746,
+                                               181
+                                           ],
+                             "neck_right":  [
+                                                785,
+                                                181
+                                            ],
+                             "shoulder_left_estimate":  [
+                                                            687,
+                                                            219
+                                                        ],
+                             "shoulder_right_estimate":  [
+                                                             845,
+                                                             219
+                                                         ],
+                             "fingertip_left":  [
+                                                    304,
+                                                    225
+                                                ],
+                             "fingertip_right":  [
+                                                     1225,
+                                                     225
+                                                 ],
+                             "wrist_left":  [
+                                                411,
+                                                230
+                                            ],
+                             "wrist_right":  [
+                                                 1119,
+                                                 230
+                                             ],
+                             "sweater_hem":  [
+                                                 765,
+                                                 506
+                                             ],
+                             "skirt_hem":  [
+                                               765,
+                                               538
+                                           ],
+                             "knee_left":  [
+                                               715,
+                                               671
+                                           ],
+                             "knee_right":  [
+                                                807,
+                                                671
+                                            ],
+                             "waist":  null,
+                             "crotch":  null
+                         },
+    "generated_edits":  [
+                            "foreground matte",
+                            "hidden face underpainting"
+                        ],
+    "matte_refinement":  "Source-connected white backdrop removed; enclosed original hair behind glasses restored.",
+    "status":  "static source fidelity verified; animation overlap and deformers not yet validated",
+    "limitations":  [
+                        "Source head is 144 pixels tall; no invented high-resolution facial detail.",
+                        "Feature patches retain adjacent skin; hair and feature masks need animation-driven edge refinement.",
+                        "Hidden scalp/face paint supplied; sleeve, skirt and leg joints still need overlap painting before large motions."
+                    ]
+}

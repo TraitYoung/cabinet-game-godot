@@ -1,0 +1,353 @@
+{
+    "format":  "psd2live-layout",
+    "version":  1,
+    "name":  "bina-measured",
+    "canvas":  {
+                   "height":  1024,
+                   "width":  1536
+               },
+    "layers":  [
+                   {
+                       "id":  "back_hair",
+                       "name":  "back_hair",
+                       "tags":  [
+                                    "hair",
+                                    "back"
+                                ],
+                       "image":  {
+                                     "path":  "parts/back_hair.png",
+                                     "width":  248,
+                                     "height":  278
+                                 },
+                       "rect":  {
+                                    "left":  677,
+                                    "top":  7,
+                                    "width":  173,
+                                    "height":  193.92741935483872
+                                }
+                   },
+                   {
+                       "id":  "leg_left",
+                       "name":  "leg_left",
+                       "tags":  [
+                                    "leg",
+                                    "right"
+                                ],
+                       "image":  {
+                                     "path":  "parts/leg_left.png",
+                                     "width":  113,
+                                     "height":  478
+                                 },
+                       "rect":  {
+                                    "left":  652,
+                                    "top":  532,
+                                    "width":  113,
+                                    "height":  478
+                                }
+                   },
+                   {
+                       "id":  "leg_right",
+                       "name":  "leg_right",
+                       "tags":  [
+                                    "leg",
+                                    "left"
+                                ],
+                       "image":  {
+                                     "path":  "parts/leg_right.png",
+                                     "width":  112,
+                                     "height":  478
+                                 },
+                       "rect":  {
+                                    "left":  766,
+                                    "top":  532,
+                                    "width":  112,
+                                    "height":  478
+                                }
+                   },
+                   {
+                       "id":  "skirt",
+                       "name":  "skirt",
+                       "tags":  [
+                                    "skirt"
+                                ],
+                       "image":  {
+                                     "path":  "parts/skirt.png",
+                                     "width":  234,
+                                     "height":  55
+                                 },
+                       "rect":  {
+                                    "left":  647,
+                                    "top":  486,
+                                    "width":  234,
+                                    "height":  55
+                                }
+                   },
+                   {
+                       "id":  "torso",
+                       "name":  "torso",
+                       "tags":  [
+                                    "top"
+                                ],
+                       "image":  {
+                                     "path":  "parts/torso.png",
+                                     "width":  924,
+                                     "height":  334
+                                 },
+                       "rect":  {
+                                    "left":  303,
+                                    "top":  174,
+                                    "width":  924,
+                                    "height":  334
+                                }
+                   },
+                   {
+                       "id":  "face",
+                       "name":  "face",
+                       "tags":  [
+                                    "face"
+                                ],
+                       "image":  {
+                                     "path":  "parts/face.png",
+                                     "width":  185,
+                                     "height":  219
+                                 },
+                       "rect":  {
+                                    "left":  712.6255707762557,
+                                    "top":  48,
+                                    "width":  104.74885844748857,
+                                    "height":  124
+                                }
+                   },
+                   {
+                       "id":  "eyewhite_left",
+                       "name":  "eyewhite_left",
+                       "tags":  [
+                                    "eye",
+                                    "white",
+                                    "right"
+                                ],
+                       "image":  {
+                                     "path":  "parts/eyewhite_left.png",
+                                     "width":  129,
+                                     "height":  61
+                                 },
+                       "rect":  {
+                                    "left":  725,
+                                    "top":  111,
+                                    "width":  28,
+                                    "height":  13.24031007751938
+                                }
+                   },
+                   {
+                       "id":  "eyewhite_right",
+                       "name":  "eyewhite_right",
+                       "tags":  [
+                                    "eye",
+                                    "white",
+                                    "left"
+                                ],
+                       "image":  {
+                                     "path":  "parts/eyewhite_right.png",
+                                     "width":  126,
+                                     "height":  61
+                                 },
+                       "rect":  {
+                                    "left":  777,
+                                    "top":  111,
+                                    "width":  28,
+                                    "height":  13.555555555555555
+                                }
+                   },
+                   {
+                       "id":  "iris_left",
+                       "name":  "iris_left",
+                       "tags":  [
+                                    "eye",
+                                    "iris",
+                                    "right"
+                                ],
+                       "image":  {
+                                     "path":  "parts/iris_left.png",
+                                     "width":  81,
+                                     "height":  86
+                                 },
+                       "rect":  {
+                                    "left":  736.34883720930236,
+                                    "top":  111,
+                                    "width":  11.302325581395349,
+                                    "height":  12
+                                }
+                   },
+                   {
+                       "id":  "iris_right",
+                       "name":  "iris_right",
+                       "tags":  [
+                                    "eye",
+                                    "iris",
+                                    "left"
+                                ],
+                       "image":  {
+                                     "path":  "parts/iris_right.png",
+                                     "width":  82,
+                                     "height":  86
+                                 },
+                       "rect":  {
+                                    "left":  783.27906976744191,
+                                    "top":  111,
+                                    "width":  11.441860465116278,
+                                    "height":  12
+                                }
+                   },
+                   {
+                       "id":  "eyelash_left",
+                       "name":  "eyelash_left",
+                       "tags":  [
+                                    "eye",
+                                    "lash",
+                                    "right"
+                                ],
+                       "image":  {
+                                     "path":  "parts/eyelash_left.png",
+                                     "width":  143,
+                                     "height":  73
+                                 },
+                       "rect":  {
+                                    "left":  724,
+                                    "top":  110,
+                                    "width":  30,
+                                    "height":  15.314685314685315
+                                }
+                   },
+                   {
+                       "id":  "eyelash_right",
+                       "name":  "eyelash_right",
+                       "tags":  [
+                                    "eye",
+                                    "lash",
+                                    "left"
+                                ],
+                       "image":  {
+                                     "path":  "parts/eyelash_right.png",
+                                     "width":  140,
+                                     "height":  72
+                                 },
+                       "rect":  {
+                                    "left":  776,
+                                    "top":  110,
+                                    "width":  30,
+                                    "height":  15.428571428571427
+                                }
+                   },
+                   {
+                       "id":  "brow_left",
+                       "name":  "brow_left",
+                       "tags":  [
+                                    "brow",
+                                    "right"
+                                ],
+                       "image":  {
+                                     "path":  "parts/brow_left.png",
+                                     "width":  85,
+                                     "height":  13
+                                 },
+                       "rect":  {
+                                    "left":  727,
+                                    "top":  98,
+                                    "width":  28,
+                                    "height":  4.2823529411764705
+                                }
+                   },
+                   {
+                       "id":  "brow_right",
+                       "name":  "brow_right",
+                       "tags":  [
+                                    "brow",
+                                    "left"
+                                ],
+                       "image":  {
+                                     "path":  "parts/brow_right.png",
+                                     "width":  81,
+                                     "height":  12
+                                 },
+                       "rect":  {
+                                    "left":  776,
+                                    "top":  98,
+                                    "width":  28,
+                                    "height":  4.1481481481481479
+                                }
+                   },
+                   {
+                       "id":  "nose",
+                       "name":  "nose",
+                       "tags":  [
+                                    "nose"
+                                ],
+                       "image":  {
+                                     "path":  "parts/nose.png",
+                                     "width":  6,
+                                     "height":  11
+                                 },
+                       "rect":  {
+                                    "left":  763.36363636363637,
+                                    "top":  135,
+                                    "width":  3.2727272727272725,
+                                    "height":  6
+                                }
+                   },
+                   {
+                       "id":  "mouth",
+                       "name":  "mouth",
+                       "tags":  [
+                                    "mouth"
+                                ],
+                       "image":  {
+                                     "path":  "parts/mouth.png",
+                                     "width":  82,
+                                     "height":  20
+                                 },
+                       "rect":  {
+                                    "left":  754,
+                                    "top":  148,
+                                    "width":  22,
+                                    "height":  5.3658536585365857
+                                }
+                   },
+                   {
+                       "id":  "front_hair",
+                       "name":  "front_hair",
+                       "tags":  [
+                                    "hair",
+                                    "front"
+                                ],
+                       "image":  {
+                                     "path":  "parts/front_hair.png",
+                                     "width":  270,
+                                     "height":  271
+                                 },
+                       "rect":  {
+                                    "left":  677,
+                                    "top":  7,
+                                    "width":  173,
+                                    "height":  173.64074074074074
+                                }
+                   },
+                   {
+                       "id":  "glasses",
+                       "name":  "glasses",
+                       "tags":  [
+                                    "headwear"
+                                ],
+                       "image":  {
+                                     "path":  "parts/glasses.png",
+                                     "width":  201,
+                                     "height":  118
+                                 },
+                       "rect":  {
+                                    "left":  711.5,
+                                    "top":  31,
+                                    "width":  104.99999999999999,
+                                    "height":  61.641791044776113
+                                }
+                   }
+               ]
+}

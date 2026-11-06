@@ -137,6 +137,10 @@ Python 依赖见 `requirements.txt`，前端依赖与锁文件位于 `frontend/`
 
 ## 文档约定
 
+针对脸部拼接失真，新分层材料及对比图见 [Bina 原图坐标分层](assets/bina-live2d/source-registered/README.md)。Windows 下运行 `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare_bina_registered.ps1` 可复现 24 个 PNG 部件、Layout 和像素校验，依赖系统自带 .NET System.Drawing。此批材料已检查静态还原，尚待绑定及动态验收。
+
+本轮完成项、验证范围和后续绑定工作见 [2026-11-06 Live2D 素材返工进度](docs/Bina_Live2D_Progress_2026-11-06.md)。
+
 Live2D 的内置模型已调整五官与部件布局，并增加运行时动作幅度校正。六张原始 T 姿图的比例测量与复现命令见 [T 姿参考说明](assets/bina-tpose/README.md)；测量结果尚未用于按全身比例重建模型，正式模型验收仍待完成。
 
 当前开发计划见 `TODO.md`。历史多 Agent 介绍见 `docs/历史项目说明.md`，旧内阁、软件工程流水线和角色扩展文档用于追溯。新功能与设计以 Bina 的虚拟具身、互动和记忆目标为准。

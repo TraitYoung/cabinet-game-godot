@@ -1,0 +1,50 @@
+# Bina Live2D 素材返工进度 · 2026-11-06
+
+当前完成日常装正面原图的 24 层素材拆分、静态合成与像素检查。五官和头发直接保留原图可见像素，修正了此前独立生成分件造成的外貌偏差。当前交付为分层材料，尚未完成模型绑定和动态验收。
+
+## 问题与处理
+
+按测量数值摆放独立生成的五官，仍然改变了眼型、脸部明暗和发丝关系。用户明确指出“脸不像原图，五官和头发有拼接感”。因此，不能把目标标点对齐当作外貌还原通过。
+
+本次改用日常装正面原图的 1536 × 1024 画布，保持 1:1 比例和原始坐标。每个 PNG 只记录裁切偏移，不独立缩放或移动五官。内置 imagegen 用于生成前景遮罩和隐藏皮肤底层；可见脸部与头发来自原图。遮罩中误删的镜片后方头发已恢复，并清理与画布边缘连通的近白背景。
+
+## 已完成
+
+- 输出 24 个透明 PNG，包含脸部底层、脸部、五官、虹膜、镜框、头发、躯干、袖子、手、裙子和腿。
+- 输出 PSD2Live Layout、完整合成预览、脸部对比图和材料检查记录。
+- 保存遮罩、隐藏皮肤底图及实际生成提示词；提供可复现的 Windows PowerShell 打包脚本。
+- 保留被否定的素材和头部重绘试稿作为比较依据，并标注状态。
+
+| 文件 | 用途与状态 |
+| --- | --- |
+| [source-registered](../assets/bina-live2d/source-registered/README.md) | 当前材料、复现说明和限制 |
+| [脸部对比](../assets/bina-live2d/source-registered/face-comparison.png) | 左为原图，中为被否定版本，右为本次合成 |
+| [完整预览](../assets/bina-live2d/source-registered/assembled-preview.png) | 本次透明全身合成 |
+| [Layout](../assets/bina-live2d/source-registered/bina.layout.json) | 24 个部件的位置、尺寸、顺序及标签 |
+| [检查记录](../assets/bina-live2d/source-registered/material-report.json) | 原图哈希、坐标基准和像素检查结果 |
+| [打包脚本](../scripts/prepare_bina_registered.ps1) | 使用保存的生成输入复现材料 |
+| [source-measured](../assets/bina-live2d/source-measured/README.md) | 被否定的独立分件拼装，供对比使用 |
+| [head-revision](../assets/bina-live2d/head-revision/README.md) | 中间头部重绘试稿，未用于当前材料 |
+
+## 已执行的检查
+
+1. 原图 SHA-256 与测量文档一致，生成输入均为原始 1536 × 1024 画布。
+2. 打包脚本成功生成 24 层；不透明像素与原图的 RGB 差异计数为 **0**，不透明像素重新合成差异计数为 **0**，合成透明度与抠图基准一致。
+3. 独立读取 Layout 所引用的 24 个 PNG，检查文件可读取、尺寸匹配、没有独立缩放且未超出画布。
+4. 查看脸部对比与完整合成，检查脸部还原及镜片后方头发；`git diff --check` 通过。
+
+像素检查针对当前不透明区域；半透明边缘有合成舍入，外轮廓遮罩也不是人工逐像素验收结果。本次未运行前端 Lint、构建或浏览器交互验收，因为没有修改前端代码或网页运行模型；此前浏览器验收记录不能作为这批新材料的动态验收。
+
+在仓库根目录复现，无额外包依赖，使用 Windows PowerShell 5.1 与系统 .NET System.Drawing：
+
+```powershell
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare_bina_registered.ps1
+```
+
+## 下一步
+
+- 精修发片边界、五官周围皮肤及重叠区域，补画袖口、裙下和腿部连接处，制作口腔内层。
+- 导入新材料并建立网格、遮挡和参数，检查眨眼、视线、张嘴、转头与头发摆动时的接缝。
+- 静态和动态检查通过后，再导出 Cubism 工程与网页资源，执行桌面和手机浏览器验收。
+
+原图头高为 144 px，当前材料保留原始细节；放大预览不增加真实分辨率。现有 `.psd2live`、`.cmo3` 和 `frontend/public/live2d/bina/` 仍为已有初版，全身重建与正式模型验收继续保留为待办。
