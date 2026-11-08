@@ -38,7 +38,7 @@
 
 ## 检查范围与限制
 
-Python 类型检查按 `pyproject.toml` 渐进覆盖配置、回合协议和数据库基础模块；未宣称全仓库已达到严格类型检查。CI 已配置 Linux 完整检查及 Windows 进程策略任务，本次证明来自本机执行，尚未在远端 GitHub Actions 运行。
+Python 类型检查按 `pyproject.toml` 渐进覆盖配置、回合协议和数据库基础模块；未宣称全仓库已达到严格类型检查。CI 已配置 Linux 完整检查及 Windows 进程策略任务。首次远端执行中，Windows 策略通过；Linux 检查发现 Compose 回归依赖未入库的 `.env`，现已改为从真实清单与示例配置构建临时测试目录。后续远端检查结果见 [GitHub Actions](https://github.com/TraitYoung/alive-bina/actions)。
 
 模型回复与记忆语义回归使用模拟服务和临时数据库，没有进行真实外部模型或真实 Hindsight bank 的语义验收。Windows 已验证进程策略和 PowerShell 解析，未进行 GUI、模型服务和所有 Windows 启动场景的完整端到端验收。
 

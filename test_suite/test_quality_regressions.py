@@ -317,7 +317,18 @@ class LauncherTests(unittest.TestCase):
                 foreign.wait(timeout=3)
 
     def test_compose_local_bindings_and_container_database_override(self):
-        config = json.loads(subprocess.check_output(['docker', 'compose', 'config', '--format', 'json']))
+        # A clean checkout has no private .env; inspect the real manifest with
+        # disposable sample configuration instead of depending on local secrets.
+        project = Path(__file__).resolve().parents[1]
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            shutil.copyfile(project / 'docker-compose.yml', root / 'docker-compose.yml')
+            sample = (project / '.env.example').read_text()
+            (root / '.env').write_text(sample + '\nAX_DB_PATH=/host-only/test.db\n')
+            config = json.loads(subprocess.check_output([
+                'docker', 'compose', '-f', str(root / 'docker-compose.yml'),
+                'config', '--format', 'json',
+            ], cwd=root))
         api = config['services']['api']
         db_path = api['environment']['AX_DB_PATH']
         volume = next(item for item in api['volumes'] if item['target'] == str(Path(db_path).parent))

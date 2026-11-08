@@ -36,7 +36,7 @@ PYTHONPATH=. python test_suite/test_bina_first.py
 python -m unittest test_suite.test_quality_regressions -v
 ```
 
-这些检查使用模拟模型和临时数据库。真实 Hindsight 验收使用 `scripts/check_hindsight_memory.py`，会调用模型并在独立测试 bank 中保存记忆，运行说明见[项目 README](../../README.md#真实验收)。
+这些检查使用模拟模型和临时数据库。Compose 配置回归将实际清单与 `.env.example` 复制到临时目录，验证容器路径覆盖宿主路径，不依赖开发者的私有 `.env`。真实 Hindsight 验收使用 `scripts/check_hindsight_memory.py`，会调用模型并在独立测试 bank 中保存记忆，运行说明见[项目 README](../../README.md#真实验收)。
 
 ## 前端检查
 
