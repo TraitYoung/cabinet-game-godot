@@ -6,6 +6,13 @@
 
 ## 当前攻坚
 
+- [x] 2026-11-08 用户正式采用[以新工装正面为基准的两套服装六视图](assets/bina-tpose/v3/anatomy-locked/turnaround/README.md)，确认形象设计；采用记录、文件哈希与 `bina.json` 正式资源入口已同步。
+- [x] 将本轮其余 25 张历史源图、候选与过程稿连同提示词、生成记录共 52 个文件[归档](docs/media/archive/README.md)，保存迁移清单并修正引用；正式六张图保持原样。
+- [x] 按最新身份要求生成 [V3 两套概念图与自然站姿母图](docs/media/archive/v3-design-drafts/README.md)及[各阶段 T-pose](assets/bina-tpose/v3/README.md)，保存身份原文、实际提示词与文件元数据；早期生成稿保留作过程参考。
+- [ ] 从正式采用六视图重新标点和测量；以工装正面的实际身体比例和头部大小为主基准，约 7.3 头身仅为设计描述，不复用旧版坐标或按数字拉伸人物。
+- [x] 完成 Bina 角色视觉重塑（方案 A · v2：冷茶棕轻盈层次锁骨发 + 清澈琥珀金圆杏眼 + 都会摩卡休闲装/轻秘书工装），更新 [bina.json](config/persona_visual/bina.json)、定稿概念图与休闲装自然站姿母图，并将旧版与过程废稿统一归档至 [docs/media/archive/](docs/media/archive/README.md)。
+- [x] 直接生成方案 A · v2 工装独立自然站姿母图（`docs/media/archive/v2-approved-sources/bina-work-standing.jpg`）。
+- [ ] 以正式采用六视图为基准制作匹配的两套自然站姿分层素材，重建 Live2D 模型。
 - [x] 两套服装重做连续头部、柔边眼眉与闭眼绑定，补画颈部遮挡；完成原生编辑器近景及真实网页验证，见[头部返工 v2](assets/bina-live2d/face-revision/README.md)。
 - [ ] 基于连续头部重新拆出有遮挡补画的发片与虹膜，恢复独立发丝物理和瞳孔追踪；继续精修闭眼皮肤并补齐口型。
 

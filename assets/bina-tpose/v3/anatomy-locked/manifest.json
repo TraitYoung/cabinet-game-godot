@@ -1,0 +1,292 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-08",
+  "timezone": "Asia/Shanghai",
+  "character": "Bina (Chen Bina)",
+  "task": "v2 work front T-pose body with v3 head traits",
+  "generator": "built-in image_gen",
+  "transparent_background": false,
+  "reference_images_in_order": [
+    {
+      "path": "assets/bina-tpose/archive/v2/work/bina-work-tpose-front.png",
+      "sha256": "4a1cab65fb10b8b6627214c128fc2a19a704deb8edd5d8ffa2876c8cec89ee10",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "bytes": 1202476
+    },
+    {
+      "path": "docs/media/archive/v3-design-drafts/bina-work-concept.png",
+      "sha256": "63e259977b568f821f7a43f8c72b60f0c39e932a2eccc1f06f1fec63495f2d39",
+      "width": 1678,
+      "height": 937,
+      "mode": "RGB",
+      "bytes": 2105444
+    }
+  ],
+  "output": {
+    "path": "assets/bina-tpose/v3/anatomy-locked/bina-work-tpose-front.png",
+    "sha256": "7142c7ae0862f3820e8f7ee4b8d93c57b63d5dde0551af2b1a0c047dee24d030",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "bytes": 1189926
+  },
+  "prompt_file": "assets/bina-tpose/v3/anatomy-locked/prompts/work-front.txt",
+  "prompt_sha256": "207aa245e1a02d9ed4a5559c0386373d4e3f5131b0f05e37863523c9ed2bb939",
+  "verification": {
+    "method": "Same-canvas RGB comparison and foreground boundary sampling. Foreground is min(R,G,B)<235. Comparison excludes x525..725,y0..244 head rectangle; anti-aliasing and shading can change foreground threshold edges.",
+    "outside_head_rgb_mean_absolute_difference": 0.7137909144203493,
+    "outside_head_foreground_iou": 0.994950917386562,
+    "sampled_row_boundaries": {
+      "220": {
+        "base": [
+          519,
+          733
+        ],
+        "output": [
+          519,
+          733
+        ]
+      },
+      "230": {
+        "base": [
+          503,
+          748
+        ],
+        "output": [
+          503,
+          748
+        ]
+      },
+      "245": {
+        "base": [
+          311,
+          940
+        ],
+        "output": [
+          311,
+          940
+        ]
+      },
+      "250": {
+        "base": [
+          283,
+          1064
+        ],
+        "output": [
+          285,
+          1064
+        ]
+      },
+      "260": {
+        "base": [
+          83,
+          1173
+        ],
+        "output": [
+          83,
+          1172
+        ]
+      },
+      "270": {
+        "base": [
+          58,
+          1194
+        ],
+        "output": [
+          58,
+          1194
+        ]
+      },
+      "280": {
+        "base": [
+          96,
+          1156
+        ],
+        "output": [
+          96,
+          1157
+        ]
+      },
+      "290": {
+        "base": [
+          312,
+          940
+        ],
+        "output": [
+          311,
+          940
+        ]
+      },
+      "300": {
+        "base": [
+          316,
+          936
+        ],
+        "output": [
+          316,
+          936
+        ]
+      },
+      "320": {
+        "base": [
+          527,
+          725
+        ],
+        "output": [
+          527,
+          725
+        ]
+      },
+      "400": {
+        "base": [
+          533,
+          719
+        ],
+        "output": [
+          533,
+          719
+        ]
+      },
+      "425": {
+        "base": [
+          552,
+          701
+        ],
+        "output": [
+          554,
+          699
+        ]
+      },
+      "450": {
+        "base": [
+          548,
+          704
+        ],
+        "output": [
+          548,
+          704
+        ]
+      },
+      "600": {
+        "base": [
+          512,
+          739
+        ],
+        "output": [
+          512,
+          739
+        ]
+      },
+      "740": {
+        "base": [
+          523,
+          726
+        ],
+        "output": [
+          523,
+          727
+        ]
+      },
+      "750": {
+        "base": [
+          532,
+          719
+        ],
+        "output": [
+          532,
+          719
+        ]
+      },
+      "800": {
+        "base": [
+          536,
+          715
+        ],
+        "output": [
+          536,
+          715
+        ]
+      },
+      "1000": {
+        "base": [
+          524,
+          725
+        ],
+        "output": [
+          524,
+          725
+        ]
+      },
+      "1068": {
+        "base": [
+          526,
+          723
+        ],
+        "output": [
+          526,
+          723
+        ]
+      },
+      "1100": {
+        "base": [
+          530,
+          720
+        ],
+        "output": [
+          530,
+          720
+        ]
+      },
+      "1200": {
+        "base": [
+          518,
+          732
+        ],
+        "output": [
+          518,
+          733
+        ]
+      },
+      "1220": {
+        "base": [
+          530,
+          721
+        ],
+        "output": [
+          530,
+          721
+        ]
+      },
+      "1228": {
+        "base": [
+          545,
+          708
+        ],
+        "output": [
+          544,
+          708
+        ]
+      }
+    },
+    "interpretation": "Major body placement and dimensions retained; some threshold edges differ by 1-2px. Not an exact pixel-identical body or a certified 100% anatomy lock."
+  },
+  "notes": [
+    "Output copied unchanged from built-in image_gen; no post-processing.",
+    "Preserves actual v2 source proportions rather than changing the source to force a stated 7.3-head ratio.",
+    "Head-only change requested; generated output has minor differences outside the head.",
+    "Background appears white but sampled corners include near-white RGB values, so uniform exact #FFFFFF is not certified.",
+    "Versioned single front-view candidate; existing v2 and v3 assets retained."
+  ],
+  "status": "approved_primary_design_reference",
+  "approval": {
+    "date": "2026-11-08",
+    "timezone": "Asia/Shanghai",
+    "authority": "explicit_user_confirmation",
+    "statement": "很好，可以采用这一版的形象设计了",
+    "approved_image": "assets/bina-tpose/v3/anatomy-locked/bina-work-tpose-front.png",
+    "approved_sha256": "7142c7ae0862f3820e8f7ee4b8d93c57b63d5dde0551af2b1a0c047dee24d030",
+    "reference_set_manifest": "assets/bina-tpose/v3/anatomy-locked/turnaround/manifest.json"
+  }
+}

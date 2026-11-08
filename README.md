@@ -40,7 +40,7 @@ Axiodrasil 是一个虚拟具身实验项目。当前唯一运行人物是 Bina�
 | `storage/` | 本地原始聊天记录 |
 | `state/` | 情绪状态 |
 | `config/persona_visual/bina.json` | Bina 外貌配置真相源 |
-| `assets/bina-tpose/` | Bina 日常装、工作装三视图原图与人工标点测量 |
+| `assets/bina-tpose/` | Bina 已采用的两套服装三视图与历史标点测量 |
 | `assets/bina-live2d/` | Live2D 分件、可编辑工程、导出记录与页面截图 |
 | `test_suite/` | 脚本化回归检查，部分历史测试属于旧内阁阶段 |
 | `docs/characters/` | 已退役人物的文档设定 |
@@ -219,6 +219,8 @@ python -m playwright install chromium
 完整分类、阅读顺序和维护约定见 [docs 文档入口](docs/README.md)。当前架构见[架构参考](docs/reference/architecture.md)，接口见 [HTTP API](docs/reference/api.md)，记忆与提交约定见[记忆参考](docs/reference/memory.md)。操作步骤放在 `docs/guides/`，阶段记录放在 `docs/reviews/`，旧设计放在 `docs/archive/`；人物历史设定继续保留在 `docs/characters/`。
 
 从 T-pose 绘制、原图比例测量、完整头部候选与原位分层，到参考生成自然站姿身体、Live2D 组装和浏览器验收，见 [Bina 完整制作流程](docs/guides/live2d-workflow.md)。可复用 skill 位于 [skills/reference-to-live2d](skills/reference-to-live2d/SKILL.md)，安装到本机 skills 目录后使用 `$reference-to-live2d` 调用。
+
+2026-11-08 已正式采用[以新工装正面为基准的 Bina 两套服装六视图](assets/bina-tpose/v3/anatomy-locked/turnaround/README.md)。正式资源入口记录于 `config/persona_visual/bina.json` 的 `approved_design`；后续站姿素材与建模按该组实际外貌、头部大小和身体比例制作。新图测量和 Live2D 重建待完成。
 
 针对脸部拼接失真，新分层材料及对比图见 [Bina 原图坐标分层](assets/bina-live2d/source-registered/README.md)。Windows 下运行 `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/prepare_bina_registered.ps1` 可复现 24 个 PNG 部件、Layout 和像素校验，依赖系统自带 .NET System.Drawing。原图头部分层与新生成的自然站姿身体已合并到当前模型，见 [站姿素材与制作记录](assets/bina-live2d/source-standing/README.md)。
 

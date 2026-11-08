@@ -1,0 +1,299 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-08",
+  "timezone": "Asia/Shanghai",
+  "character": "Bina (Chen Bina)",
+  "task": "Complete two-outfit turnaround from newly generated work front base",
+  "generator": "built-in image_gen",
+  "transparent_background": false,
+  "status": "approved_character_design",
+  "authoritative_existing_work_front": {
+    "path": "assets/bina-tpose/v3/anatomy-locked/bina-work-tpose-front.png",
+    "sha256": "7142c7ae0862f3820e8f7ee4b8d93c57b63d5dde0551af2b1a0c047dee24d030",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGB",
+    "bytes": 1189926,
+    "format": "PNG",
+    "corner_rgb": [
+      [
+        254,
+        255,
+        254
+      ],
+      [
+        254,
+        255,
+        254
+      ],
+      [
+        254,
+        253,
+        254
+      ],
+      [
+        254,
+        254,
+        254
+      ]
+    ]
+  },
+  "artifacts": [
+    {
+      "path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-work-tpose-back.png",
+      "sha256": "1d9f7388efa69a4d5b3e2c2af50a19780bf2dc7ab874141b40075e4e921df0bb",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "bytes": 1178969,
+      "format": "PNG",
+      "corner_rgb": [
+        [
+          253,
+          255,
+          255
+        ],
+        [
+          254,
+          255,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "target_path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-work-tpose-back.png",
+      "prompt_file": "assets/bina-tpose/v3/anatomy-locked/turnaround/prompts/work-back.txt",
+      "prompt_sha256": "e3ca17268740ae256fd78bf238bd9a7f1e0c8d1cc1d4f0ccd48a118d94b866f6",
+      "reference_images_in_order": [
+        "assets/bina-tpose/v3/anatomy-locked/bina-work-tpose-front.png",
+        "assets/bina-tpose/archive/v2/work/bina-work-tpose-back.png"
+      ]
+    },
+    {
+      "path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-work-tpose-side.png",
+      "sha256": "ad98c1492be048366eb45bc17a155ba6eaf075b8dc3af2d50ee5bd744c5a71e2",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "bytes": 1135857,
+      "format": "PNG",
+      "corner_rgb": [
+        [
+          254,
+          255,
+          254
+        ],
+        [
+          254,
+          255,
+          255
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "target_path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-work-tpose-side.png",
+      "prompt_file": "assets/bina-tpose/v3/anatomy-locked/turnaround/prompts/work-side.txt",
+      "prompt_sha256": "0f5fa0ec52b898b006f552b61e1c3aa49f193095b8721a8747ba74c0dc573dcb",
+      "reference_images_in_order": [
+        "assets/bina-tpose/v3/anatomy-locked/bina-work-tpose-front.png",
+        "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-work-tpose-back.png"
+      ]
+    },
+    {
+      "path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-front.png",
+      "sha256": "6587b0c1c669ab8bb34e7e928fe7e8180c57f7ca6a143833fdddd1a9f4fb6abd",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "bytes": 1193276,
+      "format": "PNG",
+      "corner_rgb": [
+        [
+          253,
+          253,
+          254
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "target_path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-front.png",
+      "prompt_file": "assets/bina-tpose/v3/anatomy-locked/turnaround/prompts/casual-front.txt",
+      "prompt_sha256": "b78ae389f2bf4f5c372d5ba1b275081d49620a4cdfebf4d035bfe5b69f46b36e",
+      "reference_images_in_order": [
+        "assets/bina-tpose/v3/anatomy-locked/bina-work-tpose-front.png",
+        "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-front.png"
+      ]
+    },
+    {
+      "path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-back.png",
+      "sha256": "feb06053f18bbfe7b1dd4c617780aec03fc5ef53ba5974b2344fb19a8d9031e3",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "bytes": 1178278,
+      "format": "PNG",
+      "corner_rgb": [
+        [
+          254,
+          253,
+          255
+        ],
+        [
+          254,
+          255,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "target_path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-back.png",
+      "prompt_file": "assets/bina-tpose/v3/anatomy-locked/turnaround/prompts/casual-back-compact.txt",
+      "prompt_sha256": "18713f0be0aa48e1ef94bf9c47f5cc2ab1dbfe693154a444188663121506205b",
+      "reference_images_in_order": [
+        "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-work-tpose-back.png",
+        "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-front.png"
+      ]
+    },
+    {
+      "path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-side.png",
+      "sha256": "ac8d323c6f61d86a2acd4ace1ca4f3bf26d87b528dfb1e786f684bafd23ed2c9",
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "bytes": 1103013,
+      "format": "PNG",
+      "corner_rgb": [
+        [
+          254,
+          253,
+          255
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "target_path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-side.png",
+      "prompt_file": "assets/bina-tpose/v3/anatomy-locked/turnaround/prompts/casual-side.txt",
+      "prompt_sha256": "21ea63884b846502b86a775f6c587bfe9d03eb769263e9be9c795f15ed0e71df",
+      "reference_images_in_order": [
+        "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-work-tpose-side.png",
+        "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-front.png"
+      ]
+    }
+  ],
+  "pending": [],
+  "connection_failures": [
+    {
+      "prompt_file": "assets/bina-tpose/v3/anatomy-locked/turnaround/prompts/casual-back.txt",
+      "attempts": 2,
+      "references": [
+        "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-front.png",
+        "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-work-tpose-back.png",
+        "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-back.png"
+      ],
+      "error": "image generation failed: connection failed: error sending request",
+      "output": null
+    },
+    {
+      "prompt_file": "assets/bina-tpose/v3/anatomy-locked/turnaround/prompts/casual-side.txt",
+      "attempts": 1,
+      "error": "image generation failed: connection failed: error sending request",
+      "output": null
+    }
+  ],
+  "notes": [
+    "All paths relative to repository root.",
+    "Five new outputs requested; existing work front retained as the sixth view.",
+    "All generated images copied unchanged; no pixel post-processing.",
+    "Actual work-front anatomy is the scale target; no numeric head-count rescaling.",
+    "White opaque RGB backgrounds may contain near-white pixels.",
+    "Visual references, not pixel-registered or measurement-certified orthographic drawings.",
+    "Side views face image right; left accessories may be naturally hidden."
+  ],
+  "generation_status": "generated_references_pending_user_review",
+  "approval": {
+    "date": "2026-11-08",
+    "timezone": "Asia/Shanghai",
+    "authority": "explicit_user_confirmation",
+    "statement": "很好，可以采用这一版的形象设计了",
+    "scope": "character_design_and_selected_six_tpose_images",
+    "primary_reference": "assets/bina-tpose/v3/anatomy-locked/bina-work-tpose-front.png",
+    "selected_images": [
+      {
+        "path": "assets/bina-tpose/v3/anatomy-locked/bina-work-tpose-front.png",
+        "sha256": "7142c7ae0862f3820e8f7ee4b8d93c57b63d5dde0551af2b1a0c047dee24d030"
+      },
+      {
+        "path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-work-tpose-back.png",
+        "sha256": "1d9f7388efa69a4d5b3e2c2af50a19780bf2dc7ab874141b40075e4e921df0bb"
+      },
+      {
+        "path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-work-tpose-side.png",
+        "sha256": "ad98c1492be048366eb45bc17a155ba6eaf075b8dc3af2d50ee5bd744c5a71e2"
+      },
+      {
+        "path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-front.png",
+        "sha256": "6587b0c1c669ab8bb34e7e928fe7e8180c57f7ca6a143833fdddd1a9f4fb6abd"
+      },
+      {
+        "path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-back.png",
+        "sha256": "feb06053f18bbfe7b1dd4c617780aec03fc5ef53ba5974b2344fb19a8d9031e3"
+      },
+      {
+        "path": "assets/bina-tpose/v3/anatomy-locked/turnaround/bina-casual-tpose-side.png",
+        "sha256": "ac8d323c6f61d86a2acd4ace1ca4f3bf26d87b528dfb1e786f684bafd23ed2c9"
+      }
+    ],
+    "measurement_status": "pending",
+    "live2d_rebuild_status": "pending"
+  }
+}

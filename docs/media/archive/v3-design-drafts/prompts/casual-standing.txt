@@ -1,0 +1,24 @@
+Use case: identity-preserve.
+Asset type: Bina V3 CASUAL natural-standing full-body MASTER, one single character on white.
+Input1 is the updated casual concept sheet: authoritative identity, new hair/ahoge/left cuff/single canine, outfit, palette and drawing style. Extract its design into a new standalone full-body standing master; do not include portrait insets or concept layout.
+Pose: straight-on front view, head upright and level, eyes looking directly at viewer, both shoulders relaxed, arms naturally down beside body with a little space from hips, hands relaxed and correct five fingers each. Weight balanced on both straight legs, feet slightly apart and forward. No leaning or contrapposto, no head tilt.
+IMPORTANT BODY TARGET: graceful 165cm young adult19, approximately 7.3 HEADS tall, where one head is normal skull crown to chin and body height is skull crown to soles, EXCLUDING the ahoge. Make crown-to-chin about13.7% of full standing height. Slender elegant neck/collarbones and long slim legs; keep rounded cute face, not a mature narrow face or exaggerated tiny head.
+Identity: soft FEATHERED hair reaching clavicles, airy inward C-curving ends framing neck and shoulders, airy French wispy bangs, LEFT hair tucked to expose LEFT ear on viewer RIGHT. Hair is dusty ash rose-tea pink-brown/cool milk-tea greige with subtle15% rosy undertones and pale champagne inner highlights, not solid pink/gray. Exactly ONE slender curved playful ahoge standing a little above crown, not a giant loop. ONE minimal small geometric champagne-gold cuff only on LEFT ear.
+Face: fully awake luminous honey-amber rounded almond eyes with clear catchlights and open lids, natural rosy cheeks, fair porcelain skin, subtly glossy lips, affectionate cheeky smile. Like concept's central mouth, lips are mostly CLOSED with only viewer-RIGHT corner slightly open revealing ONE tiny canine; other corner is closed dark line with NO white tooth, no two fangs or teeth row.
+Exact casual costume from concept: oatmeal cream fine-rib long-sleeve knit, broad folded asymmetric neckline exposing HER RIGHT shoulder (viewerLEFT) with thin mocha strap; left shoulder covered. Charcoal high-waist tailored pleated shorts, slim taupe/gold buckle belt, bare legs, cream leather loafers, same fit/lengths and materials.
+Refined delicate anime illustration matching source, soft even light, precise face and subtle fabric shading. Portrait canvas approx2:3, preferably1024x1536 or larger. Entire ahoge, hair, relaxed fingers and shoe soles fully inside frame with comfortable margins. Body fills about88% canvas height INCLUDING ahoge. Background PURE WHITE #FFFFFF, no ground shadow, no halo, no horizon, no gradient, no checkerboard.
+No text, labels, rulers, guide lines, extra panels, extra characters, props, watermark, old spiky wolf cut, outward messy hair tails, glasses or clips.
+Full identity lock:
+[Character Identity Lock: Bina (Chen Bina)]
+Name: Bina (Chen Bina)
+Vibe: 19-year-old cute and witty young woman, personal chief secretary meets lively best-friend energy (charming, expressive, intelligent, affectionate, playful teasing smile).
+
+Distinctive Visual Traits (Strictly Follow):
+1. Hair & Hair Color: Soft layered clavicle-length feathered haircut (reaches the collarbones, soft airy inward-curving ends framing the neck and shoulders, airy French wispy bangs, one side neatly tucked behind the ear).
+- Hair Color: Smoky rose-tea greige / dusty ash pink-brown (a refined cool milk-tea brown with subtle 15% soft rosy undertones and luminous pale champagne highlights on inner layers).
+- Signature Hair Feature: A cute, slender, playful curved ahoge (little curl of hair) standing slightly on the crown of her head.
+2. Eyes & Expression: Sparkling honey-amber luminous rounded almond eyes (clear catchlights, warm and lively gaze looking directly at viewer), fair porcelain skin, natural rosy cheeks, sweet glossy lip gloss, with a very charming cute single canine tooth (tiny fang) peeking slightly from the corner of her warm smile.
+3. Signature Accessory: A minimalist modern champagne-gold geometric ear cuff on her exposed left ear. NO glasses on head, NO pixel hairclips.
+4. Body Proportions: 165cm slender elegant anime proportions (~7.3 heads tall, graceful neck, delicate collarbone, long slender legs).
+
+Negative Restrictions: (Stelle from Honkai Star Rail:1.4), (messy gray wolf cut:1.4), dull muddy gray hair, emotionless expression, dead eyes, half-closed seductive bedroom eyes, heavy dark eyeliner, long hair, ponytail, twin tails, thick bulky glasses.

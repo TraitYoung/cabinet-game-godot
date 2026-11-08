@@ -1,0 +1,19 @@
+Use case: identity-preserve, STRICT LOCAL HEAD EDIT.
+Asset type: one full-body front T-pose on white, Bina work outfit.
+REFERENCE ROLES:
+IMAGE1 is the EDIT TARGET and the absolute authoritative ANATOMY / SCALE / BODY / OUTFIT / LINEART base. Keep this exact drawing. IMAGE2 is ONLY the donor reference for head traits (rose-tea hair color, ahoge, eye sparkle, single small canine and left ear cuff). Never use IMAGE2's body, head size, clothing drawing, pose or scale.
+
+CORE REQUEST: Copy IMAGE1 unchanged and perform ONLY a small LOCAL edit within the existing head/hair area. Retain original 1254x1254 square canvas, pixel placement and whole-body framing. No zoom, crop, recentering, rescaling or camera change. Treat the body from original neck/collar downward, and both arms/hands, as LOCKED EXISTING PAINT which must remain untouched.
+The anatomy is NOT to be reinterpreted. Preserve IMAGE1 exact normal skull size, face/head bounding box, chin position, head-to-body ratio, neck, shoulder width, shoulder level, arm length AND thickness, cuff placement, hand/finger size and shape, torso outline, waist height, skirt silhouette/length/slit, hips, thighs, calves, leg spacing/length, ankles and boots. Do not enlarge head, narrow shoulders, make arms thinner, lengthen limbs, move fingertips, raise/lower waist or change pose. Use actual source geometry as the truth; do not "correct" the base toward any numerical head-count estimate. User's 7.3-head description means KEEP THE SOURCE SCALE, not stretch the source.
+
+HEAD-ONLY permitted edits:
+- Keep IMAGE1 exact clavicle-length hair outline, volume and strand silhouette; recolor it from gray/tea-brown to IMAGE2's refined smoky rose-tea greige / dusty ash pink-brown, with subtle soft rosy undertone and pale champagne highlights on inner layers. Hair stays the same size and length and does not overlap additional body area.
+- Add ONE cute SLENDER playfully curved ahoge just above original skull crown. Fit it in the existing white top margin (original crown about y25, so a delicate small curl around y5..25); do not shift the head/body down or shrink body to accommodate a large ahoge.
+- Retain original face outline, head size, eye positions, and chin position. Update eyes to clear bright luminous rounded honey-amber eyes with crisp catchlights and a lively gaze. Preserve youthful adult19 face.
+- Give a warm cute slightly asymmetric playful smile showing exactly ONE TINY canine at the viewer-RIGHT corner. Rest of lips closed, no second fang or white tooth at viewerLEFT.
+- Minimal champagne-gold geometric ear cuff on HER anatomical LEFT ear, viewerRIGHT; do not put a cuff on right ear.
+Match IMAGE1 original hand-drawn line weight and restrained shading in the edited head. Do not import IMAGE2's more heavily rosy lighting onto skin, blouse or body.
+
+LOCKED COSTUME: source cropped dark charcoal-mocha blazer, exact rolled cuffs/sleeves, ivory blouse, striped necktie, high-waist slit skirt with front double gold chain, sheer stockings, slim gold left wristwatch and ankle boots; all source seams, folds, colors, textures and boundaries remain in place.
+OUTPUT: single centered full-body FRONT T-pose exactly as IMAGE1, horizontal straight arms, complete fingertips, hair/ahoge and soles. Solid PURE WHITE #FFFFFF background, no floor shadow, no text, no labels, no grid, no inset, no other figures or props. Background may be made pure white without touching body pixels.
+Strict success condition: this is the original IMAGE1 body with an updated small head region. Any anatomical redesign, head enlargement, shoulder narrowing, arm thinning, length change or outfit change is a failure.

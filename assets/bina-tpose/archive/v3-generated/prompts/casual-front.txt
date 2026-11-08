@@ -1,0 +1,22 @@
+Use case: identity-preserve.
+Asset type: Bina V3 CASUAL FRONT T-pose, single full-body view.
+Input1 NEW casual standing MASTER is authoritative for identity, exact head/body proportion (~7.3heads), body anatomy, hair, outfit and palette. Input2 NEW casual concept is supporting face/hair detail. Preserve the updated identity; change ONLY the pose from standing arms-down to strict frontal T-pose.
+Head and torso upright facing directly forward, eyes toward viewer, no tilt or twist. BOTH arms fully stretched horizontally sideways at shoulder height, elbows and wrists straight, palms DOWN, relaxed extended correct five fingers. Hands aligned with arms. Legs straight, equal weight, feet parallel forward about hip-width apart, no contrapposto.
+Preserve exact head-to-body ratio from master, slender165cm adult19 figure approx7.3heads excluding ahoge, delicate collarbones, graceful neck and long slim legs. NO head enlargement or shortened legs.
+Identity LOCK: dusty rose-tea greige/ash pink-brown soft feathered clavicle hair with gentle INWARD-curving ends hugging neck and shoulders, subtle15% rosy undertone and pale champagne inner highlights, French wispy bangs, LEFT hair tucked behind exposed LEFT ear on viewerRIGHT. One slim curved crown ahoge; one small geometric champagne-gold cuff on LEFT ear only. Luminous open rounded almond honey-amber eyes, fair porcelain skin, natural rosy cheeks, glossy lip and cheeky sweet almost-closed smile with exactly ONE tiny upper canine at viewerRIGHT corner. ViewerLEFT lips closed with zero white tooth. No two fangs or teeth row.
+Same casual outfit: oatmeal cream fine-rib long-sleeve fitted knit, broad asymmetric folded neckline exposing HER RIGHT shoulder/viewerLEFT and thin mocha strap; HER LEFT shoulder/viewerRIGHT covered. Charcoal high-waist tailored shorts, narrow taupe/gold buckle belt, bare legs and cream loafers. Redraw shoulder/underarm ribbed fabric correctly for T pose without changing design, lengths or colors.
+Match refined soft anime rendering with clean delicate lines and neutral soft even lighting. Square canvas preferably1536x1536 or larger, whole ahoge through both soles, every fingertip included, comfortable margins all around. Character occupies about90% canvas height, full span fits.
+Pure white #FFFFFF background, no ground shadow, gradient, horizon, grid, labels, text, inset, extra view/figure, watermark or props. Strict frontal orthographic impression, no perspective. No spiky wolfcut, glasses or clips.
+[Character Identity Lock: Bina (Chen Bina)]
+Name: Bina (Chen Bina)
+Vibe: 19-year-old cute and witty young woman, personal chief secretary meets lively best-friend energy (charming, expressive, intelligent, affectionate, playful teasing smile).
+
+Distinctive Visual Traits (Strictly Follow):
+1. Hair & Hair Color: Soft layered clavicle-length feathered haircut (reaches the collarbones, soft airy inward-curving ends framing the neck and shoulders, airy French wispy bangs, one side neatly tucked behind the ear).
+- Hair Color: Smoky rose-tea greige / dusty ash pink-brown (a refined cool milk-tea brown with subtle 15% soft rosy undertones and luminous pale champagne highlights on inner layers).
+- Signature Hair Feature: A cute, slender, playful curved ahoge (little curl of hair) standing slightly on the crown of her head.
+2. Eyes & Expression: Sparkling honey-amber luminous rounded almond eyes (clear catchlights, warm and lively gaze looking directly at viewer), fair porcelain skin, natural rosy cheeks, sweet glossy lip gloss, with a very charming cute single canine tooth (tiny fang) peeking slightly from the corner of her warm smile.
+3. Signature Accessory: A minimalist modern champagne-gold geometric ear cuff on her exposed left ear. NO glasses on head, NO pixel hairclips.
+4. Body Proportions: 165cm slender elegant anime proportions (~7.3 heads tall, graceful neck, delicate collarbone, long slender legs).
+
+Negative Restrictions: (Stelle from Honkai Star Rail:1.4), (messy gray wolf cut:1.4), dull muddy gray hair, emotionless expression, dead eyes, half-closed seductive bedroom eyes, heavy dark eyeliner, long hair, ponytail, twin tails, thick bulky glasses.

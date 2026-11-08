@@ -1,0 +1,387 @@
+{
+  "schema_version": 1,
+  "character": "Bina",
+  "visual_version": "scheme-a-v2",
+  "generated_date": "2026-11-08",
+  "timezone": "Asia/Shanghai",
+  "generator": "built-in image_gen",
+  "transparent_background": false,
+  "status": "archived_historical_reference",
+  "source_images": [
+    {
+      "path": "docs/media/archive/v2-approved-sources/bina-casual-standing.jpg",
+      "sha256": "ce7322cb50a4b1646b89dc0d85b6e66229e3e1e48d8709f6f4128cd8e1638043",
+      "bytes": 219437,
+      "width": 1264,
+      "height": 848,
+      "mode": "RGB",
+      "corner_rgb": [
+        [
+          251,
+          251,
+          251
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          252,
+          252,
+          252
+        ]
+      ]
+    },
+    {
+      "path": "docs/media/archive/v2-approved-sources/bina-casual.jpeg",
+      "sha256": "95c0caf45ffa6d9f147b645e91181726c577d4eb15c7fb311d15ee4f7806ef97",
+      "bytes": 567095,
+      "width": 1376,
+      "height": 768,
+      "mode": "RGB",
+      "corner_rgb": [
+        [
+          245,
+          229,
+          203
+        ],
+        [
+          247,
+          231,
+          206
+        ],
+        [
+          247,
+          231,
+          206
+        ],
+        [
+          245,
+          228,
+          202
+        ]
+      ]
+    },
+    {
+      "path": "docs/media/archive/v2-approved-sources/bina-work-standing.jpg",
+      "sha256": "131cb225ca93f187ada9468aa4ab467810e5f99de8e9e8bc90854c1232052e7d",
+      "bytes": 82496,
+      "width": 1152,
+      "height": 864,
+      "mode": "RGB",
+      "corner_rgb": [
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          255,
+          255,
+          255
+        ]
+      ]
+    },
+    {
+      "path": "docs/media/archive/v2-approved-sources/bina-work.jpeg",
+      "sha256": "0c722b6aa024f6f4fcfecce8b95b7a1fd89e92811e9a18c2c8499e3d5faff5f9",
+      "bytes": 649666,
+      "width": 1376,
+      "height": 768,
+      "mode": "RGB",
+      "corner_rgb": [
+        [
+          247,
+          227,
+          200
+        ],
+        [
+          248,
+          230,
+          206
+        ],
+        [
+          244,
+          228,
+          202
+        ],
+        [
+          238,
+          222,
+          196
+        ]
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-front.png",
+      "sha256": "d52dfe7e85d60ef3a957ff49b6361d1e272cce087c263943c0444d466f16be1a",
+      "bytes": 1211009,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "corner_rgb": [
+        [
+          253,
+          255,
+          254
+        ],
+        [
+          254,
+          255,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "outfit": "casual",
+      "view": "front",
+      "reference_images_in_order": [
+        "docs/media/archive/v2-approved-sources/bina-casual-standing.jpg",
+        "docs/media/archive/v2-approved-sources/bina-casual.jpeg"
+      ],
+      "prompt_file": "assets/bina-tpose/archive/v2/prompts/casual-front.txt",
+      "prompt_sha256": "1c3fda4dccb109499030326fa372fd0128b660b10081c1ecb71317492b8e639a"
+    },
+    {
+      "path": "assets/bina-tpose/archive/v2/work/bina-work-tpose-front.png",
+      "sha256": "4a1cab65fb10b8b6627214c128fc2a19a704deb8edd5d8ffa2876c8cec89ee10",
+      "bytes": 1202476,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "corner_rgb": [
+        [
+          254,
+          255,
+          255
+        ],
+        [
+          254,
+          255,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "outfit": "work",
+      "view": "front",
+      "reference_images_in_order": [
+        "docs/media/archive/v2-approved-sources/bina-work-standing.jpg",
+        "docs/media/archive/v2-approved-sources/bina-work.jpeg",
+        "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-front.png"
+      ],
+      "prompt_file": "assets/bina-tpose/archive/v2/prompts/work-front.txt",
+      "prompt_sha256": "da4a213c921599d5b819f52591fa20e127d11e64d50bc1aa95ab0b3dad6e6b73"
+    },
+    {
+      "path": "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-back.png",
+      "sha256": "6d56a62b4e0796e7178d718f3e7d7f3c646cfbd781ddff0f3f9fb7c4e8d21b00",
+      "bytes": 1171934,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "corner_rgb": [
+        [
+          253,
+          255,
+          254
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "outfit": "casual",
+      "view": "back",
+      "reference_images_in_order": [
+        "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-front.png",
+        "docs/media/archive/v2-approved-sources/bina-casual-standing.jpg",
+        "docs/media/archive/v2-approved-sources/bina-casual.jpeg"
+      ],
+      "prompt_file": "assets/bina-tpose/archive/v2/prompts/casual-back.txt",
+      "prompt_sha256": "f6d040ea795667117a40877c98d938c266699795563c0576062511fb20330b54"
+    },
+    {
+      "path": "assets/bina-tpose/archive/v2/work/bina-work-tpose-back.png",
+      "sha256": "2de4a0a91c66c202148e7a4d6c24660ea7519873d1b1b09a734a009c7a39472a",
+      "bytes": 1186511,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "corner_rgb": [
+        [
+          254,
+          255,
+          254
+        ],
+        [
+          254,
+          255,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "outfit": "work",
+      "view": "back",
+      "reference_images_in_order": [
+        "assets/bina-tpose/archive/v2/work/bina-work-tpose-front.png",
+        "docs/media/archive/v2-approved-sources/bina-work-standing.jpg",
+        "docs/media/archive/v2-approved-sources/bina-work.jpeg",
+        "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-back.png"
+      ],
+      "prompt_file": "assets/bina-tpose/archive/v2/prompts/work-back.txt",
+      "prompt_sha256": "128e0b71d7ee5ab595550c2f3f64fda446d9954e2899c8493eda6e1d2f8f6b9e"
+    },
+    {
+      "path": "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-side.png",
+      "sha256": "d1946ca174d10c5cb8e6f8336a4be3e934d80b2282349cafb63b06f8f6b4ef6f",
+      "bytes": 1092200,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "corner_rgb": [
+        [
+          253,
+          253,
+          253
+        ],
+        [
+          255,
+          255,
+          255
+        ],
+        [
+          254,
+          253,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "outfit": "casual",
+      "view": "side",
+      "reference_images_in_order": [
+        "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-front.png",
+        "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-back.png",
+        "docs/media/archive/v2-approved-sources/bina-casual-standing.jpg",
+        "docs/media/archive/v2-approved-sources/bina-casual.jpeg"
+      ],
+      "prompt_file": "assets/bina-tpose/archive/v2/prompts/casual-side.txt",
+      "prompt_sha256": "caa263dbcc0222bf457fb89f1b3d639709dc470d854fb765cafdf4e083f41012"
+    },
+    {
+      "path": "assets/bina-tpose/archive/v2/work/bina-work-tpose-side.png",
+      "sha256": "f77186cc22cac92740e113668b7c8d68393b05b531edab5ceef71381164b9bb0",
+      "bytes": 1090728,
+      "width": 1254,
+      "height": 1254,
+      "mode": "RGB",
+      "corner_rgb": [
+        [
+          253,
+          255,
+          255
+        ],
+        [
+          254,
+          255,
+          255
+        ],
+        [
+          254,
+          254,
+          254
+        ],
+        [
+          254,
+          254,
+          254
+        ]
+      ],
+      "outfit": "work",
+      "view": "side",
+      "reference_images_in_order": [
+        "assets/bina-tpose/archive/v2/work/bina-work-tpose-front.png",
+        "assets/bina-tpose/archive/v2/work/bina-work-tpose-back.png",
+        "docs/media/archive/v2-approved-sources/bina-work-standing.jpg",
+        "docs/media/archive/v2-approved-sources/bina-work.jpeg",
+        "assets/bina-tpose/archive/v2/casual/bina-casual-tpose-side.png"
+      ],
+      "prompt_file": "assets/bina-tpose/archive/v2/prompts/work-side.txt",
+      "prompt_sha256": "60a2270046a6a54223ff9b6dd217ac17dfe2fdedba44f6f02d1143b433ab76e3"
+    }
+  ],
+  "notes": [
+    "All paths are relative to repository root.",
+    "Generated outputs copied unchanged into repository; no image post-processing.",
+    "One figure and one view per image; both side views face image right.",
+    "Source-hidden rear garment details are generated continuations, not separately approved designs.",
+    "No anatomical landmarks measured. Existing v0 coordinates and measurements do not apply.",
+    "Independent views are illustrative references, not certified orthographic or pixel-registered engineering drawings."
+  ],
+  "generation_status": "generated_reference_pending_user_review",
+  "archive": {
+    "date": "2026-11-08",
+    "timezone": "Asia/Shanghai",
+    "reason": "superseded_by_approved_six_view_design",
+    "selected_reference_manifest": "assets/bina-tpose/v3/anatomy-locked/turnaround/manifest.json",
+    "migration_record": "docs/media/archive/2026-11-08-design-archive.json"
+  }
+}

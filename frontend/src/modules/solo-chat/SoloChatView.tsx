@@ -371,7 +371,7 @@ export function SoloChatView() {
             </div>
             <div className="bina-room-caption" aria-hidden="true"><span>Stay a little.</span><p>片刻相伴，慢慢说。</p></div>
             <div className={`bina-portrait ${isWorkAvatar ? "bina-portrait--work" : ""} ${avatarModelUrl && avatarStatus?.phase === "ready" ? "bina-portrait--hidden" : ""}`} style={{ transform: `translateX(-50%) scale(${scale / 100})` }}>
-              <Image src={isWorkAvatar ? "/bina/work.png" : "/bina/casual.jpeg"} alt={isWorkAvatar ? "Bina，穿着灰色短夹克、领带和橙色织带工装裤自然站立" : "Bina，浅灰紫短发、琥珀色眼睛，穿着灰色针织外套向你挥手"} fill sizes="(max-width: 700px) 70vw, 35vw" priority />
+              <Image src={isWorkAvatar ? "/bina/work.png" : "/bina/casual.jpeg"} alt={isWorkAvatar ? "Bina，冷茶棕锁骨发与琥珀金瞳，穿着深炭摩卡短款西装、条纹窄领带与高腰开衩短裙自然站立" : "Bina，冷茶棕锁骨发与清澈琥珀金瞳，穿着燕麦奶白微露肩针织衫与高腰短裤微笑站立"} fill sizes="(max-width: 700px) 70vw, 35vw" priority />
             </div>
             {avatarModelUrl ? <div className="bina-avatar-stage" style={{ transform: `scale(${scale / 100})`, visibility: avatarStatus?.phase === "ready" ? "visible" : "hidden" }}>
               <Live2DAvatar key={`${avatarModelUrl}-${avatarReload}`} modelUrl={avatarModelUrl} controlsRef={avatarRef} onStatus={setAvatarStatus} />

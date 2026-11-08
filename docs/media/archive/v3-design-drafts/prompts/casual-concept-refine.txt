@@ -1,0 +1,21 @@
+Use case: identity-preserve.
+Edit the supplied candidate concept sheet to correct THREE specific identity issues in EVERY panel. Keep the beautiful dusty rose-tea milk-brown palette, delicate anime rendering, cute warm adult face, outfits and three-panel layout.
+1) HAIR SHAPE: replace the outward spiky wolf-cut tails with SOFT FEATHERED CLAVICLE-LENGTH hair. Ends reach collarbones and curve gently INWARD to hug neck/shoulders in a rounded soft C shape. Layered and airy, but NOT outward splayed or shaggy wolf-cut spikes. Preserve the pale champagne inner highlights, airy French bangs and exactly one slender curved ahoge.
+2) ANATOMICAL LEFT EAR ONLY: the previous portrait wrongly shows cuff on the RIGHT ear. Repose the CENTER portrait to a nearly FRONTAL upright face, both eyes level, HER LEFT ear visible on IMAGE RIGHT, LEFT hair tucked behind that ear. Hide HER RIGHT ear behind hair on IMAGE LEFT. Put exactly ONE modern SMALL GEOMETRIC champagne-gold ear CUFF (a single minimal angular cuff, no pair of gold rings) on that LEFT ear on IMAGE RIGHT. Her left hand may lightly support her cheek on image right below the ear but must not cover the cuff. Apply same ear side to the full-body frontal panel. Change the rightmost profile to FACE IMAGE LEFT (nose points left), showing her LEFT ear with same SINGLE geometric cuff. Do not just keep its old right-facing profile.
+3) ONE TINY CANINE: the previous center smile has two sharp fangs. Remove the second one entirely. Keep a warm playful slightly open glossy smile with EXACTLY ONE small pointed upper canine peeking at only ONE corner (image RIGHT corner in front view); rest of teeth if visible form smooth unbroken edge without a second point. One fang total, very small, cute not vampire.
+Do not alter her casual costume: oatmeal fine-rib off-HER-RIGHT-shoulder folded knit with mocha right strap; charcoal high-waist tailored shorts, slim belt, bare legs, cream loafers. Keep soft rosy cheeks, bright luminous rounded almond honey-amber eyes, youthful 19yo expression, subtle lip gloss. Full-body adult slim approx7.3 heads tall.
+Wide landscape three-panel concept sheet: LEFT full-body arms-down standing figure; CENTER large nearly frontal face/upper-body portrait showing LEFT ear on IMAGE RIGHT and SINGLE tiny canine; RIGHT smaller LEFT-FACING profile with LEFT ear and cuff visible. Same woman and same haircut in all panels. Warm cream plain background. No text or labels. No accessories on right ear, no additional earrings, no fluffy outward hair spikes, no wolf cut, no two fangs, no head glasses, no saturated pink hair.
+This updated identity lock is the highest priority:
+[Character Identity Lock: Bina (Chen Bina)]
+Name: Bina (Chen Bina)
+Vibe: 19-year-old cute and witty young woman, personal chief secretary meets lively best-friend energy (charming, expressive, intelligent, affectionate, playful teasing smile).
+
+Distinctive Visual Traits (Strictly Follow):
+1. Hair & Hair Color: Soft layered clavicle-length feathered haircut (reaches the collarbones, soft airy inward-curving ends framing the neck and shoulders, airy French wispy bangs, one side neatly tucked behind the ear).
+- Hair Color: Smoky rose-tea greige / dusty ash pink-brown (a refined cool milk-tea brown with subtle 15% soft rosy undertones and luminous pale champagne highlights on inner layers).
+- Signature Hair Feature: A cute, slender, playful curved ahoge (little curl of hair) standing slightly on the crown of her head.
+2. Eyes & Expression: Sparkling honey-amber luminous rounded almond eyes (clear catchlights, warm and lively gaze looking directly at viewer), fair porcelain skin, natural rosy cheeks, sweet glossy lip gloss, with a very charming cute single canine tooth (tiny fang) peeking slightly from the corner of her warm smile.
+3. Signature Accessory: A minimalist modern champagne-gold geometric ear cuff on her exposed left ear. NO glasses on head, NO pixel hairclips.
+4. Body Proportions: 165cm slender elegant anime proportions (~7.3 heads tall, graceful neck, delicate collarbone, long slender legs).
+
+Negative Restrictions: (Stelle from Honkai Star Rail:1.4), (messy gray wolf cut:1.4), dull muddy gray hair, emotionless expression, dead eyes, half-closed seductive bedroom eyes, heavy dark eyeliner, long hair, ponytail, twin tails, thick bulky glasses.

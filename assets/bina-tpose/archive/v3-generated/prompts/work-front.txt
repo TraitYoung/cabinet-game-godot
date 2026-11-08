@@ -1,0 +1,20 @@
+Use case: identity-preserve.
+Asset type: Bina V3 WORK FRONT T-pose reference, single full-body figure.
+Input1 NEW WORK standing master fixes exact updated identity, anatomy and work clothing. Input2 NEW WORK concept gives detail. Input3 NEW CASUAL FRONT T-pose fixes same pose, scale, body proportions and square framing. Final wears WORK outfit only.
+Draw identical woman in strict front orthographic T-pose, both arms fully stretched horizontally at shoulder height, elbows/wrists straight, palms down with correct5 fingers. Head and torso upright frontal, both eyes looking at viewer. Straight legs, equal weight, feet parallel about hip-width apart, no tilt/twist/contrapposto. Match input3 exact body/head size, approx7.3 heads not counting ahoge, slender165cm adult19.
+Preserve new soft feathered CLAVICLE hair with INWARD C-curving ends, airy French bangs, dusty rose-tea greige/ash pink-brown subtle15% rosy tone/pale champagne inner highlights. LEFT side tucked exposing LEFT ear on viewerRIGHT with ONE minimalist geometric gold cuff. Exactly ONE slender curved crown ahoge. Luminous clear rounded almond honey-amber eyes with open lids, fair skin and rosy cheeks. Glossy near-closed playful smile with ONE tiny canine only at viewerRIGHT corner; rest of mouth closed, no white point at other corner.
+Work outfit from master: fitted cropped charcoal-mocha blazer with notched lapels, pushed-up sleeves/cuffs ending mid forearm, ivory collared blouse and narrow mocha diagonal-striped tie; high-waist fitted charcoal pencil skirt, same above-knee hem, slit at HER LEFT FRONT thigh/viewerRIGHT; fine double gold chain draped across FRONT waist, hanging tail at HER LEFT hip/viewerRIGHT; sheer black tights, black pointed-toe ankle boots with slender heels, slim gold watch on HER LEFT wrist/viewerRIGHT. Preserve colors and lengths, redraw sleeves/shoulders for horizontal arms.
+Same refined anime style, delicate linework and soft even light; no scene tint. Square canvas matching input3 scale and framing, entire ahoge, all fingertips and soles inside white margins. PURE WHITE #FFFFFF, no floor shadow, horizon, gradient, text, labels, grid, inset, extra figure, watermark, props, old wolfcut, glasses or clips.
+[Character Identity Lock: Bina (Chen Bina)]
+Name: Bina (Chen Bina)
+Vibe: 19-year-old cute and witty young woman, personal chief secretary meets lively best-friend energy (charming, expressive, intelligent, affectionate, playful teasing smile).
+
+Distinctive Visual Traits (Strictly Follow):
+1. Hair & Hair Color: Soft layered clavicle-length feathered haircut (reaches the collarbones, soft airy inward-curving ends framing the neck and shoulders, airy French wispy bangs, one side neatly tucked behind the ear).
+- Hair Color: Smoky rose-tea greige / dusty ash pink-brown (a refined cool milk-tea brown with subtle 15% soft rosy undertones and luminous pale champagne highlights on inner layers).
+- Signature Hair Feature: A cute, slender, playful curved ahoge (little curl of hair) standing slightly on the crown of her head.
+2. Eyes & Expression: Sparkling honey-amber luminous rounded almond eyes (clear catchlights, warm and lively gaze looking directly at viewer), fair porcelain skin, natural rosy cheeks, sweet glossy lip gloss, with a very charming cute single canine tooth (tiny fang) peeking slightly from the corner of her warm smile.
+3. Signature Accessory: A minimalist modern champagne-gold geometric ear cuff on her exposed left ear. NO glasses on head, NO pixel hairclips.
+4. Body Proportions: 165cm slender elegant anime proportions (~7.3 heads tall, graceful neck, delicate collarbone, long slender legs).
+
+Negative Restrictions: (Stelle from Honkai Star Rail:1.4), (messy gray wolf cut:1.4), dull muddy gray hair, emotionless expression, dead eyes, half-closed seductive bedroom eyes, heavy dark eyeliner, long hair, ponytail, twin tails, thick bulky glasses.

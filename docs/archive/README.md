@@ -14,6 +14,7 @@
 | [BIOS V17](bios/Axiodrasil_BIOS_V17.0.md) | 历史全局设定 |
 | [BIOS V16](bios/Axiodrasil_BIOS_V16.0.md) | 更早的全局设定 |
 | [BIOS V4 备考版](bios/Axiodrasil_BIOS_V4.0.15（备考）.md) | 早期阶段设定 |
+| [视觉旧稿与重塑废稿归档](../media/archive/README.md) | 早期白发挑染版设定图、旧 T-pose 副本及本轮重塑未采用的候选/废稿 |
 
 BIOS 导出 PDF 位于 `bios/pdf/`。`scripts/md_to_pdf.py` 已使用归档路径。其他人物完整设定仍保存在固定的 [characters/](../characters/README.md) 中。
 

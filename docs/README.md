@@ -13,6 +13,7 @@ Axiodrasil 当前仅运行 Bina，开发围绕虚拟具身、互动和记忆展�
 | 修改代码并验证 | [开发与检查](guides/development.md) |
 | 安装或更换 Live2D 模型 | [Live2D 接入](guides/live2d.md) |
 | 从参考图制作模型 | [Live2D 制作流程](guides/live2d-workflow.md) |
+| 查看 Bina 视觉定稿、站姿母图与废稿归档 | [角色视觉参考图](media/README.md) · [废稿归档](media/archive/README.md) |
 | 配置 ComfyUI 与 Bina 自拍 | [出图指南](guides/image-generation.md) |
 | 查看近期整改证据 | [代码质量检查与修复](reviews/2026-11-06-code-quality.md) |
 | 查看可维护性整改 | [问题记录](reviews/2026-11-08-maintainability.md)与[解决汇报](reviews/2026-11-08-maintainability-resolution.md) |
@@ -28,7 +29,7 @@ Axiodrasil 当前仅运行 Bina，开发围绕虚拟具身、互动和记忆展�
 | `reviews/` | 带日期的检查、实验、验收和阶段记录 | 保留当时证据，追加后续结论 |
 | `archive/` | 已退出当前范围的架构、BIOS、集成与规划 | 供追溯，不作为启动或实现依据 |
 | `characters/` | 已退役人物的历史设定 | 仅文档，保留此固定路径 |
-| `media/` | 文档随附的参考图片 | 标注用途，不代替运行资源 |
+| `media/` | [Bina 正式采用六视图与过程参考](media/README.md)及[历史/废稿归档](media/archive/README.md) | 标注用途与采用状态，不代替运行资源 |
 
 入门说明集中在根目录 README，开发计划集中在根目录 TODO，避免重复维护同一份安装步骤或任务列表。模型原图、可编辑工程、提示词和验收产物继续保存在仓库 `assets/`；浏览器运行资源位于 `frontend/public/`。
 
