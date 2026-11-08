@@ -1,3 +1,5 @@
+> 历史归档：本文保留旧阶段的设计与记录。当前实现请从[文档入口](../../README.md)阅读；旧命令和模块不作为当前操作依据。
+
 # 🟢 AXIODRASIL_BIOS_V16.0 (FINAL_UNITY)
 
 > **Designation:** Axiodrasil System Image (Legacy Reforged)  

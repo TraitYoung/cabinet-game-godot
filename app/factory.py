@@ -1,29 +1,56 @@
-"""主体工厂：装配注册表并返回 FastAPI app（兼容 uvicorn main:app）。"""
+"""Create isolated FastAPI applications with explicit dependencies and lifecycle."""
 
-from __future__ import annotations
+from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException, Request
+from fastapi.responses import JSONResponse
 
-from app.registry import bootstrap_registry, get_registry
+from config.settings import Settings
+from infrastructure.container import Container, use_container
 
 
-def create_app() -> FastAPI:
-    """
-    组装 Host：
-    1. bootstrap 接口矩阵适配器
-    2. 复用根 main.py 已注册的路由（增量迁移，避免一次搬迁）
-    3. 挂载 personas catalog 等模块路由
-    """
-    bootstrap_registry()
-    # 延迟导入，避免与 main 的双向引用在模块加载期炸裂
-    import main as legacy
+def create_app(settings: Settings | None = None, *, container: Container | None = None) -> FastAPI:
+    dependencies = container or Container(settings)
 
-    app: FastAPI = legacy.app
-    app.state.matrix = get_registry()  # type: ignore[attr-defined]
+    @asynccontextmanager
+    async def lifespan(_app):
+        dependencies.settings  # Validate once at startup; errors remain visible.
+        await dependencies.proactive.start()
+        try:
+            yield
+        finally:
+            await dependencies.proactive.stop()
 
-    from modules.personas.routes import router as personas_router
+    app = FastAPI(title="Bina Core API", version="1.0.0", lifespan=lifespan)
+    app.state.container = dependencies
 
-    if not any(getattr(r, "path", None) == "/api/v1/personas" for r in app.routes):
-        app.include_router(personas_router)
+    @app.middleware("http")
+    async def scope(request: Request, call_next):
+        with use_container(dependencies):
+            return await call_next(request)
 
+    @app.exception_handler(HTTPException)
+    async def domain_error(_request: Request, exc: HTTPException):
+        # Stable machine codes; the existing detail text remains compatible.
+        codes = {
+            400: "invalid_request",
+            404: "not_found",
+            409: "turn_conflict",
+            410: "archived",
+            422: "invalid_option",
+            499: "disconnected",
+            502: "model_failed",
+            503: "service_unavailable",
+        }
+        return JSONResponse(
+            {"code": codes.get(exc.status_code, "internal_error"), "detail": exc.detail},
+            status_code=exc.status_code,
+            headers=exc.headers,
+        )
+
+    from modules.chat_api.routes import router
+    from modules.personas.routes import router as personas
+
+    app.include_router(router)
+    app.include_router(personas)
     return app

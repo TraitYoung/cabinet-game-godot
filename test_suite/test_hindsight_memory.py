@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import os
+import tempfile
+from pathlib import Path
+from storage.chat_history import ChatHistory
 import unittest
 from types import SimpleNamespace
 from unittest.mock import MagicMock, patch
@@ -10,6 +13,9 @@ from unittest.mock import MagicMock, patch
 from fastapi.testclient import TestClient
 
 import main
+from app.factory import create_app
+from config.settings import Settings
+from infrastructure.container import Container, use_container
 import agents.router as router
 import modules.chat_api.service as service
 from memory.hindsight import HindsightMemory, resolve_memory_thread_id
@@ -18,7 +24,7 @@ from agents.solo_fast import synthesize_solo_bina_intent
 
 class HindsightAdapterTests(unittest.TestCase):
     def test_stable_identity_and_distinct_user_banks(self):
-        with patch.dict(os.environ, {"AX_MEMORY_USER_ID": "local-test"}):
+        with use_container(Container(Settings(memory_user_id="local-test"))):
             self.assertEqual(resolve_memory_thread_id(None), "local-test")
             self.assertEqual(resolve_memory_thread_id("  user-a  "), "user-a")
             memory = HindsightMemory()
@@ -48,6 +54,7 @@ class HindsightAdapterTests(unittest.TestCase):
             memory.retain_turn("same-user", "conversation-2", "我已搬家", "记住了", document_id="turn-2")
         args = client.retain.call_args.kwargs
         self.assertFalse(args["retain_async"])
+        self.assertEqual(args["update_mode"], "replace")
         self.assertEqual(args["document_id"], "turn-2")
         self.assertEqual(args["metadata"]["conversation_id"], "conversation-2")
         self.assertIn("用户 (", args["content"])
@@ -68,6 +75,10 @@ class HindsightAdapterTests(unittest.TestCase):
 
 class ChatEntryPointTests(unittest.TestCase):
     def setUp(self):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        db_path = str(Path(directory.name) / "chat.db")
+        raw_history = ChatHistory(db_path)
         self.memory = MagicMock()
         self.memory.recall.return_value = "【Hindsight 长期记忆】用户住杭州。"
         self.states = []
@@ -80,9 +91,10 @@ class ChatEntryPointTests(unittest.TestCase):
                     "active_task_type": "emotion", "active_persona": "bina"}, []
 
         self.memory.retain_turn.side_effect = lambda *a, **kw: self.events.append("retain")
-        self.history = MagicMock()
+        self.history = MagicMock(wraps=raw_history)
         self.history.format_for_prompt.return_value = []
         patches = [
+            patch.object(service, "get_db_path", return_value=db_path),
             patch.object(service, "get_hindsight_memory", return_value=self.memory),
             patch.object(service, "get_chat_history", return_value=self.history),
             patch.object(service, "run_router_traced", side_effect=graph),
@@ -91,7 +103,10 @@ class ChatEntryPointTests(unittest.TestCase):
         for p in patches:
             p.start()
             self.addCleanup(p.stop)
-        self.client = TestClient(main.app)
+        dependencies = Container(Settings(db_path=db_path, memory_user_id="local-test", proactive_enabled=False))
+        dependencies.history = self.history
+        dependencies.memory = self.memory
+        self.client = TestClient(create_app(container=dependencies))
 
     def test_new_conversations_share_memory_and_wait_for_retain(self):
         for conversation in ("conversation-a", "conversation-b"):
@@ -122,6 +137,21 @@ class ChatEntryPointTests(unittest.TestCase):
         self.assertEqual(self.memory.retain_turn.call_count, 1)
         self.assertEqual(self.memory.recall.call_args.args[0], "browser-user")
 
+    def test_request_retry_uses_one_local_turn_and_one_memory_document(self):
+        payload = {"text": "你好", "request_id": "same-request"}
+        headers = {"x-session-id": "idempotent"}
+        first = self.client.post("/api/v1/chat", json=payload, headers=headers)
+        second = self.client.post("/api/v1/chat", json=payload, headers=headers)
+        self.assertEqual(first.status_code, 200)
+        self.assertEqual(first.json()["reply"], second.json()["reply"])
+        self.assertEqual(first.headers["x-request-id"], "same-request")
+        self.assertEqual(len(self.history.get_turns("idempotent")), 1)
+        self.memory.retain_turn.assert_called_once()
+        status = self.client.get("/api/v1/chat/requests/same-request", headers=headers).json()
+        self.assertEqual(status["status"], "completed")
+        cancel = self.client.post("/api/v1/chat/requests/same-request/cancel", headers=headers).json()
+        self.assertEqual(cancel["status"], "completed")
+
     def test_recall_failure_is_visible(self):
         self.memory.recall.side_effect = ConnectionError("offline")
         response = self.client.post("/api/v1/chat", json={"text": "你好"})
@@ -132,7 +162,7 @@ class ChatEntryPointTests(unittest.TestCase):
         self.memory.retain_turn.side_effect = ConnectionError("offline")
         response = self.client.post("/api/v1/chat", json={"text": "记住我"})
         self.assertEqual(response.status_code, 503)
-        self.assertIn("写入失败", response.json()["detail"])
+        self.assertIn("长期记忆", response.json()["detail"])
 
     def test_stream_failure_emits_error_without_done(self):
         self.memory.retain_turn.side_effect = ConnectionError("offline")

@@ -36,19 +36,22 @@ services:
     working_dir: /app
     volumes:
       - ./:/app
+      - api-data:/var/lib/axiodrasil
     env_file:
       - .env
     environment:
       AX_HINDSIGHT_URL: http://hindsight:8888
+      AX_DB_PATH: /var/lib/axiodrasil/axiodrasil_core.db
     command: >
       sh -c "pip install --no-cache-dir -r requirements.txt &&
              uvicorn main:app --host 0.0.0.0 --port 8000 --reload"
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
     depends_on:
       hindsight:
         condition: service_healthy
 
 volumes:
+  api-data:
   hindsight-data:
   hindsight-models:

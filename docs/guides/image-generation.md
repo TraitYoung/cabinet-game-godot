@@ -4,7 +4,7 @@
 
 ## 视觉真相源（SSOT）
 
-**唯一外貌真相源：** [`config/persona_visual/bina.json`](../config/persona_visual/bina.json)
+**唯一外貌真相源：** [`config/persona_visual/bina.json`](../../config/persona_visual/bina.json)
 
 | 字段 | 职责 |
 |------|------|
@@ -21,7 +21,7 @@
 
 ## 定妆配置
 
-编辑 [`config/persona_visual/bina.json`](../config/persona_visual/bina.json)：
+编辑 [`config/persona_visual/bina.json`](../../config/persona_visual/bina.json)：
 
 | 字段 | 含义 |
 |------|------|

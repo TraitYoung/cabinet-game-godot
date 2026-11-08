@@ -45,8 +45,8 @@ def md_to_pdf(md_path: Path, pdf_path: Path) -> None:
 
 def main() -> None:
     project_root = Path(__file__).resolve().parent.parent
-    docs_dir = project_root / "docs"
-    out_dir = project_root / "docs" / "pdf"
+    docs_dir = project_root / "docs" / "archive" / "bios"
+    out_dir = docs_dir / "pdf"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     md_v17 = docs_dir / "Axiodrasil_BIOS_V17.0.md"

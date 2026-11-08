@@ -38,6 +38,7 @@ export type ChatStreamMeta = {
 };
 
 export type StreamChatInput = {
+  requestId?: string;
   model?: string;
   reasoningEffort?: ReasoningEffort;
   text: string;
@@ -75,3 +76,5 @@ export type ChatOptions = {
   models: string[];
   reasoning_levels: ReasoningEffort[];
 };
+
+export type RequestStatus = "generating" | "cancelled" | "failed" | "committing" | "completed";

@@ -1,4 +1,8 @@
-"""模块注册表：主体通过矩阵绑定各功能模块实现。"""
+"""Legacy adapter registry for external callers. The application factory does not use it.
+
+Current runtime dependencies live in infrastructure.container.Container. Keep this
+small compatibility surface while scripts using the original ports migrate.
+"""
 
 from __future__ import annotations
 

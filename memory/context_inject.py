@@ -8,7 +8,8 @@ def compose_user_message(
     long_term_context: str = "",
 ) -> str:
     parts = [long_term_context.strip()]
-    history = "\n".join(line[:1200] for line in (recent_history or [])[-5:])[-4000:]
+    # ChatHistory.format_for_prompt budgets each speaker before joining the turn.
+    history = "\n".join((recent_history or [])[-5:])
     if history:
         parts.append("【最近对话】\n" + history)
     parts.append(base_user_status.strip())

@@ -2,7 +2,7 @@
 
 项目：[TraitYoung/alive-bina](https://github.com/TraitYoung/alive-bina)。原生工具：[PSD2Live 3.6.7](https://github.com/tsunehimatoi/psd2live/releases/tag/v3.6.7)。以工作区 `README.md`、`TODO.md`、`AGENTS.md` 和当前工具参数为准；Bina 是唯一运行人物。
 
-路径相对用户提供的仓库根目录，不硬编码本机用户名。完整实际制作记录在仓库 `docs/Bina_Live2D_Workflow.md`。
+路径相对用户提供的仓库根目录，不硬编码本机用户名。完整实际制作记录在仓库 `docs/guides/live2d-workflow.md`。
 
 | 阶段 | 依据 |
 | --- | --- |

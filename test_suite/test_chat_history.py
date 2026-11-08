@@ -23,12 +23,12 @@ class ChatHistoryTests(unittest.TestCase):
             self.assertEqual([turn["user"] for turn in history.get_turns("old", 1)], ["继续"])
             self.assertEqual(len(history.get_turns("new")), 1)
 
-    def test_new_database_only_creates_chat_history(self):
+    def test_new_database_creates_current_schema_without_retired_memory(self):
         with tempfile.TemporaryDirectory() as directory:
             history = ChatHistory(str(Path(directory) / "history.db"))
             with closing(sqlite3.connect(history.db_path)) as connection:
                 tables = {row[0] for row in connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
-            self.assertEqual(tables, {"chat_turns", "sqlite_sequence"})
+            self.assertEqual(tables, {"chat_turns", "sqlite_sequence", "schema_migrations", "mood_state", "turn_requests"})
 
 
 if __name__ == "__main__":

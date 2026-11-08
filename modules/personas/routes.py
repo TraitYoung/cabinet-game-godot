@@ -5,7 +5,6 @@ from __future__ import annotations
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
 
-from app.registry import get_registry
 from modules.personas.adapter import PersonaCatalog
 
 router = APIRouter(tags=["personas"])
@@ -28,11 +27,7 @@ class PersonaListOut(BaseModel):
 
 
 def _catalog() -> PersonaCatalog:
-    reg = get_registry()
-    personas = reg.personas
-    if isinstance(personas, PersonaCatalog):
-        return personas
-    # 注册表尚未 bootstrap 时兜底
+    # The catalog is stateless and only contains Bina; no runtime registry needed.
     return PersonaCatalog()
 
 

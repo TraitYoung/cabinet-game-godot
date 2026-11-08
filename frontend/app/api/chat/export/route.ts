@@ -1,52 +1,5 @@
-import type { NextRequest } from "next/server";
-import { NextResponse } from "next/server";
-import { getBackendBaseUrl } from "@/infra/backend";
-
+import { proxyJson } from "@/infra/proxy";
 export const runtime = "nodejs";
-
-export async function POST(req: NextRequest) {
-  const sessionId = req.headers.get("x-session-id") || undefined;
-
-  if (!sessionId) {
-    return NextResponse.json({ detail: "missing x-session-id" }, { status: 400 });
-  }
-
-  const backendUrl = `${getBackendBaseUrl()}/api/v1/chat/export?limit=20`;
-
-  const headers: Record<string, string> = {
-    "Content-Type": "application/json",
-    "x-session-id": sessionId,
-  };
-
-  let backendRes: Response;
-  try {
-    backendRes = await fetch(backendUrl, {
-      method: "POST",
-      headers,
-      body: JSON.stringify({}),
-      signal: AbortSignal.timeout(60_000),
-    });
-  } catch (e) {
-    const msg = e instanceof Error ? e.message : String(e);
-    return NextResponse.json(
-      { detail: `无法连接 FastAPI（${backendUrl}）：${msg}` },
-      { status: 503 }
-    );
-  }
-
-  const text = await backendRes.text().catch(() => "");
-  if (!backendRes.ok) {
-    return NextResponse.json(
-      { detail: "backend export failed", status: backendRes.status, text },
-      { status: 500 }
-    );
-  }
-
-  try {
-    const data = JSON.parse(text);
-    return NextResponse.json(data);
-  } catch {
-    return NextResponse.json({ detail: "invalid json from backend", text }, { status: 500 });
-  }
+export async function POST(request: Request) {
+  return proxyJson(request, "/api/v1/chat/export", { requireSession: true, timeoutMs: 60_000 });
 }
-

@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-import os
 import tempfile
 from pathlib import Path
 
 from observability import obs
+from infrastructure.container import get_settings
 
 MAX_BYTES = 8 * 1024 * 1024
 AUDIO_EXTS = {".webm", ".wav", ".mp3", ".m4a", ".ogg", ".mpeg", ".mp4"}
@@ -58,7 +58,7 @@ def transcribe_audio(
     if len(data) > MAX_BYTES:
         raise SttError(f"音频过大（上限 {MAX_BYTES // (1024 * 1024)}MB）。")
 
-    key = (os.getenv("QWEN_API_KEY") or "").strip()
+    key = get_settings().qwen_api_key.get_secret_value()
     if not key:
         raise SttError(
             "服务端语音识别需要 QWEN_API_KEY，请在 .env 配置后重试；也可改用浏览器听写。",
@@ -71,7 +71,7 @@ def transcribe_audio(
         if ext not in {".webm", ".wav", ".mp3", ".ogg", ".m4a"}:
             raise SttError(f"暂不支持该音频类型（{filename or content_type}）。")
 
-    model = (os.getenv("AX_STT_MODEL") or "qwen2-audio-instruct").strip()
+    model = get_settings().stt_model
     tmp_path: Path | None = None
     try:
         fd, tmp_name = tempfile.mkstemp(suffix=ext or ".webm")

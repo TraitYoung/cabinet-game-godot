@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import json
-import os
 from urllib.error import HTTPError
 from urllib.request import Request, urlopen
 
@@ -33,7 +32,8 @@ MAX_SEARCHES = 3
 
 
 def search_enabled() -> bool:
-    return os.getenv("AX_SEARCH_ENABLED", "0").strip().lower() in {"1", "true", "on"}
+    from infrastructure.container import get_settings
+    return get_settings().search_enabled
 
 
 def search_web(query: str) -> dict:

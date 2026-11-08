@@ -1,7 +1,7 @@
 """
-接口矩阵 Port 定义（第一版冻结）。
+历史适配器的兼容协议；当前 HTTP 运行路径使用应用级 Container。
 
-功能模块只依赖这些 Protocol + infra，禁止互相直连内部实现。
+这些协议不定义多人物运行或动态路由。
 """
 
 from __future__ import annotations

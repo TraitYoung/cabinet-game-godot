@@ -1,0 +1,5 @@
+-r requirements.lock.txt
+ruff==0.14.0
+mypy==1.18.2
+mypy_extensions==1.2.0
+pathspec==1.1.1

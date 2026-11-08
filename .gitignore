@@ -50,3 +50,7 @@ scripts/clear_Q1.py
 dist/
 build/
 .devstack/
+# Per-session SQLite locks and launcher ownership records
+*.db.locks/
+.devstack/backend.json
+.devstack/frontend.json

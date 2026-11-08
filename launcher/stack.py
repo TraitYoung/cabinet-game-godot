@@ -9,6 +9,8 @@ from __future__ import annotations
 import json
 import os
 import re
+import shlex
+from infrastructure.processes import load_record, members, start as start_owned, stop as stop_owned
 import socket
 import subprocess
 import sys
@@ -211,196 +213,61 @@ def wsl_distro(root: Path) -> Optional[str]:
     return None
 
 
-def _read_pids() -> dict[str, int]:
-    path = pid_file()
-    if not path.is_file():
-        return {}
-    try:
-        data = json.loads(path.read_text(encoding="utf-8"))
-        out: dict[str, int] = {}
-        for k, v in (data or {}).items():
-            if isinstance(v, int) and v > 0:
-                out[str(k)] = v
-        return out
-    except Exception:
-        return {}
-
-
-def _write_pids(map_: dict[str, int]) -> None:
-    pid_file().write_text(json.dumps(map_, indent=2), encoding="utf-8")
-
-
-def _process_alive(pid: int) -> bool:
-    if pid <= 0:
-        return False
-    try:
-        out = subprocess.run(
-            ["tasklist", "/FI", f"PID eq {pid}"],
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=8,
-            shell=False,
-        )
-        return str(pid) in (out.stdout or "")
-    except Exception:
-        return False
-
-
-def _port_owner_pids(port: int) -> list[int]:
-    try:
-        # PowerShell 比纯 netstat 解析更稳
-        ps = (
-            f"$c=Get-NetTCPConnection -LocalPort {port} -State Listen "
-            f"-ErrorAction SilentlyContinue; "
-            f"if($c){{($c|Select-Object -Expand OwningProcess -Unique) -join ','}}"
-        )
-        completed = subprocess.run(
-            [
-                "powershell",
-                "-NoProfile",
-                "-Command",
-                ps,
-            ],
-            capture_output=True,
-            text=True,
-            encoding="utf-8",
-            errors="replace",
-            timeout=15,
-            shell=False,
-        )
-        raw = (completed.stdout or "").strip()
-        if not raw:
-            return []
-        return [int(x) for x in raw.split(",") if x.strip().isdigit()]
-    except Exception:
-        return []
-
-
-def _stop_port(port: int) -> list[str]:
-    notes: list[str] = []
-    for pid in _port_owner_pids(port):
-        try:
-            completed = subprocess.run(
-                ["taskkill", "/F", "/T", "/PID", str(pid)],
-                capture_output=True,
-                text=True,
-                timeout=15,
-                shell=False,
-            )
-            if int(completed.returncode) == 0:
-                notes.append(f"已结束端口 {port} 进程 PID={pid}")
-            else:
-                err = (completed.stderr or completed.stdout or "").strip()
-                notes.append(f"结束端口 {port} PID={pid} 未成功: {err or completed.returncode}")
-        except Exception as exc:
-            notes.append(f"结束端口 {port} PID={pid} 失败: {exc}")
-    return notes
-
-
-def _start_hidden_powershell(command: str, *, cwd: Optional[Path] = None) -> int:
-    creationflags = 0
-    if sys.platform == "win32":
-        creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0x08000000)
-    proc = subprocess.Popen(
-        [
-            "powershell",
-            "-NoProfile",
-            "-ExecutionPolicy",
-            "Bypass",
-            "-Command",
-            command,
-        ],
-        cwd=str(cwd) if cwd else None,
-        stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
-        creationflags=creationflags,
-        shell=False,
-    )
-    return int(proc.pid)
-
-
 def _quote_ps(s: str) -> str:
     return "'" + s.replace("'", "''") + "'"
 
 
-def _ensure_backend(root: Path, lines: list[str], pids: dict[str, int]) -> None:
+def _record(root: Path, name: str) -> Path:
+    return root / ".devstack" / f"windows-{name}.json"
+
+
+def _ensure_backend(root: Path, lines: list[str], _pids: dict) -> None:
+    record = load_record(_record(root, "backend"))
+    if port_open("127.0.0.1", BACKEND_PORT):
+        if record and members(record):
+            lines.append("后端已在运行")
+            return
+        raise RuntimeError("8000 端口被未验证归属的进程占用；请在原终端管理该进程。")
     db = default_db_path()
     db.parent.mkdir(parents=True, exist_ok=True)
-    backend_log = logs_dir(root) / "backend.log"
-
-    if port_open("127.0.0.1", BACKEND_PORT):
-        lines.append("后端已在运行")
-        return
-
-    root_s = str(root)
-    cmd = (
-        f"$env:AX_DB_PATH = {_quote_ps(str(db))}; "
-        f"Set-Location {_quote_ps(root_s)}; "
-        f"python -m uvicorn main:app --host 127.0.0.1 --port {BACKEND_PORT} "
-        f"*>> {_quote_ps(str(backend_log))} 2>&1"
-    )
-    pid = _start_hidden_powershell(cmd, cwd=root)
-    pids["backend"] = pid
-    lines.append(f"后端已启动（PID={pid}）")
-    lines.append(f"数据库：{db}")
+    command = f"$env:AX_DB_PATH={_quote_ps(str(db))}; python -m uvicorn main:app --host 127.0.0.1 --port 8000"
+    start_owned(_record(root, "backend"), root, logs_dir(root) / "backend.log",
+                ["powershell", "-NoProfile", "-Command", command])
+    lines.append("后端已启动")
 
 
-def _ensure_frontend(root: Path, lines: list[str], pids: dict[str, int]) -> None:
-    frontend_log = logs_dir(root) / "frontend.log"
-
-    if port_open("127.0.0.1", FRONTEND_PORT):
-        lines.append("前端已在运行")
-        return
-
-    linux = wsl_linux_path(root)
-    distro = wsl_distro(root)
+def _ensure_frontend(root: Path, lines: list[str], _pids: dict) -> None:
+    linux, distro = wsl_linux_path(root), wsl_distro(root)
     if linux and distro:
-        # 登录壳加载 nvm；勿在经 PowerShell 的命令里写 $HOME/$NVM_DIR（会被 PS 吃掉）
-        fe_inner = (
-            "pkill -f next-server 2>/dev/null || true; "
-            "pkill -f 'next dev' 2>/dev/null || true; "
-            f"cd {linux}/frontend && npm run dev -- --hostname 127.0.0.1 --port {FRONTEND_PORT}"
-        )
-        outer = (
-            f"wsl -d {_quote_ps(distro)} -- bash -lic {_quote_ps(fe_inner)} "
-            f"*>> {_quote_ps(str(frontend_log))} 2>&1"
-        )
-        pid = _start_hidden_powershell(outer)
-        pids["frontend"] = pid
-        lines.append(f"前端已在 WSL（{distro}）启动（PID={pid}）")
-        return
-
-    # 本机路径：可用 Windows npm。UNC 上 npm/cmd 不支持，应走上方 WSL 分支。
-    fe_cwd = root / "frontend"
-    cwd_s = str(fe_cwd)
-    if cwd_s.startswith("\\\\") or cwd_s.lower().startswith("\\wsl"):
-        lines.append(
-            "前端未启动：项目在 WSL UNC 路径，但未能解析发行版；请用 WSL 内 npm 或映射盘符。"
-        )
-        return
-    cmd = (
-        f"Set-Location {_quote_ps(cwd_s)}; "
-        f"npm run dev *>> {_quote_ps(str(frontend_log))} 2>&1"
-    )
-    pid = _start_hidden_powershell(cmd, cwd=fe_cwd)
-    pids["frontend"] = pid
-    lines.append(f"前端已在本机启动（PID={pid}）")
+        # WSL owns its own process record; never scan names or terminate by port.
+        command = f"cd {shlex.quote(linux)} && {shlex.quote(linux + "/.venv/bin/python")} scripts/stack_process.py start .devstack/frontend.json -- bash -lc {shlex.quote('cd ' + shlex.quote(linux + '/frontend') + ' && npm run dev')}"
+        if port_open("127.0.0.1", FRONTEND_PORT):
+            status = f"cd {shlex.quote(linux)} && {shlex.quote(linux + "/.venv/bin/python")} scripts/stack_process.py status .devstack/frontend.json"
+            subprocess.run(["wsl", "-d", distro, "--", "bash", "-lc", status], check=True)
+            return
+        subprocess.run(["wsl", "-d", distro, "--", "bash", "-lc", command], check=True)
+    else:
+        record = load_record(_record(root, "frontend"))
+        if port_open("127.0.0.1", FRONTEND_PORT):
+            if record and members(record):
+                return
+            raise RuntimeError("3000 端口被未验证归属的进程占用。")
+        command = f"Set-Location {_quote_ps(str(root / 'frontend'))}; npm run dev"
+        start_owned(_record(root, "frontend"), root, logs_dir(root) / "frontend.log",
+                    ["powershell", "-NoProfile", "-Command", command])
+    lines.append("前端已启动")
 
 
-def start_stack(root: Path) -> tuple[int, str]:
+def start_stack(root: Path, services: set[str] | None = None) -> tuple[int, str]:
     """启动 Hindsight、后端和前端。返回 (0|非0, 日志文本)。"""
     lines: list[str] = []
+    targets = services or {"hindsight", "backend", "frontend"}
     st = probe_status()
-    if st.ready_for_browser:
-        lines.append("Bina已在运行，无需重复启动。")
-        return 0, "\n".join(lines)
 
     log_dir = logs_dir(root)
-    pids = _read_pids()
+    pids = {}
 
-    if not st.hindsight:
+    if "hindsight" in targets and not st.hindsight:
         result = subprocess.run(
             ["docker", "compose", "up", "-d", "hindsight"],
             cwd=root, capture_output=True, text=True, timeout=300,
@@ -409,19 +276,20 @@ def start_stack(root: Path) -> tuple[int, str]:
             return result.returncode, result.stderr
         lines.append("Hindsight 已启动")
 
-    _ensure_backend(root, lines, pids)
-    _ensure_frontend(root, lines, pids)
-    _write_pids(pids)
+    if "backend" in targets:
+        _ensure_backend(root, lines, pids)
+    if "frontend" in targets:
+        _ensure_frontend(root, lines, pids)
 
     # 等待端口就绪（冷启动 / WSL 前端可能偏慢）
     deadline = time.time() + 90
     while time.time() < deadline:
-        if probe_status().ready_for_browser:
+        if all(getattr(probe_status(), name) for name in targets):
             lines.append("Bina已就绪，可以开聊。")
             return 0, "\n".join(lines)
         time.sleep(0.8)
 
-    if probe_status().ready_for_browser:
+    if all(getattr(probe_status(), name) for name in targets):
         lines.append("Bina已就绪，可以开聊。")
         return 0, "\n".join(lines)
 
@@ -430,69 +298,20 @@ def start_stack(root: Path) -> tuple[int, str]:
     return 1, "\n".join(lines)
 
 
-def stop_stack(root: Path) -> tuple[int, str]:
-    lines: list[str] = []
-    pids = _read_pids()
-
-    # 先按记录 PID 杀 launcher 拉起的 powershell 外壳
-    for name in ("frontend", "backend"):
-        pid = int(pids.get(name) or 0)
-        if pid > 0 and _process_alive(pid):
-            try:
-                subprocess.run(
-                    ["taskkill", "/F", "/T", "/PID", str(pid)],
-                    capture_output=True,
-                    text=True,
-                    timeout=15,
-                    shell=False,
-                )
-                lines.append(f"已停止 {name} 外壳 PID={pid}")
-            except Exception as exc:
-                lines.append(f"停止 {name} 失败: {exc}")
-
-    for port, label in (
-        (FRONTEND_PORT, "前端"),
-        (BACKEND_PORT, "后端"),
-    ):
-        notes = _stop_port(port)
-        if notes:
-            lines.extend(notes)
-        else:
-            lines.append(f"{label}端口 {port} 已空闲")
-
-    subprocess.run(["docker", "compose", "stop", "hindsight"], cwd=root, capture_output=True, timeout=90)
-
-    # WSL 内 next 残留
-    distro = wsl_distro(root)
-    if distro:
-        try:
-            subprocess.run(
-                [
-                    "wsl",
-                    "-d",
-                    distro,
-                    "--",
-                    "bash",
-                    "-lc",
-                    "pkill -f 'next dev|next-server' 2>/dev/null || true",
-                ],
-                capture_output=True,
-                text=True,
-                timeout=20,
-                shell=False,
-            )
-            lines.append("已清理 WSL 前端进程")
-        except Exception as exc:
-            lines.append(f"清理 WSL 前端时跳过：{exc}")
-
-    _write_pids({})
-    time.sleep(0.5)
-    st = probe_status()
-    if st.ready_for_browser:
-        lines.append("仍有服务在线，可再点一次停止，或以管理员权限结束占用端口的进程。")
-        return 1, "\n".join(lines)
-    lines.append("已停止。")
-    return 0, "\n".join(lines)
+def stop_stack(root: Path, services: set[str] | None = None) -> tuple[int, str]:
+    """Stop only verified launches. Legacy PID-only records are deliberately ignored."""
+    targets = services or {"hindsight", "backend", "frontend"}
+    for name in targets - {"hindsight"}:
+        stop_owned(_record(root, name))
+    linux, distro = wsl_linux_path(root), wsl_distro(root)
+    if "frontend" in targets and linux and distro:
+        command = f"cd {shlex.quote(linux)} && {shlex.quote(linux + "/.venv/bin/python")} scripts/stack_process.py stop .devstack/frontend.json"
+        subprocess.run(["wsl", "-d", distro, "--", "bash", "-lc", command], check=True)
+    if "hindsight" not in targets:
+        return 0, "已停止本项目记录的进程。"
+    result = subprocess.run(["docker", "compose", "stop", "hindsight"], cwd=root,
+                            capture_output=True, text=True, timeout=90)
+    return result.returncode, "已停止本项目记录的进程。" + (result.stderr or "")
 
 
 def run_dev_stack(root: Path, action: str, *, timeout: float = 180.0) -> tuple[int, str]:
@@ -563,12 +382,9 @@ def fetch_proactive_pending(timeout: float = 4.0) -> list[dict]:
 
 def ensure_frontend(root: Path, *, timeout: float = 90.0) -> bool:
     """确保前端端口可用；必要时只补启前端。"""
-    if port_open("127.0.0.1", FRONTEND_PORT):
-        return True
     lines: list[str] = []
-    pids = _read_pids()
+    pids = {}
     _ensure_frontend(root, lines, pids)
-    _write_pids(pids)
     deadline = time.time() + timeout
     while time.time() < deadline:
         if port_open("127.0.0.1", FRONTEND_PORT):

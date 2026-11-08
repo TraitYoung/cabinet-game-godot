@@ -2,7 +2,7 @@
 
 当前两套网页模型已换用[头部接缝返工 v2](face-revision/README.md)：连续头部底图、柔边眼眉、重新绑定眨眼与颈部遮挡补画。当前可编辑工程位于 `face-revision/bina-{casual,work}-face-v2.psd2live` 及对应 `.cmo3`；下文早期工程保留作历史对照。新版头发共享头部变形，尚无独立发丝物理、虹膜追踪和口型。
 
-完整制作过程见 [T-pose 到自然站姿 Live2D](../../docs/Bina_Live2D_Workflow.md)，可复用操作见 [reference-to-live2d skill](../../skills/reference-to-live2d/SKILL.md)。
+完整制作过程见 [T-pose 到自然站姿 Live2D](../../docs/guides/live2d-workflow.md)，可复用操作见 [reference-to-live2d skill](../../skills/reference-to-live2d/SKILL.md)。
 
 现有日常装和[工装版](source-work/README.md)两套自然站姿模型，可在网页侧栏“形象”中切换。工装使用独立工程 `bina-work.psd2live` 和网页资源 `frontend/public/live2d/bina-work/`，保留完整重建脚本及浏览器验收记录。
 
@@ -82,6 +82,6 @@ export NO_PROXY=127.0.0.1,localhost
 
 2026-11-05，Chromium + 软件 WebGL：默认模型加载、待机画面变化、三组手动动作、四种表情、切换立绘后刷新、恢复默认模型、Live2D 选择刷新恢复、手机尺寸画布适配均通过，无页面异常。全部 12 个模型关联资源存在。
 
-2026-11-05 本次提交前复核：前端 `npm run lint`、`npx tsc --noEmit` 与默认 `npm run build`（Turbopack）通过；六张原始 T 姿图的哈希、尺寸及 12 个模型资源引用检查通过。页面截图与交互记录沿用已有验收材料，本次未重新执行浏览器交互验收。历史环境的 Webpack 构建方式见 [接入说明](../../docs/Bina_Live2D.md)。
+2026-11-05 本次提交前复核：前端 `npm run lint`、`npx tsc --noEmit` 与默认 `npm run build`（Turbopack）通过；六张原始 T 姿图的哈希、尺寸及 12 个模型资源引用检查通过。页面截图与交互记录沿用已有验收材料，本次未重新执行浏览器交互验收。历史环境的 Webpack 构建方式见 [接入说明](../../docs/guides/live2d.md)。
 
 ![桌面实测](browser-desktop.png)

@@ -45,6 +45,9 @@ class TraceAdapter:
 class ChatAdapter:
     """包装 TurnService；供矩阵与脚本复用。"""
 
+    def __init__(self, service=None):
+        self.service = service
+
     async def stream(
         self,
         text: str,
@@ -56,7 +59,7 @@ class ChatAdapter:
         workflow_mode: str = "default",
         trace_id: Optional[str] = None,
     ) -> ChatStreamResult:
-        svc = get_turn_service()
+        svc = self.service or get_turn_service()
         payload = TurnRequest(
             text=text,
             workflow_mode=workflow_mode,  # type: ignore[arg-type]
@@ -64,13 +67,7 @@ class ChatAdapter:
             strip_persona_prefix=strip_persona_prefix,
             group_mode=group_mode,
         )
-        result = svc.run(payload, session_id)
-        svc.after_turn(
-            session_id,
-            text,
-            result.reply,
-            result.active_persona,
-        )
+        result = await svc.aexecute(payload, session_id)
         return ChatStreamResult(
             session_id=session_id,
             reply=result.reply,
@@ -106,7 +103,6 @@ class ChatAdapter:
         return {
             "session_id": session_id,
             "turns": [
-                {"user": t.user, "assistant": t.assistant, "ts": t.ts, "persona": t.persona}
-                for t in turns
+                {"user": t.user, "assistant": t.assistant, "ts": t.ts, "persona": t.persona} for t in turns
             ],
         }

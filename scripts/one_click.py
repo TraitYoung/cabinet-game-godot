@@ -33,19 +33,23 @@ def main(argv: list[str] | None = None) -> int:
     _fix_stdio()
     args = list(argv if argv is not None else sys.argv[1:])
     action = (args[0] if args else "start").strip().lower()
+    open_browser = "--no-browser" not in args
+    services = {item for item in args[1:] if item != "--no-browser"} or None
+    if services and not services <= {"hindsight", "backend", "frontend"}:
+        return 2
     # 始终以本脚本所在仓库为锚点，避免 UNC 下错误的 AX_PROJECT_ROOT=C:\Windows
     root = find_project_root(ROOT)
 
     if action in ("start", "up"):
-        code, out = start_stack(root)
+        code, out = start_stack(root, services)
         print(out)
-        if code == 0 and probe_status().ready_for_browser:
+        if code == 0 and open_browser and probe_status().ready_for_browser:
             open_frontend_in_browser()
             print("已打开浏览器：http://127.0.0.1:3000/solo")
         return code
 
     if action in ("stop", "down"):
-        code, out = stop_stack(root)
+        code, out = stop_stack(root, services)
         print(out)
         return code
 
@@ -58,11 +62,11 @@ def main(argv: list[str] | None = None) -> int:
         return 0 if st.ready_for_browser else 1
 
     if action == "restart":
-        c1, o1 = stop_stack(root)
+        c1, o1 = stop_stack(root, services)
         print(o1)
-        c2, o2 = start_stack(root)
+        c2, o2 = start_stack(root, services)
         print(o2)
-        if c2 == 0 and probe_status().ready_for_browser:
+        if c2 == 0 and open_browser and probe_status().ready_for_browser:
             open_frontend_in_browser()
             print("已打开浏览器：http://127.0.0.1:3000/solo")
         return c2

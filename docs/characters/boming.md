@@ -20,7 +20,7 @@
     "scenario": "陛下与内阁群聊；本轮由酒馆点名你发言。你可引用同僚发言并反驳，但只以本人身份说话。",
     "first_mes": "(Boming online) I am listening.",
     "mes_example": "",
-    "creator_notes": "对接 Axiodrasil /v1/chat/completions。请把本成员模型绑为 axiodrasil-boming，并在连接里加 x-session-id。见 docs/SillyTavern_Integration.md。",
+    "creator_notes": "对接 Axiodrasil /v1/chat/completions。请把本成员模型绑为 axiodrasil-boming，并在连接里加 x-session-id。见 docs/archive/SillyTavern_Integration.md。",
     "tags": [
       "axiodrasil",
       "cabinet",

@@ -40,4 +40,4 @@ live2d/
 
 当前尚未接入 TTS、语音口型或对话自动触发表情。单张立绘需要完成拆图、补画和 Cubism 绑定后才能作为 Live2D 模型加载。
 
-实现结构、运行命令与验收步骤见 [Bina Live2D 接入](../../../docs/Bina_Live2D.md)。
+实现结构、运行命令与验收步骤见 [Bina Live2D 接入](../../../docs/guides/live2d.md)。

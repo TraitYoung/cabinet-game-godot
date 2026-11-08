@@ -11,53 +11,32 @@ import type {
   PersonaCard,
   SttResult,
   StreamChatInput,
+  RequestStatus,
 } from "./types";
 
-async function readApiError(res: Response, fallback: string): Promise<string> {
-  const text = await res.text().catch(() => "");
-  if (!text) return fallback;
-  try {
-    const data = JSON.parse(text) as { detail?: unknown };
-    if (typeof data.detail === "string") return data.detail;
-    if (Array.isArray(data.detail)) {
-      return data.detail
-        .map((x) => (typeof x === "object" && x && "msg" in x ? String((x as { msg: unknown }).msg) : String(x)))
-        .join("; ");
-    }
-  } catch {
-    // plain text
-  }
-  return text;
-}
+import { apiFetch } from "./http";
 
 export async function fetchChatOptions(): Promise<ChatOptions> {
-  const res = await fetch("/api/v1/chat/options", { cache: "no-store" });
-  if (!res.ok) throw new Error(await readApiError(res, "无法加载模型设置"));
+  const res = await apiFetch("/api/v1/chat/options", { cache: "no-store" });
   return (await res.json()) as ChatOptions;
 }
 
 export async function healthCheck(): Promise<HealthStatus> {
-  const res = await fetch("/api/health", { cache: "no-store" });
-  if (!res.ok) return { ok: false };
+  const res = await apiFetch("/api/health", { cache: "no-store" });
   return (await res.json()) as HealthStatus;
 }
 
 export async function listPersonas(): Promise<PersonaCard[]> {
-  const res = await fetch("/api/personas", { cache: "no-store" });
-  if (!res.ok) throw new Error(`personas failed: ${res.status}`);
+  const res = await apiFetch("/api/personas", { cache: "no-store" });
   const data = (await res.json()) as { personas: PersonaCard[] };
   return data.personas || [];
 }
 
 export async function getPersona(id: string): Promise<PersonaCard> {
-  const res = await fetch(`/api/personas/${encodeURIComponent(id)}`, {
+  const res = await apiFetch(`/api/personas/${encodeURIComponent(id)}`, {
     cache: "no-store",
     signal: AbortSignal.timeout(10_000),
   });
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(text || `persona ${id} failed: ${res.status}`);
-  }
   return (await res.json()) as PersonaCard;
 }
 
@@ -65,7 +44,7 @@ export async function reportPresence(
   sessionId: string,
   memoryThreadId?: string,
 ): Promise<void> {
-  const res = await fetch("/api/presence", {
+  await apiFetch("/api/presence", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
@@ -74,22 +53,14 @@ export async function reportPresence(
     }),
     signal: AbortSignal.timeout(5_000),
   });
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(text || `presence failed: ${res.status}`);
-  }
 }
 
 export async function fetchHistory(sessionId: string, limit = 50, signal?: AbortSignal): Promise<ChatTurn[]> {
-  const res = await fetch(`/api/chat/history?limit=${limit}`, {
+  const res = await apiFetch(`/api/chat/history?limit=${limit}`, {
     headers: { "x-session-id": sessionId },
     cache: "no-store",
     signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(12_000)]) : AbortSignal.timeout(12_000),
   });
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(text || `history failed: ${res.status}`);
-  }
   const data = (await res.json()) as { turns: ChatTurn[] };
   return (data.turns || []).map((t) => {
     const m = /^\s*\[([^\]]+)]\s*[:：]/.exec(t.assistant || "");
@@ -104,6 +75,7 @@ export async function sendChat(input: StreamChatInput): Promise<{
 }> {
   const body: Record<string, unknown> = {
     text: input.text,
+    request_id: input.requestId,
     strip_persona_prefix: Boolean(input.stripPersonaPrefix),
   };
   if (input.model) body.model = input.model;
@@ -124,17 +96,13 @@ export async function sendChat(input: StreamChatInput): Promise<{
     headers["x-memory-thread"] = input.memoryThreadId;
   }
 
-  const res = await fetch("/api/v1/chat", {
+  const res = await apiFetch("/api/v1/chat", {
     method: "POST",
     headers,
     body: JSON.stringify(body),
     signal,
   });
 
-  if (!res.ok) {
-    const text = await res.text().catch(() => "");
-    throw new Error(text || `chat failed: ${res.status}`);
-  }
 
   const data = (await res.json()) as {
     reply?: string;
@@ -163,20 +131,18 @@ export async function sendChat(input: StreamChatInput): Promise<{
 export async function ingestAttachment(
   file: File,
   sessionId?: string,
+  signal?: AbortSignal,
 ): Promise<AttachmentIngestResult> {
   const body = new FormData();
   body.append("file", file, file.name);
   const headers: Record<string, string> = {};
   if (sessionId) headers["x-session-id"] = sessionId;
-  const res = await fetch("/api/v1/attachments/ingest", {
+  const res = await apiFetch("/api/v1/attachments/ingest", {
     method: "POST",
     headers,
     body,
-    signal: AbortSignal.timeout(120_000),
+    signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(120_000)]) : AbortSignal.timeout(120_000),
   });
-  if (!res.ok) {
-    throw new Error(await readApiError(res, `附件处理失败: ${res.status}`));
-  }
   return (await res.json()) as AttachmentIngestResult;
 }
 
@@ -191,15 +157,12 @@ export async function transcribeAudio(
   body.append("audio", blob, filename);
   const headers: Record<string, string> = {};
   if (sessionId) headers["x-session-id"] = sessionId;
-  const res = await fetch("/api/v1/stt", {
+  const res = await apiFetch("/api/v1/stt", {
     method: "POST",
     headers,
     body,
     signal: signal ? AbortSignal.any([signal, AbortSignal.timeout(120_000)]) : AbortSignal.timeout(120_000),
   });
-  if (!res.ok) {
-    throw new Error(await readApiError(res, `语音识别失败: ${res.status}`));
-  }
   return (await res.json()) as SttResult;
 }
 
@@ -210,4 +173,20 @@ export function stripPersonaPrefix(text: string): string {
 export function parsePersonaFromReply(text: string): string {
   const m = /^\s*\[([^\]]+)]\s*[:：]/.exec(text || "");
   return m ? m[1].trim().toLowerCase() : "";
+}
+
+/** Cancellation is acknowledged by the server; a commit already underway finishes. */
+export async function cancelChat(sessionId: string, requestId: string): Promise<{
+  status: RequestStatus;
+  result?: { reply: string; active_persona: string } | null;
+}> {
+  const url = `/api/v1/chat/requests/${encodeURIComponent(requestId)}`;
+  const options = { headers: { "x-session-id": sessionId }, signal: AbortSignal.timeout(8_000) };
+  const response = await apiFetch(`${url}/cancel`, { ...options, method: "POST" });
+  const state = await response.json() as { status: RequestStatus };
+  if (state.status === "completed") {
+    const saved = await apiFetch(url, { ...options, cache: "no-store" });
+    return saved.json();
+  }
+  return state;
 }

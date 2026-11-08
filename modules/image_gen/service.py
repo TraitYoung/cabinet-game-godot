@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-import os
 import re
 import time
 import uuid
 from dataclasses import dataclass
 from pathlib import Path
+from infrastructure.container import get_settings
 
 from modules.comfyui.client import ComfyClient, ComfyError
 from modules.image_gen.profiles import VisualProfile, load_visual_profile
@@ -15,7 +15,7 @@ from modules.image_gen.workflow import build_txt2img_workflow
 from observability import obs
 
 _ROOT = Path(__file__).resolve().parents[2]
-_OUT_DIR = Path(os.getenv("AX_IMAGE_OUT_DIR") or (_ROOT / "data" / "generated"))
+
 
 _SELFIE_RE = re.compile(
     r"(自拍|自拍一张|拍一张|发一张|发张照|发张图|发张自拍|"
@@ -41,12 +41,7 @@ class GeneratedImage:
 
 
 def image_gen_enabled() -> bool:
-    return (os.getenv("AX_IMAGE_GEN_ENABLED") or "1").strip().lower() not in (
-        "0",
-        "false",
-        "off",
-        "no",
-    )
+    return get_settings().image_enabled
 
 
 def detect_selfie_request(text: str) -> bool:
@@ -115,10 +110,10 @@ def generate_persona_image(
         obs("image_gen", "comfy.failed", error=str(exc), persona=persona_id)
         raise ImageGenError(str(exc), status_code=exc.status_code) from exc
 
-    _OUT_DIR.mkdir(parents=True, exist_ok=True)
+    Path(get_settings().image_out_dir).mkdir(parents=True, exist_ok=True)
     ext = Path(src_name).suffix or ".png"
     file_name = f"{persona_id}-{uuid.uuid4().hex[:12]}{ext}"
-    dest = _OUT_DIR / file_name
+    dest = Path(get_settings().image_out_dir) / file_name
     dest.write_bytes(raw)
 
     url = f"/api/v1/images/file/{file_name}"

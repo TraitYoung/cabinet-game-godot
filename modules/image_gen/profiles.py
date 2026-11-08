@@ -3,10 +3,10 @@
 from __future__ import annotations
 
 import json
-import os
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any
+from infrastructure.container import get_settings
 
 _ROOT = Path(__file__).resolve().parents[2]
 _DIR = _ROOT / "config" / "persona_visual"
@@ -64,10 +64,11 @@ def load_visual_profile(persona_id: str) -> VisualProfile | None:
         )
 
     # 环境变量可覆盖单个 LoRA（便于本机调试）
-    env_lora = (os.getenv(f"AX_{pid.upper()}_LORA") or "").strip()
+    settings = get_settings()
+    env_lora = settings.bina_lora if pid == "bina" else ""
     if env_lora:
-        w = float(os.getenv(f"AX_{pid.upper()}_LORA_WEIGHT") or "0.85")
-        tw = (os.getenv(f"AX_{pid.upper()}_LORA_TRIGGER") or "").strip()
+        w = settings.bina_lora_weight
+        tw = settings.bina_lora_trigger
         loras = [LoraSpec(path=env_lora, weight=w, trigger_word=tw)] + [
             x for x in loras if x.path != env_lora
         ]

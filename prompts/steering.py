@@ -12,10 +12,10 @@
 from __future__ import annotations
 
 import json
-import os
 from functools import lru_cache
 from pathlib import Path
 from typing import Optional
+from infrastructure.container import get_settings
 
 _STEERING_DIR = Path(__file__).resolve().parent / "steering"
 
@@ -33,10 +33,6 @@ _DEFAULTS: dict[str, dict[str, str]] = {
         ),
     },
 }
-
-
-def _env_key(persona: str, kind: str) -> str:
-    return f"AX_{persona.strip().upper()}_{kind.strip().upper()}_PROMPT"
 
 
 @lru_cache(maxsize=32)
@@ -72,12 +68,12 @@ def get_steering(persona: str) -> tuple[str, str]:
     defaults = _DEFAULTS.get(pid, {})
 
     positive = (
-        (os.getenv(_env_key(pid, "positive")) or "").strip()
+        (get_settings().bina_positive_prompt if pid == "bina" else "")
         or file_cfg.get("positive", "")
         or defaults.get("positive", "")
     )
     negative = (
-        (os.getenv(_env_key(pid, "negative")) or "").strip()
+        (get_settings().bina_negative_prompt if pid == "bina" else "")
         or file_cfg.get("negative", "")
         or defaults.get("negative", "")
     )

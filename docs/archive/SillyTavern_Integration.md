@@ -1,3 +1,5 @@
+> 历史归档：本文保留旧阶段的设计与记录。当前实现请从[文档入口](../README.md)阅读；旧命令和模块不作为当前操作依据。
+
 > 历史集成说明。旧群聊、内阁角色卡和头像切换扩展已删除。当前仅提供 Bina 的 OpenAI 兼容接口，运行方式以根目录 README.md 为准。
 
 # SillyTavern Group Chat 接入 Axiodrasil
@@ -39,7 +41,7 @@ x-session-id: ax-cabinet-main
 
 ## 3. 导入角色卡并建群
 
-角色卡目录：[`sillytavern/character_card/group/`](../sillytavern/character_card/group/)（12 张）。
+角色卡目录：[`sillytavern/character_card/group/`](../../sillytavern/character_card/group)（12 张）。
 
 1. 在 SillyTavern 导入全部 group 卡
 2. 新建 **Group Chat**，把需要的人设拉进群
@@ -49,7 +51,7 @@ x-session-id: ax-cabinet-main
    - … 其余同理（`GET /v1/models` 可列出）
 4. 若无法按成员绑 model：确保每张卡的 `system_prompt` 含 `[AX_PERSONA:id]`（导出卡已内置）
 
-旧单卡「内阁」已移至 [`sillytavern/character_card/legacy/`](../sillytavern/character_card/legacy/)。  
+旧单卡「内阁」已移至 `sillytavern/character_card/legacy/`（历史路径：`../../sillytavern/character_card/legacy`）。
 扩展 `persona-avatar-switch` 仅服务旧单卡，Group Chat **不需要**。
 
 ## 4. 三层记忆怎么玩

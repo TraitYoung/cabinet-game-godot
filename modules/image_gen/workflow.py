@@ -2,19 +2,15 @@
 
 from __future__ import annotations
 
-import os
 import random
 from typing import Any
 
 from modules.image_gen.profiles import LoraSpec
+from infrastructure.container import get_settings
 
 
 def _ckpt_name() -> str:
-    return (
-        os.getenv("AX_COMFYUI_CKPT")
-        or os.getenv("AX_COMFYUI_CHECKPOINT")
-        or "sd_xl_base_1.0.safetensors"
-    ).strip()
+    return get_settings().comfyui_checkpoint
 
 
 def build_txt2img_workflow(
@@ -34,13 +30,14 @@ def build_txt2img_workflow(
       CheckpointLoaderSimple → (LoraLoader*) → CLIPTextEncode ×2 → KSampler → VAEDecode → SaveImage
     LoRA 文件名相对于 ComfyUI/models/loras/。
     """
-    w = int(os.getenv("AX_COMFYUI_WIDTH") or width)
-    h = int(os.getenv("AX_COMFYUI_HEIGHT") or height)
-    steps = int(os.getenv("AX_COMFYUI_STEPS") or steps or 24)
-    cfg = float(os.getenv("AX_COMFYUI_CFG") or cfg or 6.5)
+    settings = get_settings()
+    w = settings.comfyui_width or width
+    h = settings.comfyui_height or height
+    steps = settings.comfyui_steps or steps or 24
+    cfg = settings.comfyui_cfg or cfg or 6.5
     seed = int(seed if seed is not None else random.randint(1, 2**31 - 1))
-    sampler = (os.getenv("AX_COMFYUI_SAMPLER") or "euler").strip()
-    scheduler = (os.getenv("AX_COMFYUI_SCHEDULER") or "normal").strip()
+    sampler = settings.comfyui_sampler
+    scheduler = settings.comfyui_scheduler
 
     nodes: dict[str, Any] = {
         "4": {

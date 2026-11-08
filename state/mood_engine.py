@@ -1,5 +1,5 @@
 """
-Mood / 状态引擎（内阁共享的动态状态层）。
+Mood / Bina 动态状态层。
 
 移植自开源项目「积温 (jiwen)」的五轴数值漂移思路：
 
@@ -20,12 +20,16 @@ Mood / 状态引擎（内阁共享的动态状态层）。
 
 from __future__ import annotations
 
-import os
 import sqlite3
+import threading
+from contextlib import contextmanager
+from functools import wraps
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
+from config.settings import Settings
+from storage.database import migrate
 
 
 def _clamp(value: float, lo: float, hi: float) -> float:
@@ -41,10 +45,6 @@ def _decay_toward_zero(value: float, rate_per_min: float, minutes: float) -> flo
     return min(0.0, value + step)
 
 
-def _hooks_enabled() -> bool:
-    return os.getenv("AX_INTERACTION_HOOKS_ENABLED", "1").strip() not in ("0", "false", "False")
-
-
 # BIOS Module 0.4 作息表（去掉 Refuel 的重叠区间，按小时精确切分）
 _PERIODS: List[Tuple[int, int, str, str]] = [
     (8, 10, "morning", "自然唤醒，温和启动"),
@@ -53,10 +53,6 @@ _PERIODS: List[Tuple[int, int, str, str]] = [
     (14, 18, "focus", "高信噪比，逻辑闭环"),
     (18, 23, "free_soul", "绝对娱乐豁免，晚间家庭模式"),
 ]
-
-# BIOS：间隔超过 2 小时可触发久别欢迎
-_REUNION_GAP_MINUTES = float(os.getenv("AX_REUNION_GAP_MINUTES", "120"))
-
 
 def get_period(now: Optional[datetime] = None) -> Tuple[str, str]:
     """返回 (period_key, period_label)，对齐 BIOS Module 0.4 作息表。"""
@@ -77,6 +73,7 @@ class MoodState:
     arousal: float = 0.0
     immersion: float = 0.3
     last_tick_at: Optional[str] = None
+    last_interaction_at: Optional[str] = None
 
 
 # 漂移速率（每分钟）。参数从积温简化而来，先跑起来再按体感调参，
@@ -88,51 +85,58 @@ _AROUSAL_DECAY_PER_MIN = 0.005
 _IMMERSION_DECAY_PER_MIN = 0.01
 _MAX_TICK_MINUTES = 240.0  # 超过 4 小时按 4 小时算，避免久别重逢时数值瞬间打满
 
-# 积温简化阈值（可用环境变量微调）
-_TRIGGER_OBSERVATION = float(os.getenv("AX_MOOD_OBS_THRESHOLD", "0.20"))
-_TRIGGER_CONSIDER = float(os.getenv("AX_MOOD_CONTACT_THRESHOLD", "0.35"))
-_TRIGGER_FORCE = float(os.getenv("AX_MOOD_FORCE_CONTACT_THRESHOLD", "0.50"))
-_TRIGGER_PRIDE_BLOCK = float(os.getenv("AX_MOOD_PRIDE_BLOCK", "0.50"))
+def atomic_update(method):
+    """Serialize the whole read/modify/write operation, including across processes."""
+    @wraps(method)
+    def wrapped(self, *args, **kwargs):
+        with self._lock:
+            if getattr(self._local, "connection", None) is not None:
+                return method(self, *args, **kwargs)
+            with self._connect() as connection:
+                connection.execute("BEGIN IMMEDIATE")
+                self._local.connection = connection
+                try:
+                    return method(self, *args, **kwargs)
+                finally:
+                    self._local.connection = None
+    return wrapped
 
 
 class MoodEngine:
-    """跨人格共享的状态引擎；状态以 thread_id 为粒度持久化在 SQLite。"""
+    """Bina 状态引擎；状态以 thread_id 为粒度持久化在 SQLite。"""
 
-    def __init__(self, db_path: str = "./data/axiodrasil_core.db"):
+    def __init__(self, db_path: str = "./data/axiodrasil_core.db", *, settings: Settings | None = None):
+        self.settings = settings or Settings()
         self.db_path = db_path
         Path(self.db_path).parent.mkdir(parents=True, exist_ok=True)
+        self._lock = threading.RLock()
+        self._local = threading.local()
         self._init_db()
         # 本轮 tick 前算出的交互钩子，供 get_prompt_context 消费一次
         self._pending_hooks: Dict[str, str] = {}
 
-    def _connect(self) -> sqlite3.Connection:
-        conn = sqlite3.connect(self.db_path, timeout=1.0)
-        conn.execute("PRAGMA busy_timeout=1000")
-        return conn
+    @contextmanager
+    def _connect(self):
+        current = getattr(self._local, "connection", None)
+        if current is not None:
+            yield current
+            return
+        connection = sqlite3.connect(self.db_path, timeout=10.0)
+        try:
+            with connection:
+                yield connection
+        finally:
+            connection.close()
 
     def _init_db(self) -> None:
-        with self._connect() as conn:
-            conn.execute(
-                """
-                CREATE TABLE IF NOT EXISTS mood_state (
-                    thread_id TEXT PRIMARY KEY,
-                    connection REAL NOT NULL DEFAULT 0,
-                    pride REAL NOT NULL DEFAULT 0,
-                    valence REAL NOT NULL DEFAULT 0,
-                    arousal REAL NOT NULL DEFAULT 0,
-                    immersion REAL NOT NULL DEFAULT 0.3,
-                    last_tick_at TIMESTAMP
-                )
-                """
-            )
-            conn.commit()
+        migrate(self.db_path)
 
     # ---------- 基础读写 ----------
     def _load(self, thread_id: str) -> MoodState:
         with self._connect() as conn:
             cur = conn.execute(
                 """
-                SELECT thread_id, connection, pride, valence, arousal, immersion, last_tick_at
+                SELECT thread_id, connection, pride, valence, arousal, immersion, last_tick_at, last_interaction_at
                 FROM mood_state WHERE thread_id = ?
                 """,
                 (thread_id,),
@@ -148,21 +152,23 @@ class MoodEngine:
             arousal=row[4],
             immersion=row[5],
             last_tick_at=row[6],
+            last_interaction_at=row[7],
         )
 
     def _save(self, state: MoodState) -> None:
         with self._connect() as conn:
             conn.execute(
                 """
-                INSERT INTO mood_state (thread_id, connection, pride, valence, arousal, immersion, last_tick_at)
-                VALUES (?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO mood_state (thread_id, connection, pride, valence, arousal, immersion, last_tick_at, last_interaction_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)
                 ON CONFLICT(thread_id) DO UPDATE SET
                     connection=excluded.connection,
                     pride=excluded.pride,
                     valence=excluded.valence,
                     arousal=excluded.arousal,
                     immersion=excluded.immersion,
-                    last_tick_at=excluded.last_tick_at
+                    last_tick_at=excluded.last_tick_at,
+                    last_interaction_at=excluded.last_interaction_at
                 """,
                 (
                     state.thread_id,
@@ -172,9 +178,9 @@ class MoodEngine:
                     state.arousal,
                     state.immersion,
                     state.last_tick_at,
+                    state.last_interaction_at,
                 ),
             )
-            conn.commit()
 
     def get_state(self, thread_id: str) -> MoodState:
         return self._load(thread_id)
@@ -184,14 +190,14 @@ class MoodEngine:
 
         可通过 AX_INTERACTION_HOOKS_ENABLED=0 关闭。
         """
-        if not _hooks_enabled():
+        if not self.settings.interaction_hooks:
             return ""
         now = now or datetime.now()
         state = self._load(thread_id)
-        if not state.last_tick_at:
+        if not state.last_interaction_at:
             return "【交互提示】本会话首次交互：简洁回应即可，不必全员欢迎或寒暄堆砌。"
         try:
-            last = datetime.fromisoformat(state.last_tick_at)
+            last = datetime.fromisoformat(state.last_interaction_at)
         except ValueError:
             return ""
         gap_minutes = max(0.0, (now - last).total_seconds() / 60.0)
@@ -201,7 +207,7 @@ class MoodEngine:
                 f"【交互提示】今日首次见面（时段：{period_label}）。"
                 "可按当前时段轻轻打个招呼，一句即可，不刷屏、不列清单。"
             )
-        if gap_minutes >= _REUNION_GAP_MINUTES:
+        if gap_minutes >= self.settings.reunion_gap_minutes:
             return (
                 "【交互提示】距上次交互已超过两小时，可自然带一句欢迎回来"
                 "（如「忙完啦？」），只一句，勿重复热情堆砌。"
@@ -210,9 +216,14 @@ class MoodEngine:
             return "【交互提示】已近收尾时段，语气柔和收敛，避免高能量刺激。"
         return ""
 
+    @atomic_update
     def arm_interaction_hook(self, thread_id: str, now: Optional[datetime] = None) -> str:
         """计算并暂存本轮钩子，供随后 get_prompt_context 注入。"""
+        now = now or datetime.now()
         hook = self.compute_interaction_hook(thread_id, now=now)
+        state = self._load(thread_id)
+        state.last_interaction_at = now.isoformat()
+        self._save(state)
         if hook:
             self._pending_hooks[thread_id] = hook
         else:
@@ -220,6 +231,7 @@ class MoodEngine:
         return hook
 
     # ---------- 漂移 ----------
+    @atomic_update
     def _drift(self, thread_id: str, now: Optional[datetime] = None) -> MoodState:
         """仅推进数值漂移并更新 last_tick_at，不缓解 connection。"""
         now = now or datetime.now()
@@ -257,6 +269,7 @@ class MoodEngine:
         """用户回合：推进漂移。调用方应在用户真正回复后另调 `reset_connection()`。"""
         return self._drift(thread_id, now=now)
 
+    @atomic_update
     def tick_idle(self, thread_id: str, now: Optional[datetime] = None) -> MoodState:
         """空闲心跳：只漂移，不缓解连接需求（用于主动开口判定）。
 
@@ -274,11 +287,11 @@ class MoodEngine:
         """按积温简化阈值返回触发动作（可能含 observation / contact）。"""
         state = self._load(thread_id)
         triggers: List[str] = []
-        if state.connection >= _TRIGGER_OBSERVATION:
+        if state.connection >= self.settings.mood_observation:
             triggers.append("observation")
-        if state.connection >= _TRIGGER_FORCE:
+        if state.connection >= self.settings.mood_force_contact:
             triggers.append("contact")
-        elif state.connection >= _TRIGGER_CONSIDER and state.pride < _TRIGGER_PRIDE_BLOCK:
+        elif state.connection >= self.settings.mood_contact and state.pride < self.settings.mood_pride_block:
             triggers.append("contact")
         return triggers
 
@@ -292,6 +305,7 @@ class MoodEngine:
             arousal=normalized * 0.3,
         )
 
+    @atomic_update
     def apply_delta(
         self,
         thread_id: str,
@@ -311,6 +325,7 @@ class MoodEngine:
         self._save(state)
         return state
 
+    @atomic_update
     def reset_connection(self, thread_id: str) -> None:
         state = self._load(thread_id)
         state.connection = 0.0
@@ -322,7 +337,8 @@ class MoodEngine:
         _, period_label = get_period(now)
 
         pieces = [f"当前时段基调：{period_label}。"]
-        hook = self._pending_hooks.pop(thread_id, "")
+        with self._lock:
+            hook = self._pending_hooks.pop(thread_id, "")
         if hook:
             pieces.append(hook)
         elif state.connection > 0.5:

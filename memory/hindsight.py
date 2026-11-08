@@ -3,10 +3,11 @@
 from __future__ import annotations
 
 import hashlib
-import os
 from datetime import datetime, timezone
 
 from hindsight_client import Hindsight
+from config.settings import Settings
+from infrastructure.container import get_settings
 
 
 BANK_MISSION = (
@@ -29,22 +30,23 @@ MEMORY_RULES = (
 
 def resolve_memory_thread_id(raw: str | None = None) -> str:
     """显式记忆池跨聊天复用；本地单用户 API 默认使用固定身份。"""
-    default_identity = os.getenv("AX_MEMORY_USER_ID", "bina-local-user").strip()
+    default_identity = get_settings().memory_user_id
     return (raw or "").strip() or default_identity or "bina-local-user"
 
 
 class HindsightMemory:
-    def __init__(self, base_url: str | None = None) -> None:
-        self.base_url = base_url or os.getenv("AX_HINDSIGHT_URL", "http://127.0.0.1:8888")
+    def __init__(self, base_url: str | None = None, *, settings: Settings | None = None) -> None:
+        self.settings = settings or get_settings()
+        self.base_url = base_url or self.settings.hindsight_url
 
     def bank_id(self, memory_thread_id: str | None = None) -> str:
-        identity = resolve_memory_thread_id(memory_thread_id)
+        identity = (memory_thread_id or "").strip() or self.settings.memory_user_id
         return "bina-" + hashlib.sha256(identity.encode()).hexdigest()[:32]
 
     def _client(self) -> Hindsight:
         return Hindsight(
             base_url=self.base_url,
-            api_key=os.getenv("AX_HINDSIGHT_API_KEY") or None,
+            api_key=self.settings.hindsight_api_key.get_secret_value() or None,
             timeout=120.0,
         )
 
@@ -87,6 +89,7 @@ class HindsightMemory:
                 context="用户与 Bina 的真实对话；区分用户事实、明确更正、计划与已发生的共同经历。",
                 timestamp=recorded,
                 document_id=document_id,
+                update_mode="replace",
                 metadata={"conversation_id": conversation_id, "recorded_at": stamp, "source": "bina-chat"},
                 retain_async=False,
             )

@@ -3,13 +3,13 @@
 from __future__ import annotations
 
 import base64
-import os
 from dataclasses import dataclass
 from typing import Literal
 
 from openai import OpenAI
 
 from observability import obs
+from infrastructure.container import get_settings
 
 MAX_BYTES = 5 * 1024 * 1024
 TEXT_MAX_CHARS = 8000
@@ -77,11 +77,8 @@ def _classify(name: str, content_type: str) -> Kind:
 
 
 def _qwen_creds() -> tuple[str, str]:
-    key = (os.getenv("QWEN_API_KEY") or "").strip()
-    base = (
-        os.getenv("QWEN_BASE_URL")
-        or "https://dashscope.aliyuncs.com/compatible-mode/v1"
-    ).strip()
+    key = get_settings().qwen_api_key.get_secret_value()
+    base = get_settings().qwen_base_url
     return key, base.rstrip("/")
 
 
@@ -92,7 +89,7 @@ def _describe_image(data: bytes, *, name: str, content_type: str) -> str:
             "图片需要 QWEN_API_KEY（DashScope）做视觉描述，请在 .env 配置后重试。",
             status_code=503,
         )
-    model = (os.getenv("AX_VL_MODEL") or "qwen-vl-plus").strip()
+    model = get_settings().vl_model
     mime = _mime_for_image(_ext(name), content_type)
     b64 = base64.b64encode(data).decode("ascii")
     data_url = f"data:{mime};base64,{b64}"

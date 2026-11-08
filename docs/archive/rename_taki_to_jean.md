@@ -1,3 +1,5 @@
+> 历史归档：本文保留旧阶段的设计与记录。当前实现请从[文档入口](../README.md)阅读；旧命令和模块不作为当前操作依据。
+
 # Taki → Jean 重命名说明
 
 本文档说明代码与文档助理从 **Taki** 更名为 **Jean** 时，仓库内**已修改**与**刻意未修改**的范围，便于后续维护与 onboarding。
@@ -12,7 +14,7 @@
 | **技术节点工具常量** | `tools/agent_tools.py`：`BIT_TOOLS`（原 `TAKI_TOOLS`），仅由 Bit 节点使用，命名与职责对齐。 |
 | **API 回复前缀** | `main.py`：`task_type` / `active_task_type` 为 `jean` 时，前缀为 `jean`。 |
 | **前端展示** | `frontend/app/page.tsx`：`jean` 分支，展示「文档（Jean）」。 |
-| **项目文档** | 根目录 `README.md`、`docs/Digital_Assistant_Team_structure.md`、`docs/adr/ADR-001-pain_level_calibration.md`。 |
+| **项目文档** | 根目录 `README.md`、`docs/archive/Digital_Assistant_Team_structure.md`、`docs/adr/ADR-001-pain_level_calibration.md`。 |
 | **测试脚本注释与输出文案** | `test_suite/test.py`、`test_system_prompts.py`、`test_memory.py` 中与节点名、职责相关的描述。 |
 
 **迁移注意**：任何依赖旧值 `task_type: "taki"` 或 `import TAKI_TOOLS` / `TAKI_PROMPT` 的外部脚本或分支，需改为 `jean` / `BIT_TOOLS` / `JEAN_PROMPT`。

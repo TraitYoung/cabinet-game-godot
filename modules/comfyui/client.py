@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import os
 import time
 import urllib.error
 import urllib.parse
@@ -19,7 +18,8 @@ class ComfyError(RuntimeError):
 
 
 def _comfy_base() -> str:
-    return (os.getenv("AX_COMFYUI_URL") or "http://127.0.0.1:8188").rstrip("/")
+    from infrastructure.container import get_settings
+    return get_settings().comfyui_url.rstrip("/")
 
 
 class ComfyClient:

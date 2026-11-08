@@ -3,6 +3,8 @@
 import asyncio
 from io import BytesIO
 import threading
+import tempfile
+from pathlib import Path
 from types import SimpleNamespace
 import unittest
 from unittest.mock import MagicMock, patch
@@ -11,7 +13,10 @@ from fastapi import UploadFile
 from fastapi.testclient import TestClient
 
 import agents.router as router
-import main
+import modules.chat_api.routes as main
+from app.factory import create_app
+from config.settings import Settings
+from infrastructure.container import Container
 import modules.chat_api.service as service
 
 
@@ -54,6 +59,11 @@ class UploadResponsivenessTests(unittest.IsolatedAsyncioTestCase):
 
 
 class ModelFailureTests(unittest.TestCase):
+    def setUp(self):
+        directory = tempfile.TemporaryDirectory()
+        self.addCleanup(directory.cleanup)
+        self.db_path = str(Path(directory.name) / "chat.db")
+
     def test_failed_or_empty_model_reply_is_not_persisted(self):
         for content in (RuntimeError("private provider diagnostic"), "", "   "):
             for endpoint in ("/api/v1/chat", "/api/v1/chat/stream", "/v1/chat/completions"):
@@ -75,7 +85,10 @@ class ModelFailureTests(unittest.TestCase):
                         payload = {"text": "你好"} if endpoint.startswith("/api/") else {
                             "messages": [{"role": "user", "content": "你好"}],
                         }
-                        response = TestClient(main.app).post(endpoint, json=payload)
+                        dependencies = Container(Settings(db_path=self.db_path, proactive_enabled=False))
+                        dependencies.history = history
+                        dependencies.memory = memory
+                        response = TestClient(create_app(container=dependencies)).post(endpoint, json=payload)
                     if endpoint.endswith("/stream"):
                         self.assertIn('"type": "error"', response.text)
                         self.assertNotIn('"type": "done"', response.text)

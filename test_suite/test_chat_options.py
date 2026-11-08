@@ -4,14 +4,19 @@ from unittest.mock import Mock, patch
 
 from fastapi import HTTPException
 from infrastructure import container
+from config.settings import Settings
 from modules.chat_api.service import TurnRequest, TurnService
 from schemas.protocols import TaskIntent
 
 
 class ChatOptionsTests(unittest.TestCase):
-    @patch.object(container, "_LLM_PROVIDER", "deepseek")
+    def setUp(self):
+        self.dependencies = container.Container(Settings(llm_provider="deepseek"))
+        self.dependencies.llm = Mock()
+        self.enterContext(container.use_container(self.dependencies))
+
     def test_reasoning_levels_reach_provider_without_changing_default(self):
-        shared = container._llm
+        shared = self.dependencies.llm
         with patch("langchain_openai.ChatOpenAI") as create:
             for effort in ("off", "low", "high", "max"):
                 container.get_turn_llm("deepseek-v4-pro", effort)
@@ -19,7 +24,7 @@ class ChatOptionsTests(unittest.TestCase):
                 self.assertEqual(create.call_args.kwargs["model"], "deepseek-v4-pro")
                 self.assertEqual(body["thinking"]["type"], "disabled" if effort == "off" else "enabled")
                 self.assertEqual(body.get("reasoning_effort"), None if effort == "off" else effort)
-        self.assertIs(container._llm, shared)
+        self.assertIs(self.dependencies.llm, shared)
 
     def test_omitted_settings_keep_shared_default(self):
         with patch.object(container, "get_llm", return_value=Mock()) as default:
