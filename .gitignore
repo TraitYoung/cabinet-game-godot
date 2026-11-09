@@ -54,3 +54,7 @@ build/
 *.db.locks/
 .devstack/backend.json
 .devstack/frontend.json
+
+# Bina 视觉归档（仅本地保留，不推送至 GitHub）
+docs/media/archive/
+assets/bina-tpose/archive/

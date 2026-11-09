@@ -1,6 +1,6 @@
 # Bina T 姿参考与比例测量
 
-2026-11-08 用户已正式采用[以新工装正面为基准的两套服装六视图](v3/anatomy-locked/turnaround/README.md)，后续建模以该组实际外貌和比例为准；新图尚待重新标点测量。[V3 版本入口](v3/README.md)保留正式资源导航，其余 V2/V3 三视图和试稿统一迁入[归档目录](archive/README.md)。
+2026-11-08 用户已正式采用[以新工装正面为基准的两套服装六视图](v3/anatomy-locked/turnaround/README.md)，后续建模以该组实际外貌和比例为准；新图尚待重新标点测量。[V3 版本入口](v3/README.md)保留正式资源导航。未采用的 V2/V3 三视图与试稿位于本地 `archive/`（已 `.gitignore`，不推送 GitHub）。
 
 本目录原有的 `casual/`、`work/` 六张原图和 `measurements/` 全部属于**旧版白发形象 v0**，保留用于复现历史测量。以下命令、标点和误差口径仅适用于旧图，不能作为新版外貌或比例依据。
 
