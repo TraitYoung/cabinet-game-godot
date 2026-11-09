@@ -1,0 +1,26 @@
+{
+  "created_date": "2026-11-09",
+  "tool": "built-in image_gen",
+  "status": "accepted casual concept revision",
+  "image": "bina-casual-concept-airy-ends-v4.png",
+  "width": 1672,
+  "height": 941,
+  "sha256": "a5c7a1d5a1bc57c4c772169e061d94f7938da8e16a27e2f80751bbf71c114825",
+  "prompt_file": "concept-airy-ends-v4-prompt.txt",
+  "reference_images": [
+    "bina-casual-concept-tidy-hair-v3.png"
+  ],
+  "reference_sha256": "b75fa7b4c368c05c4c0e2c297752740a87f074d0c22f9d991ecbc6fbe2dfd777",
+  "changes_requested": [
+    "add subtle airiness to lower hair ends in all three views",
+    "retain neat silhouette and cohesive inward curve",
+    "preserve faces, expressions, ahoge and outfit"
+  ],
+  "pixel_postprocessing": false,
+  "selection": {
+    "date": "2026-11-09",
+    "authority": "user confirmation",
+    "statement": "好，写commit，提交GitHub",
+    "scope": "casual concept sheet with airy hair ends; existing T-pose references remain separately recorded"
+  }
+}

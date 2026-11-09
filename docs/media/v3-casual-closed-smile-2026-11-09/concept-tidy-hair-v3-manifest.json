@@ -1,0 +1,21 @@
+{
+  "created_date": "2026-11-09",
+  "tool": "built-in image_gen",
+  "status": "hair grooming revision; pending user review",
+  "image": "bina-casual-concept-tidy-hair-v3.png",
+  "width": 1672,
+  "height": 941,
+  "sha256": "b75fa7b4c368c05c4c0e2c297752740a87f074d0c22f9d991ecbc6fbe2dfd777",
+  "prompt_file": "concept-tidy-hair-v3-prompt.txt",
+  "reference_images": [
+    "bina-casual-concept-face-fixed-v2.png"
+  ],
+  "reference_sha256": "66be2fb1e0445570afe85ae65093d55fd35741aef1945489b3c3187a8dafc3e8",
+  "changes_requested": [
+    "groom hair in all three views",
+    "remove stray flyaways and outward floating strands",
+    "smooth cohesive inward-curving ends",
+    "preserve face, expression, single ahoge and outfit"
+  ],
+  "pixel_postprocessing": false
+}

@@ -1,0 +1,20 @@
+{
+  "created_date": "2026-11-09",
+  "tool": "built-in image_gen",
+  "status": "retained revision per user request; original concept archived",
+  "image": "bina-casual-concept-face-fixed-v2.png",
+  "width": 1672,
+  "height": 941,
+  "sha256": "66be2fb1e0445570afe85ae65093d55fd35741aef1945489b3c3187a8dafc3e8",
+  "prompt_file": "concept-face-fixed-v2-prompt.txt",
+  "reference_images": [
+    "../archive/v3-casual-concept-before-face-fix-2026-11-09/bina-casual-concept-closed-smile.png"
+  ],
+  "reference_sha256": "214c3264aa926634cab9f7183cbfac371d074f5ac510ece66541123dd8500a27",
+  "changes_requested": [
+    "reduce central portrait head roll",
+    "unify eye perspective and facial midline",
+    "preserve subtle natural head tilt and closed smile"
+  ],
+  "pixel_postprocessing": false
+}

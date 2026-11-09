@@ -1,0 +1,12 @@
+{
+  "created_date": "2026-11-09",
+  "tool": "built-in image_gen",
+  "status": "design draft; pending user review",
+  "image": "bina-casual-closed-smile.png",
+  "width": 1024,
+  "height": 1536,
+  "sha256": "18a916ccca73c832927a05f834b5f01f608eece73fae42f34b3c88b5470f25ac",
+  "prompt_file": "prompt.txt",
+  "reference_images": [],
+  "pixel_postprocessing": false
+}
