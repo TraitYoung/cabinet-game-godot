@@ -295,5 +295,7 @@
     ],
     "measurement_status": "pending",
     "live2d_rebuild_status": "pending"
-  }
+  },
+  "asset_status": "withdrawn",
+  "withdrawn_date": "2026-11-11"
 }

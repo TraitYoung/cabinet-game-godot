@@ -1,4 +1,0 @@
-interface:
-  display_name: "参考图到 Live2D"
-  short_description: "从参考图制作 Live2D，修复脸部接缝与眨眼并完成动态验收"
-  default_prompt: "使用 $reference-to-live2d，从当前认可阶段继续制作或修复角色 Live2D；按需完成参考测量、完整头部与自然站姿、接缝和眨眼修复、绑定导出及真实网页验收，并说明尚未实现的独立控制。"

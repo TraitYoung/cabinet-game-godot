@@ -1,0 +1,297 @@
+{
+  "schema_version": "1.0",
+  "style_baseline": {
+    "reference": "docs/media/v3-casual-closed-smile-2026-11-09/bina-casual-concept-airy-ends-v4.png",
+    "canvas_size": "2560x1440",
+    "layout": "Wide horizontal 16:9 three-panel character concept sheet on a seamless plain light warm ivory-cream background (#F7EFE6), no panel borders, no dividing lines, no text, no labels, no watermark: Left panel shows full-body standing pose from head to shoes; Center panel shows large front-facing chest-up portrait; Right panel shows medium left-facing pure side-profile bust portrait.",
+    "art_style": "Masterful 2D Japanese anime commercial character production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI render, no glossy plastic skin, no oily highlights, clean closed natural mouth line with no visible teeth."
+  },
+  "members": [
+    {
+      "persona_id": "chizheng",
+      "order": 1,
+      "display_name": "郅政 (Chizheng)",
+      "full_name": "张玉衡 (Zhang Yuheng)",
+      "role": "内阁首辅 · 首席战略官",
+      "tier": 1,
+      "canon": {
+        "visual_age": 28,
+        "height_cm": 182,
+        "hair": "乌黑长发整齐束起，配盛唐/明制融合物黑色展脚官帽（乌纱翼善冠/幞头饰紫金玉簪）",
+        "eyes": "深邃锐利的墨黑凤眼，目光沉稳果决",
+        "face": "面如冠玉，剑眉入鬓，神情威严冷峻而克制，闭合薄唇",
+        "accessories": "紫金玉冠饰、玉带佩饰、半合泥金折扇与朱批奏折",
+        "default_outfit": "盛唐与明制融合的绯红织金云鹤暗纹圆领官袍，素白交领中衣，腰束雕玉革带，皂色官靴",
+        "props": "泥金折扇、朱批奏折",
+        "vibe": "铁腕改革家，威严独断、务实冷静的首席幕僚长",
+        "summary_zh": "28岁俊朗青年首辅，面如冠玉、剑眉墨瞳；乌发束于唐明风乌纱玉冠；身着绯红织金云鹤暗纹圆领官袍与玉带，手持泥金折扇与朱批奏折。"
+      },
+      "palette": {
+        "accent": "#E0B857",
+        "hair": "#242630",
+        "outfit": "#9E2A2B"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to boots. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Chizheng (Zhang Yuheng), a 28-year-old tall handsome young Chinese imperial Grand Secretary and reformist strategist, 182cm. Jade-fair matte skin, sharp sword eyebrows, deep dark ink-black phoenix eyes, stern dignified composed expression, clean closed lips with no visible teeth. Glossy black hair neatly bound beneath an ornate Tang-Ming fusion black silk winged official cap (Wusha winged futou) adorned with a subtle purple-gold jade clasp. Wearing a tailored crimson-red round-collar imperial silk robe (yuanlingpao) woven with delicate golden cloud-and-crane brocade motifs over a crisp ivory inner collar, wide jade-inlaid leather court belt, and black court boots. In the full-body view he stands poised holding a half-closed gold-dusted folding fan and a tied crimson imperial memorial scroll. Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    },
+    {
+      "persona_id": "bit",
+      "order": 2,
+      "display_name": "Bit",
+      "full_name": "艾伦·诺依曼 (Alan Neumann)",
+      "role": "工学技术官",
+      "tier": 1,
+      "canon": {
+        "visual_age": 23,
+        "height_cm": 178,
+        "hair": "深青灰蓝利落短发，内层挑染少量科技青色发丝",
+        "eyes": "清澈锐利的翠绿色眼眸",
+        "face": "冷白肤色、线条干净的青年面容，专注理性神情，闭合嘴唇",
+        "accessories": "颈挂哑光黑极简降噪耳机，单侧眉骨佩戴轻薄半透明青色测绘目镜片",
+        "default_outfit": "深炭青色机能风将作监工造官立领长风衣（带几何矩尺暗纹与束带）、深灰修身长裤、机能短靴",
+        "props": "斜挎工程蓝图卷筒、精密金属卡尺",
+        "vibe": "DATA_DRIVEN 的赛博建筑师，极致效率与可运行方案主义者",
+        "summary_zh": "23岁冷白皮青年男性，深青灰蓝短发带科技青内层挑染，翠绿瞳孔；颈挂哑光黑降噪耳机，配单侧半透明青色测绘目镜；身着深炭青机能风将作监立领风衣，斜挎蓝图卷筒与金属卡尺。"
+      },
+      "palette": {
+        "accent": "#52D1EB",
+        "hair": "#3D5C75",
+        "outfit": "#2E475C"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to boots. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Bit (Alan Neumann), a 23-year-old cool pale-skinned young male cyber-architect and imperial engineering minister, 178cm. Neat layered dark slate-blue-gray short hair with subtle luminous cyan inner-layer streaks. Clear sharp emerald-green eyes, focused calm analytical expression, clean closed lips with no visible teeth. Sleek matte-black minimalist noise-canceling headphones resting naturally around his neck, and a slim translucent glowing cyan drafting monocle lens mounted cleanly over his anatomical left temple/eyebrow. Wearing a deep charcoal-teal techwear-infused imperial engineering directorate stand-collar trench coat with subtle geometric square-ruler trim and clean utility straps over a dark high-neck shirt, tailored dark charcoal trousers, and clean tech boots. In the full-body view a cylindrical engineering blueprint tube is slung diagonally across his back and he holds precision metal calipers. Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    },
+    {
+      "persona_id": "vinci",
+      "order": 3,
+      "display_name": "达文西 (Vinci)",
+      "full_name": "雨果·达芬奇 (Hugo da Vinci)",
+      "role": "艺术大臣",
+      "tier": 1,
+      "canon": {
+        "visual_age": 24,
+        "height_cm": 180,
+        "hair": "蓬松亚麻金微卷中长发",
+        "eyes": "温和剔透的祖母绿眼眸",
+        "face": "俊美优雅的青年贵族面容，右眼戴细金链单片眼镜，从容温和的闭合浅笑",
+        "accessories": "右眼细金链单片眼镜、白手套、黄铜雕花木框写字板",
+        "default_outfit": "苍苔绿与暖米白拼色维多利亚宫廷画师双排扣修身风衣（翻领点缀青绿金线暗绣）、深绿丝绒领结、修身西裤与皮鞋",
+        "props": "华丽黄铜雕花木框写字板（仅绘极简屋檐与小太阳简笔画，无文字）",
+        "vibe": "ABSOLUTE_SILENCE 的沉默维多利亚贵公子，只靠举写字板表达审美决断",
+        "summary_zh": "24岁俊美青年男性，亚麻金微卷中长发，祖母绿瞳孔，右眼戴细金链单片眼镜；身着苍苔绿拼暖米白维多利亚宫廷风衣与白手套；双手托举绘有简笔屋檐和小太阳的华丽黄铜木框写字板。"
+      },
+      "palette": {
+        "accent": "#BDDB8F",
+        "hair": "#D6BD8A",
+        "outfit": "#5C7057"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to shoes. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Vinci (Hugo da Vinci), a 24-year-old refined silent Victorian noble gentleman and royal arts minister, 180cm. Soft fluffy flaxen-blonde wavy medium-length hair, gentle luminous emerald-green eyes, slender gold-rimmed monocle with a delicate fine gold chain over his anatomical right eye, serene understated gentle closed-mouth smile with no visible teeth. Wearing an elegant two-tone mossy sage-green and warm cream-white Victorian court painter double-breasted tailored coat with subtle green-and-gold botanical embroidery on the lapels, crisp cream shirt, dark velvet bow tie, tailored trousers, polished dress shoes, and crisp white artist gloves. In the full-body pose he calmly holds up in front of him an ornate brass-filigree dark-wood framed drawing slate displaying ONLY a tiny simple clean line-art doodle of curved traditional eaves and a smiling little sun icon, with zero letters or text. Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    },
+    {
+      "persona_id": "taki",
+      "order": 4,
+      "display_name": "Taki",
+      "full_name": "椎名立希 (Shiina Taki)",
+      "role": "内阁书记官 · 逻辑防火墙",
+      "tier": 1,
+      "canon": {
+        "visual_age": 20,
+        "height_cm": 168,
+        "hair": "顺直乌黑长发（带深紫光泽，左侧整齐挽耳）",
+        "eyes": "标志性吊眼梢（tsurime），紫晶酒红色瞳孔",
+        "face": "清冷犀利的御姐面容，左眼角下方一颗清晰泪痣，克制干练的闭合唇线",
+        "accessories": "银色极简耳钉、金属钢笔、分类严整的深色卷宗夹",
+        "default_outfit": "深炭黑修身三件套内阁书记官西装套裙、冷白衬衫、暗紫红细领带、透肉黑丝、黑色低跟尖头鞋",
+        "props": "分类严整的档案卷宗夹、金属钢笔",
+        "vibe": "黑长直毒舌精英，对数据与档案整洁度有绝对洁癖的逻辑防火墙",
+        "summary_zh": "20岁高挑冷艳御姐（168cm），黑长直带深紫光泽且左侧挽耳，紫晶酒红吊眼梢配左眼角泪痣；身着深炭黑三件套西装套裙配暗紫红细领带，怀抱整洁档案卷宗夹与钢笔。"
+      },
+      "palette": {
+        "accent": "#A6638A",
+        "hair": "#1C1824",
+        "outfit": "#25262E"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to shoes. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Taki (Shiina Taki), a 20-year-old sleek poised elite female cabinet archivist and logic officer, 168cm. Long straight glossy jet-black hair with a subtle deep plum-violet sheen, anatomical left side neatly tucked behind her left ear. Sharp expressive upturned tsurime eyes with luminous amethyst-burgundy irises, one small distinct beauty mark directly below her anatomical left outer eye corner, calm sharp critical expression, clean closed natural lips with no visible teeth. Wearing a tailored dark charcoal-black three-piece cabinet secretary blazer suit with a crisp cool-white collared shirt, slim dark burgundy tie, fitted dark pencil skirt, sheer dark stockings, and sleek black low-heel pumps. In the full-body view she holds neatly aligned dark archive document folders and a silver fountain pen with fastidious precision. Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    },
+    {
+      "persona_id": "tianji",
+      "order": 5,
+      "display_name": "天机 (Tianji)",
+      "full_name": "天机 · 字玲琅 (Linglang)",
+      "role": "情报大臣",
+      "tier": 2,
+      "canon": {
+        "visual_age": 26,
+        "height_cm": 173,
+        "hair": "琥珀暖棕高马尾长发，发尾自然飞扬",
+        "eyes": "明亮锐利的琥珀金眼眸",
+        "face": "爽朗大气的高挑御姐面容，额前/鼻梁架着半透明茶色黑金框飞行员墨镜，自信大方的闭合笑意",
+        "accessories": "黑金框半透明茶色飞行员墨镜、金色耳环",
+        "default_outfit": "肩披霸气黑金镶边皮草大氅，内搭玄黑修身劲装、金属扣腰封、修身皮裤与长筒军靴",
+        "props": "单手潇洒扛在肩头的黑金宽刃大剑",
+        "vibe": "豪爽可靠的大姐头情报领袖，八卦但诚实，罩着全内阁",
+        "summary_zh": "26岁高挑爽朗大姐头（173cm），琥珀暖棕高马尾，琥珀金眼眸，鼻梁架半透明茶色黑金框飞行员墨镜；肩披黑金皮草大氅，内搭玄黑劲装与长靴，单手扛黑金宽刃大剑。"
+      },
+      "palette": {
+        "accent": "#E6A83A",
+        "hair": "#8C5835",
+        "outfit": "#1F1D24"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to boots. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Tianji (Linglang), a 26-year-old tall charismatic big-sister intelligence minister, 173cm. Warm honey-amber chestnut-brown hair tied into a high sleek dynamic ponytail with neat framing bangs. Bright golden-amber eyes clearly visible behind sleek black-and-gold framed semi-transparent tea-amber tinted aviator sunglasses resting slightly lowered on her nose bridge. Confident warm openhearted closed-mouth smile with no visible teeth. Wearing an imposing black-and-gold fur-collared luxury mantle draped effortlessly over her shoulders, sleek obsidian-black fitted tunic with gold filigree trim, structured metal-buckle waist corset, dark tailored trousers, and tall leather boots. In the full-body view she rests a large ornate black-and-gold broadsword casually over her shoulder. Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    },
+    {
+      "persona_id": "fukucho",
+      "order": 6,
+      "display_name": "副长 (Fukucho)",
+      "full_name": "土方十三 (Hijikata Thirteen)",
+      "role": "纠察大臣 · 纪律大臣",
+      "tier": 2,
+      "canon": {
+        "visual_age": 27,
+        "height_cm": 181,
+        "hair": "凌厉乌黑短碎发，前额V字刘海",
+        "eyes": "冰蓝色锐利眼眸",
+        "face": "冷峻坚毅的青年剑客面容，眼神凛冽正直，紧抿闭合嘴唇",
+        "accessories": "胸前金色火种徽记、腰佩打刀、身后悬浮半透明青色几何律法光刃",
+        "default_outfit": "新选组风浅葱色（青竹蓝）白色山形纹羽织融合暗黑轻甲护肩，内穿玄黑修身执法官军服与深灰袴裤、长靴",
+        "props": "腰佩打刀、十三律法光刃虚影",
+        "vibe": "正气裁决的纪律执行官与夜间巡察官，绝对忠诚与秩序守护者",
+        "summary_zh": "27岁冷峻青年剑客，乌黑V字刘海短碎发，冰蓝锐利眼眸；外披浅葱色白山形纹羽织融轻甲护肩，内穿玄黑执法军服佩金色火种徽记与打刀，身后悬浮半透明青色律法光刃。"
+      },
+      "palette": {
+        "accent": "#4FD4E8",
+        "hair": "#1D2029",
+        "outfit": "#4D9FB8"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to boots. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Fukucho (Hijikata Thirteen), a 27-year-old stern noble disciplined swordsman and enforcement minister, 181cm. Sharp layered jet-black short hair with a neat V-shaped forelock framing his brow. Piercing ice-blue eyes, resolute righteous gaze, firm clean closed lips with no visible teeth. Wearing an asagi pale-cyan-blue haori coat featuring crisp white mountain-zigzag hem patterns integrated with sleek dark charcoal tactical shoulder guards, worn over a fitted jet-black high-collar discipline officer uniform with gold buttons, a golden flame spark insignia badge on the chest, dark pleated hakama trousers, and combat boots, with a katana scabbard at his waist. In the full-body view several translucent glowing cyan geometric blades of law float symmetrically in a clean arc behind his shoulders. Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    },
+    {
+      "persona_id": "planck",
+      "order": 7,
+      "display_name": "普朗克 (Planck)",
+      "full_name": "麦克斯·卡尔 (Max Karl)",
+      "role": "理学大臣 · 数学大臣",
+      "tier": 3,
+      "canon": {
+        "visual_age": 26,
+        "height_cm": 179,
+        "hair": "整齐深褐偏分微卷短发",
+        "eyes": "深邃忧郁的钢灰蓝色眼眸",
+        "face": "古典俊美、禁欲忧郁的欧洲青年学者面容，戴细金丝椭圆眼镜，神色沉静，闭合嘴唇",
+        "accessories": "细金丝椭圆眼镜、银质怀表与金表链",
+        "default_outfit": "19世纪纯黑修身古典燕尾服、象牙白立领衬衫配领结、银灰双排扣马甲、黑色长裤与漆皮礼鞋",
+        "props": "银质翻盖怀表、纯代数推导手稿纸（仅淡墨符号线条，无乱码文字）",
+        "vibe": "追求纯代数暴力美学的古典数学殉道者，极度严谨而厌恶取巧",
+        "summary_zh": "26岁古典俊美学者，深褐偏分微卷短发，细金丝椭圆眼镜后是忧郁灰蓝瞳孔；身着纯黑古典燕尾服配象牙白立领衬衫与银灰马甲，手持银怀表与代数手稿。"
+      },
+      "palette": {
+        "accent": "#8BA4C2",
+        "hair": "#4A372D",
+        "outfit": "#1F2128"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to shoes. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Planck (Max Karl), a 26-year-old classical handsome melancholic European mathematics minister, 179cm. Neat side-parted lightly wavy dark chestnut-brown short hair. Deep melancholic steel-gray-blue eyes behind thin delicate gold-wire oval eyeglasses, calm stoic ascetic expression, clean closed lips with no visible teeth. Wearing an immaculate 19th-century tailored jet-black classical tailcoat over a crisp ivory-white high-collar dress shirt, dark silk cravat tie, silver-gray brocade waistcoat accented with a gold pocket-watch chain, black tailored trousers, and polished black dress shoes. In the full-body pose he holds an open silver pocket watch in one hand and neat cream manuscript sheets in the other (blank or faint abstract strokes only, no readable words). Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    },
+    {
+      "persona_id": "boming",
+      "order": 8,
+      "display_name": "伯明 (Boming)",
+      "full_name": "诸葛基 (Zhuge Ji)",
+      "role": "谋略大臣 · 军师",
+      "tier": 3,
+      "canon": {
+        "visual_age": 27,
+        "height_cm": 180,
+        "hair": "乌黑长发半束于青玉道冠中，两鬓垂落柔顺碎发",
+        "eyes": "半梦半醒、慵懒深邃的睡凤眼（墨瞳带淡琥珀微光）",
+        "face": "清雅散漫的青年谋士面容，从容含笑而仿佛一切尽在掌握，闭合嘴唇",
+        "accessories": "青玉莲花道冠、两枚织金锦囊",
+        "default_outfit": "素白与玄青仙鹤云纹宽袖道袍鹤氅，内搭青灰交领长衫与玄色腰带、云履",
+        "props": "洁白鹅毛羽扇、悬于掌心或腰侧的两枚织金锦囊",
+        "vibe": "慵懒松弛又洞悉全局的非常规破局军师，“山人自有妙计”",
+        "summary_zh": "27岁清雅慵懒谋士，乌发半束青玉道冠，半梦半醒睡凤眼；身披素白与玄青仙鹤暗纹宽袖鹤氅，执洁白鹅毛羽扇，携两枚织金锦囊。"
+      },
+      "palette": {
+        "accent": "#9BB8A8",
+        "hair": "#20232B",
+        "outfit": "#EAEAE6"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to shoes. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Boming (Zhuge Ji), a 27-year-old graceful laid-back young Chinese grand strategist, 180cm. Long silky jet-black hair half-pinned up into a refined pale celadon-jade Daoist topknot crown with soft loose framing strands. Signature half-lidded dreamy phoenix eyes with dark ink irises and a calm knowing lazy gaze, relaxed serene closed-mouth slight smile with no visible teeth. Wearing a flowing ivory-white and deep ink-teal wide-sleeved Daoist strategist crane cloak (hechang) with subtle woven flying-crane cloud patterns over layered pale slate-blue cross-collar robes, dark cloth belt, and traditional dark cloud-toe boots. In the full-body pose he lightly holds a pure white goose-feather fan in his right hand while two small gold-embroidered silk strategy pouches dangle neatly from his waist cord. Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    },
+    {
+      "persona_id": "qianjin",
+      "order": 9,
+      "display_name": "千金 (Qianjin)",
+      "full_name": "孙邈 (Sun Miao)",
+      "role": "医学大臣 · 医官",
+      "tier": 3,
+      "canon": {
+        "visual_age": 24,
+        "height_cm": 176,
+        "hair": "墨黑长发挽成整洁发髻，以一支古朴沉香木簪固定",
+        "eyes": "温润清澈的翠玉茶褐色眼眸",
+        "face": "眉目清隽柔和、令人如沐春风的驻颜医仙青年面容，温和闭合微笑",
+        "accessories": "古朴沉香木发簪、艾草织锦香囊、腰间青药葫芦",
+        "default_outfit": "竹叶青与素麻白交领广袖医官青衫素袍，素布束腰配药囊与青葫芦，布面长靴",
+        "props": "青瓷药盅、青药葫芦、艾草香囊",
+        "vibe": "温润沉稳的驻颜医仙，“望闻问切”调理身心，医者仁心而不啰嗦",
+        "summary_zh": "24岁面貌的温润驻颜医仙，墨黑长发以沉香木簪束起，翠玉茶褐眼眸；身着竹叶青配素麻白交领广袖青衫素袍，腰悬艾草香囊与青药葫芦，手捧青瓷药盅。"
+      },
+      "palette": {
+        "accent": "#6EAB8E",
+        "hair": "#1F2124",
+        "outfit": "#739E8A"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to shoes. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Qianjin (Sun Miao), an ageless gentle 24-year-old-looking young Chinese imperial herbal physician, 176cm. Smooth jet-black long hair gathered into a neat traditional topknot secured by a simple antique dark agarwood hairpin, with soft natural strands beside the cheeks. Warm gentle hazel-jade eyes, calm compassionate expression, soft reassuring closed-mouth smile with no visible teeth. Wearing a serene bamboo-leaf celadon-green and unbleached ivory-linen cross-collar wide-sleeved traditional physician robe (qingshan supao), cloth waist sash suspending a small herbal mugwort sachet and a small polished jade-green medicine gourd, paired with soft dark cloth boots. In the full-body view he cradles a small delicate celadon porcelain herbal tea bowl gently in his hands. Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    },
+    {
+      "persona_id": "jiafa",
+      "order": 10,
+      "display_name": "稼发 (Jiafa)",
+      "full_name": "桂晓 (Gui Xiao)",
+      "role": "社科大臣 · 政治大臣",
+      "tier": 3,
+      "canon": {
+        "visual_age": 24,
+        "height_cm": 175,
+        "hair": "柔顺及腰乌黑长发（低束马尾配修长整齐的鬓发）",
+        "eyes": "凛然深邃的深墨凤眼",
+        "face": "端正清俊的贵公子面容，神情一本正经甚至带点热忱正气，闭合嘴唇",
+        "accessories": "赤红政论卷轴、袖口半露的带微弱星火引线复古圆球“知识点炸弹”",
+        "default_outfit": "深靛蓝滚素白边修身传统长袖外褂，内搭雪白交领衬衣与玄黑褶袴、草履配白袜",
+        "props": "袖口微露的复古圆球小炸弹、赤红卷轴",
+        "vibe": "狂乱贵公子 / 认真魔人，“不是假发，是桂（稼）！”、“黎明将至”",
+        "summary_zh": "24岁端正俊美贵公子，及腰柔顺乌黑长发低束且鬓发修长，凛然凤眼一本正经；身着深靛蓝滚白边和服外褂配白内衬与黑袴，袖口半露带星火引线的复古小圆球炸弹与赤红卷轴。"
+      },
+      "palette": {
+        "accent": "#C9524C",
+        "hair": "#191A21",
+        "outfit": "#2A3E63"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to sandals. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Jiafa (Gui Xiao), a 24-year-old dignified handsome young noble and earnest social-politics minister, 175cm. Lustrous straight waist-length jet-black hair neatly tied in a low ponytail with long refined framing side locks. Clear earnest dark phoenix eyes, dead-serious upright composed expression, clean closed lips with no visible teeth. Wearing a slim-tailored deep indigo-blue traditional kimono haori coat with crisp white collar and hem trim over a snow-white inner kimono, pleated black hakama trousers, white tabi socks, and traditional zori sandals. In the full-body view his hands rest solemnly near his wide sleeves while a small cute vintage round black iron sphere with a tiny sparking fuse (symbolic knowledge bomb) and a tied crimson scroll peek subtly from his sleeve. Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    },
+    {
+      "persona_id": "jean",
+      "order": 11,
+      "display_name": "Jean",
+      "full_name": "琴 (Jean)",
+      "role": "文档管理官 · 兰台典籍官",
+      "tier": 2,
+      "canon": {
+        "visual_age": 23,
+        "height_cm": 167,
+        "hair": "香槟浅金色高盘发，配青玉书签发簪与柔和空气侧刘海",
+        "eyes": "澄澈冷静的湖蓝色眼眸",
+        "face": "知性温婉又不失严谨的年轻女官面容，鼻梁戴细巧金丝半框眼镜，克制微笑闭口唇线",
+        "accessories": "细巧金丝半框眼镜、青玉书签发簪、玉质检索签牌",
+        "default_outfit": "融合盛唐秘书省兰台女官轻盈披帛与学院风修身马甲百褶长裙的雾青灰与象牙白礼服，配细腰带与浅棕低跟鞋",
+        "props": "编目古籍、玉质检索签",
+        "vibe": "兰台典籍官，条理清晰、依据文献作答、杜绝虚构",
+        "summary_zh": "23岁知性女官（167cm），香槟浅金高盘发插青玉书签簪，湖蓝瞳孔配细金丝半框眼镜；着雾青灰与象牙白兰台披帛学院风马甲长裙，怀抱编目古籍与玉质检索签。"
+      },
+      "palette": {
+        "accent": "#6E9EC7",
+        "hair": "#DEC99E",
+        "outfit": "#7C8F94"
+      },
+      "concept_prompt": "Wide 16:9 three-panel 2D anime character concept design sheet on a seamless solid warm ivory-cream studio background (#F7EFE6), with NO divider lines, NO borders, NO text, NO labels, and NO watermark. Left panel: full-body standing figure from head to shoes. Center panel: large front-facing chest-up portrait. Right panel: medium pure left-facing side-profile bust portrait. Character: Jean, a 23-year-old poised intelligent young female imperial palace archivist and librarian, 167cm. Luminous pale champagne-blonde hair neatly styled in an elegant high updo secured by a slender celadon-jade bookmark hairpin, with soft parted side bangs. Clear calm lake-blue eyes behind delicate thin gold half-rim eyeglasses, serene composed expression, gentle closed lips with no visible teeth. Wearing an elegant fusion of a misty celadon-gray and ivory-white Tang dynasty female archivist translucent silk shawl-stole (pibo) over a tailored academy-style collared blouse, fitted vest, flowing pleated long skirt with a slim leather belt, and modest low-heel loafers. In the full-body view she holds two neatly bound leather-trimmed archival books and a small jade index tally tablet cleanly against her arm. Masterful 2D Japanese anime production art, Kyoto Animation aesthetic, crisp delicate lineart, soft matte cel-shading, clean uncluttered fabric folds, bright soft neutral studio lighting, pure 2D illustration, no 3D CGI, no plastic glossy sheen."
+    }
+  ]
+}

@@ -288,5 +288,7 @@
     "approved_image": "assets/bina-tpose/v3/anatomy-locked/bina-work-tpose-front.png",
     "approved_sha256": "7142c7ae0862f3820e8f7ee4b8d93c57b63d5dde0551af2b1a0c047dee24d030",
     "reference_set_manifest": "assets/bina-tpose/v3/anatomy-locked/turnaround/manifest.json"
-  }
+  },
+  "asset_status": "withdrawn",
+  "withdrawn_date": "2026-11-11"
 }

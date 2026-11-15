@@ -1,60 +1,25 @@
-# Python 编译产物
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.pkl
+# Godot 4 缓存与构建产物
+.godot/
+*.translation
+builds/
+export/
 
-# 虚拟环境
-.env/
-.venv/
-venv/
-ENV/
-env/
+# Godot Mono / C#（若启用）
+.mono/
+data_*/
 
-# 项目配置与敏感信息
-*.env
-!.env.example
-
-# SQLite 数据库
-data/*.db
-*.sqlite
-*.sqlite3
-
-# 日志与运行输出
-logs/*.log
-*.log
-output.log
-
-# Cursor / VSCode / IDE
-.cursor/
+# IDE & 操作系统
 .vscode/
+.cursor/
 .idea/
-
-# 测试缓存
-.pytest_cache/
-.mypy_cache/
-.coverage
-htmlcov/
-
-# 操作系统杂项
 .DS_Store
 Thumbs.db
 
-# 临时脚本或本地工具（如你不想公开）
-scripts/inspect_q2.py
-scripts/insert_career_nuke.py
-scripts/clear_Q1.py
+# 环境变量与本地密钥
+.env
+.env.*
+!.env.example
 
-# 启动器打包产物 / 本地编排状态
-dist/
-build/
-.devstack/
-# Per-session SQLite locks and launcher ownership records
-*.db.locks/
-.devstack/backend.json
-.devstack/frontend.json
-
-# Bina 视觉归档（仅本地保留，不推送至 GitHub）
+# 历史视觉归档（不纳入 Git 远端推送）
 docs/media/archive/
 assets/bina-tpose/archive/
