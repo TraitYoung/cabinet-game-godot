@@ -5,7 +5,7 @@ extends CharacterBody2D
 const CharacterProfile = preload("res://scripts/data/character_profile.gd")
 const PalaceWorld = preload("res://scripts/world/palace.gd")
 
-const BASE_SPRITE_SCALE: Vector2 = Vector2(0.28, 0.28)
+const BASE_SPRITE_SCALE: Vector2 = Vector2(1.0, 1.0)
 const BASE_SPRITE_Y: float = 8.0
 
 enum State {
@@ -222,9 +222,9 @@ func _build_chibi_sprite() -> void:
 		return
 	_sprite = Sprite2D.new()
 	_sprite.texture = tex
-	_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_sprite.centered = false
-	_sprite.offset = Vector2(-100.0, -226.0)
+	_sprite.offset = Vector2(-38.0, -82.0)
 	_sprite.position = Vector2(0.0, BASE_SPRITE_Y)
 	_sprite.scale = BASE_SPRITE_SCALE
 	add_child(_sprite)
@@ -244,15 +244,16 @@ func _update_sprite_animation(delta: float, is_moving: bool) -> void:
 		return
 	if is_moving:
 		_anim_time += delta * 11.0
-		_sprite.position.y = BASE_SPRITE_Y - absf(sin(_anim_time)) * 3.5
-		_sprite.rotation = sin(_anim_time) * 0.045
+		var bob_step: float = floorf(absf(sin(_anim_time)) * 2.5) * 2.0
+		_sprite.position.y = BASE_SPRITE_Y - bob_step
+		_sprite.rotation = 0.0
 		_sprite.scale = BASE_SPRITE_SCALE
 	else:
 		_anim_time += delta * 2.4
-		_sprite.position.y = BASE_SPRITE_Y
+		var idle_step: float = 2.0 if sin(_anim_time) > 0.35 else 0.0
+		_sprite.position.y = BASE_SPRITE_Y - idle_step
 		_sprite.rotation = 0.0
-		var breath: float = 1.0 + sin(_anim_time) * 0.015
-		_sprite.scale = Vector2(BASE_SPRITE_SCALE.x, BASE_SPRITE_SCALE.y * breath)
+		_sprite.scale = BASE_SPRITE_SCALE
 
 
 func _build_visual_labels() -> void:
@@ -303,10 +304,9 @@ func _draw() -> void:
 	if profile == null:
 		return
 	if _sprite != null:
-		# 二头身立绘脚底椭圆投影
-		draw_set_transform(Vector2(0.0, 8.0), 0.0, Vector2(1.35, 0.55))
-		draw_circle(Vector2.ZERO, 12.0, Color(0.0, 0.0, 0.0, 0.28))
-		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+		# 像素风脚底阶梯椭圆投影
+		draw_rect(Rect2(-14.0, 4.0, 28.0, 6.0), Color(0.08, 0.06, 0.08, 0.32), true)
+		draw_rect(Rect2(-10.0, 2.0, 20.0, 10.0), Color(0.08, 0.06, 0.08, 0.22), true)
 		return
 	# 脚下阴影
 	draw_circle(Vector2(0.0, 12.0), 12.0, Color(0.0, 0.0, 0.0, 0.28))

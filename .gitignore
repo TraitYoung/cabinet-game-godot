@@ -23,3 +23,7 @@ Thumbs.db
 # 历史视觉归档（不纳入 Git 远端推送）
 docs/media/archive/
 assets/bina-tpose/archive/
+
+# Python 字节码缓存
+__pycache__/
+*.py[cod]

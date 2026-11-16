@@ -12,7 +12,8 @@
 
 - [ ] 扩充其余内阁成员配置（Taki、Jean、Tianji、Fukucho、Planck、Qianjin、Boming、Jiafa）。
 - [ ] 完善 `23:30` 宵禁后 Fukucho 巡夜劝寝、Qianjin 医馆问诊等专属时段事件。
-- [ ] 引入像素/手绘 TileMap 地砖与人物行走帧、头像立绘替换占位色块。
+- [x] 引入 32×32 唐风全像素宫城底图（`palace_base.png`）、前景屋檐遮挡层（`palace_front.png`）、18 种独立正交像素家具/树木精灵（莲池、戏台、预留地块与南宫门直接绘入底图）与 13 位角色像素小人（`TEXTURE_FILTER_NEAREST` + 统一 `1-texel = 2×2` 密度），保留对话框高清胸像。
+- [ ] 引入人物多方向行走帧替换单帧弹性动画。
 
 ## 阶段三：皇城细尺度建设
 

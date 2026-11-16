@@ -7,7 +7,7 @@ const CabinetMember = preload("res://scripts/actors/cabinet_member.gd")
 const InteractableSpot = preload("res://scripts/world/interactable_spot.gd")
 
 const MONARCH_SPRITE_PATH: String = "res://assets/characters/chibi/monarch.png"
-const BASE_SPRITE_SCALE: Vector2 = Vector2(0.30, 0.30)
+const BASE_SPRITE_SCALE: Vector2 = Vector2(1.0, 1.0)
 const BASE_SPRITE_Y: float = 8.0
 
 @export var move_speed: float = 225.0
@@ -34,7 +34,7 @@ func _ready() -> void:
 
 	var cam := Camera2D.new()
 	cam.enabled = true
-	cam.zoom = Vector2(1.15, 1.15)
+	cam.zoom = Vector2(1.0, 1.0)
 	cam.position_smoothing_enabled = true
 	cam.position_smoothing_speed = 8.0
 	cam.limit_left = 0
@@ -199,9 +199,9 @@ func _build_chibi_sprite() -> void:
 		return
 	_sprite = Sprite2D.new()
 	_sprite.texture = tex
-	_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	_sprite.centered = false
-	_sprite.offset = Vector2(-100.0, -226.0)
+	_sprite.offset = Vector2(-38.0, -82.0)
 	_sprite.position = Vector2(0.0, BASE_SPRITE_Y)
 	_sprite.scale = BASE_SPRITE_SCALE
 	add_child(_sprite)
@@ -211,23 +211,23 @@ func _update_sprite_animation(delta: float, is_moving: bool) -> void:
 	if _sprite == null:
 		return
 	if is_moving:
-		_anim_time += delta * 12.5
-		_sprite.position.y = BASE_SPRITE_Y - absf(sin(_anim_time)) * 4.0
-		_sprite.rotation = sin(_anim_time) * 0.05
+		_anim_time += delta * 12.0
+		var bob_step: float = floorf(absf(sin(_anim_time)) * 2.5) * 2.0
+		_sprite.position.y = BASE_SPRITE_Y - bob_step
+		_sprite.rotation = 0.0
 		_sprite.scale = BASE_SPRITE_SCALE
 	else:
-		_anim_time += delta * 2.4
-		_sprite.position.y = BASE_SPRITE_Y
+		_anim_time += delta * 2.6
+		var idle_step: float = 2.0 if sin(_anim_time) > 0.35 else 0.0
+		_sprite.position.y = BASE_SPRITE_Y - idle_step
 		_sprite.rotation = 0.0
-		var breath: float = 1.0 + sin(_anim_time) * 0.015
-		_sprite.scale = Vector2(BASE_SPRITE_SCALE.x, BASE_SPRITE_SCALE.y * breath)
+		_sprite.scale = BASE_SPRITE_SCALE
 
 
 func _draw() -> void:
 	if _sprite != null:
-		draw_set_transform(Vector2(0.0, 8.0), 0.0, Vector2(1.4, 0.58))
-		draw_circle(Vector2.ZERO, 12.5, Color(0.0, 0.0, 0.0, 0.30))
-		draw_set_transform(Vector2.ZERO, 0.0, Vector2.ONE)
+		draw_rect(Rect2(-14.0, 4.0, 28.0, 6.0), Color(0.08, 0.06, 0.08, 0.34), true)
+		draw_rect(Rect2(-10.0, 2.0, 20.0, 10.0), Color(0.08, 0.06, 0.08, 0.24), true)
 		return
 	# 脚下投影
 	draw_circle(Vector2(0.0, 12.0), 13.0, Color(0.0, 0.0, 0.0, 0.30))

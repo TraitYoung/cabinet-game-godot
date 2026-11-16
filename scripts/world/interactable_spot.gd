@@ -8,8 +8,8 @@ extends Area2D
 @export var accent_color: Color = Color(0.88, 0.72, 0.34)
 @export var is_council_sandbox: bool = false
 @export var info_lines: PackedStringArray = PackedStringArray()
+@export var indicator_size: Vector2 = Vector2(104.0, 76.0)
 
-var _is_highlighted: bool = false
 var _hint_label: Label
 
 
@@ -28,8 +28,9 @@ func _ready() -> void:
 	_hint_label = Label.new()
 	_hint_label.text = prompt_hint
 	_hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_hint_label.position = Vector2(-90.0, -56.0)
+	_hint_label.position = Vector2(-90.0, -indicator_size.y * 0.5 - 24.0)
 	_hint_label.size = Vector2(180.0, 24.0)
+	_hint_label.z_index = 6
 	_hint_label.add_theme_font_size_override("font_size", 13)
 	_hint_label.add_theme_color_override("font_color", Color(1.0, 0.96, 0.80))
 	_hint_label.add_theme_color_override("font_outline_color", Color(0.08, 0.08, 0.12))
@@ -39,10 +40,8 @@ func _ready() -> void:
 
 
 func set_highlighted(enabled: bool) -> void:
-	_is_highlighted = enabled
 	if _hint_label != null:
 		_hint_label.visible = enabled
-	queue_redraw()
 
 
 func interact() -> void:
@@ -51,9 +50,3 @@ func interact() -> void:
 		DialogueBus.council_meeting_requested.emit("正殿舆图沙盘 · 内阁短议", entries)
 		return
 	DialogueBus.info_dialogue_requested.emit(display_title, "宫城设施", accent_color, info_lines)
-
-
-func _draw() -> void:
-	if _is_highlighted:
-		draw_rect(Rect2(-46.0, -34.0, 92.0, 68.0), Color(accent_color, 0.18), true)
-		draw_rect(Rect2(-46.0, -34.0, 92.0, 68.0), accent_color, false, 2.0)
