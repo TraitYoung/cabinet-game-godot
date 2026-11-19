@@ -1,19 +1,19 @@
 # Axiodrasil 游戏开发路线图
 
-## 阶段一：宫城骨架与首批内阁互动（当前）
+## 阶段一：宫城骨架与首批内阁互动（已完成）
 
-- [x] 清理旧版前后端代码，将仓库根目录改造为 Godot 4.7.2 原生项目（GDScript）。
-- [x] 搭建「一轴四区」宫城白模场景与 `NavigationRegion2D` 寻路、Y-sort 遮挡与昼夜光影变化。
+- [x] 原地切换为纯 Web 技术栈（TypeScript + React + Vite + PixiJS v8），并将原 Godot 4.7 原型归档至 `archive/godot-prototype` 分支。
+- [x] 搭建「一轴四区」宫城 PixiJS 场景与 `NavGrid` A* 寻路、Y-sort 遮挡及昼夜光影/宫灯夜光变化。
 - [x] 实现日夜节律系统（晨启 / 政务 / 午憩 / 夜游 / 宵禁）。
-- [x] 上线首批 4 位核心内阁成员（Bina、Chizheng、Bit、Vinci）及通用状态机模板。
+- [x] 实装「一进值房小院」等距分片遮挡独立沙盒，并支持 HUD 一键切换。
 - [x] 实现玩家面对面对话、正殿沙盘「内阁短议」群聊演出，以及大臣偶遇头顶气泡自动拌嘴。
 
-## 阶段二：补全内阁全员与日常氛围
+## 阶段二：内阁全员与日常氛围（进行中）
 
-- [ ] 扩充其余内阁成员配置（Taki、Jean、Tianji、Fukucho、Planck、Qianjin、Boming、Jiafa）。
+- [x] 完整迁移全阁 12 位成员配置（Bina、Chizheng、Bit、Vinci、Taki、Jean、Tianji、Fukucho、Planck、Boming、Qianjin、Jiafa）及 17 组双人拌嘴脚本。
+- [x] 引入 32×32 唐风全像素宫城底图（`palace_base.png`）、前景屋檐遮挡层（`palace_front.png`）、18 种独立正交像素家具/树木精灵与 13 位角色像素小人（`scaleMode = 'nearest'`），保留对话框高清胸像。
 - [ ] 完善 `23:30` 宵禁后 Fukucho 巡夜劝寝、Qianjin 医馆问诊等专属时段事件。
-- [x] 引入 32×32 唐风全像素宫城底图（`palace_base.png`）、前景屋檐遮挡层（`palace_front.png`）、18 种独立正交像素家具/树木精灵（莲池、戏台、预留地块与南宫门直接绘入底图）与 13 位角色像素小人（`TEXTURE_FILTER_NEAREST` + 统一 `1-texel = 2×2` 密度），保留对话框高清胸像。
-- [ ] 引入人物多方向行走帧替换单帧弹性动画。
+- [ ] 引入人物多方向行走帧替换单帧弹性动画，并接入 Live2D 对话立绘演出（复用 `assets/bina-live2d/`）。
 
 ## 阶段三：皇城细尺度建设
 

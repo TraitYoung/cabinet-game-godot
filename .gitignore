@@ -1,12 +1,8 @@
-# Godot 4 缓存与构建产物
-.godot/
-*.translation
-builds/
-export/
-
-# Godot Mono / C#（若启用）
-.mono/
-data_*/
+# Node / Web 产物与依赖
+node_modules/
+dist/
+.vite/
+*.tsbuildinfo
 
 # IDE & 操作系统
 .vscode/
